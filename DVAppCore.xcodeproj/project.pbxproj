@@ -263,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				414702521C6E147500F97990 /* DVAppCore */,
+				4147027B1C6E151F00F97990 /* DVAppCoreExample */,
 				4147026C1C6E147500F97990 /* DVAppCoreTests */,
 				414702511C6E147500F97990 /* Products */,
 			);
@@ -285,7 +286,6 @@
 				414702811C6E166C00F97990 /* Templates */,
 				413092061C72137C0080725C /* Helpers */,
 				414457CB1C735D7B00BF27FF /* Models */,
-				4147027B1C6E151F00F97990 /* AppCoreTest */,
 				41807FA41C984D8A00101829 /* ACAssets.xcassets */,
 				410FB3971CA2970F0079B2A2 /* DVAppCore.h */,
 			);
@@ -340,7 +340,7 @@
 			name = Other;
 			sourceTree = "<group>";
 		};
-		4147027B1C6E151F00F97990 /* AppCoreTest */ = {
+		4147027B1C6E151F00F97990 /* DVAppCoreExample */ = {
 			isa = PBXGroup;
 			children = (
 				4147027A1C6E14F500F97990 /* Other */,
@@ -348,7 +348,8 @@
 				414702781C6E14DF00F97990 /* Storyboards */,
 				414702531C6E147500F97990 /* Supporting Files */,
 			);
-			path = AppCoreTest;
+			name = DVAppCoreExample;
+			path = DVAppCore_Example;
 			sourceTree = "<group>";
 		};
 		4147027C1C6E166C00F97990 /* Categories */ = {
@@ -798,7 +799,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				INFOPLIST_FILE = DVAppCore/AppCoreTest/Info.plist;
+				INFOPLIST_FILE = DVAppCore_Example/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vandv.DVAppCore;
@@ -811,7 +812,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				INFOPLIST_FILE = DVAppCore/AppCoreTest/Info.plist;
+				INFOPLIST_FILE = DVAppCore_Example/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vandv.DVAppCore;
