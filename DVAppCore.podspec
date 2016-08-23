@@ -73,6 +73,6 @@ Pod::Spec.new do |s|
     templates.dependency 'DVAppCore/Helpers'
   end
 
-  s.ios.source_files = 'DVAppCore/{AC}*.{h,m}'
+  s.ios.source_files = 'DVAppCore/DVAppCore.{h,m}'
   s.resources = 'DVAppCore/ACAssets.xcassets'
 end
