@@ -13,7 +13,7 @@ Set of useful categories and helpers.
 
 1.  Add the pod `DVAppCore` to your [Podfile](http://guides.cocoapods.org/using/the-podfile.html).
 
-pod 'DVAppCore', :git => 'https://github.com/denis-vashkovski/DVAppCore.git'
+        pod 'DVAppCore', :git => 'https://github.com/denis-vashkovski/DVAppCore.git'
 
 2.  Run `pod install` from Terminal, then open your app's `.xcworkspace` file to launch Xcode.
 
