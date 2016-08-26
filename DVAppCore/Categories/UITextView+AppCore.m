@@ -103,4 +103,14 @@ CATEGORY_PROPERTY_GET(NSAttributedString *, ac_placeholder)
     self.textContainerInset = UIEdgeInsetsZero;
 }
 
+- (void)ac_scrollToBottom {
+    NSRange range = NSMakeRange(self.text.length, 0);
+    [self scrollRangeToVisible:range];
+    [self setScrollEnabled:NO];
+    [self setScrollEnabled:YES];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.selectedRange = range;
+    });
+}
+
 @end

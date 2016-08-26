@@ -25,4 +25,5 @@ typedef enum {
 - (void)ac_setAttributedText:(NSAttributedString *)attributedText animationDuration:(NSTimeInterval)duration;
 
 - (void)ac_removeTextPadding;
+- (void)ac_scrollToBottom;
 @end
