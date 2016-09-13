@@ -24,6 +24,18 @@
     return objects.ac_isEmpty ? nil : [NSArray arrayWithArray:objects];
 }
 
++ (NSArray *)ac_arrayObjectsPrefillByData:(NSArray<NSDictionary *> *)data classModel:(Class)classModel {
+    NSMutableArray *objects = [NSMutableArray new];
+    
+    if (ValidArray(data) && [classModel isSubclassOfClass:self.class]) {
+        for (NSDictionary *objectData in data) {
+            [objects addObject:[[classModel alloc] initWithPrefillData:objectData]];
+        }
+    }
+    
+    return objects.ac_isEmpty ? nil : [NSArray arrayWithArray:objects];
+}
+
 - (instancetype)initWithData:(NSDictionary *)data {
     if ((self = [super init]) && Valid(data)) {
         NSNumber *idNumber = [data ac_numberForKey:@"id"];

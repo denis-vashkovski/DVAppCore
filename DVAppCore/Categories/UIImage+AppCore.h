@@ -14,3 +14,5 @@
 - (UIImage *)ac_resizeWithNewSize:(CGSize)newSize;
 - (UIImage *)ac_resizeWithMinSide:(CGFloat)minSide;
 @end
+
+#define DVImageNamed(name) [UIImage imageNamed:name]

@@ -10,6 +10,7 @@
 
 @interface ACJsonObject : NSObject
 + (NSArray *)ac_arrayObjectsByData:(NSArray<NSDictionary *> *)data classModel:(Class)classModel;
++ (NSArray *)ac_arrayObjectsPrefillByData:(NSArray<NSDictionary *> *)data classModel:(Class)classModel;
 
 - (instancetype)initWithData:(NSDictionary *)data;
 - (instancetype)initWithPrefillData:(NSDictionary *)data;

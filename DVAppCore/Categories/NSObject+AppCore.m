@@ -39,14 +39,18 @@
 
 - (NSString *)getTypeAttributePropertyByName:(NSString *)propertyName {
     if (ValidStr(propertyName)) {
-        objc_property_t propTitle = class_getProperty([self class], [propertyName UTF8String]);
-        
-        if (propTitle) {
-            const char *type = property_getAttributes(propTitle);
-            NSString *typeString = [NSString stringWithUTF8String:type];
-            NSArray *attributes = [typeString componentsSeparatedByString:@","];
+        Class observedClass = self.class;
+        while (observedClass) {
+            objc_property_t propTitle = class_getProperty(observedClass, [propertyName UTF8String]);
+            if (propTitle) {
+                const char *type = property_getAttributes(propTitle);
+                NSString *typeString = [NSString stringWithUTF8String:type];
+                NSArray *attributes = [typeString componentsSeparatedByString:@","];
+                
+                return [attributes objectAtIndex:0];
+            }
             
-            return [attributes objectAtIndex:0];
+            observedClass = [observedClass superclass];
         }
     }
     
@@ -65,15 +69,20 @@
 
 - (BOOL)ac_hasPropertyByName:(NSString *)propertyName {
     if (propertyName && (propertyName.length > 0)) {
-        unsigned int count;
-        objc_property_t *props = class_copyPropertyList([self class], &count);
-        for (int i = 0; i < count; i++) {
-            if (strcmp(propertyName.UTF8String, property_getName(props[i])) == 0) {
-                free(props);
-                return YES;
+        Class observedClass = self.class;
+        while (observedClass) {
+            unsigned int count;
+            objc_property_t *props = class_copyPropertyList(observedClass, &count);
+            for (int i = 0; i < count; i++) {
+                if (strcmp(propertyName.UTF8String, property_getName(props[i])) == 0) {
+                    free(props);
+                    return YES;
+                }
             }
+            free(props);
+            
+            observedClass = [observedClass superclass];
         }
-        free(props);
     }
     
     return NO;

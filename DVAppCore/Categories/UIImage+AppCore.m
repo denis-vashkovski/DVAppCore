@@ -20,22 +20,22 @@
     CGFloat ratio = self.size.width / self.size.height;
     
     CGSize showSize = CGSizeZero;
-    if(ratioW > 1. && ratioH > 1.) {
-        if(ratioW > ratioH) {
+    if (ratioW > 1. && ratioH > 1.) {
+        if (ratioW > ratioH) {
             showSize.width = newSize.width;
             showSize.height = showSize.width / ratio;
         } else {
             showSize.height = newSize.height;
             showSize.width = showSize.height * ratio;
         }
-    } else if(ratioW > 1.) {
+    } else if (ratioW > 1.) {
         showSize.width = showSize.width;
         showSize.height = showSize.width / ratio;
     } else if (ratioH > 1.) {
         showSize.height = showSize.height;
         showSize.width = showSize.height * ratio;
-        
     }
+    
     UIGraphicsBeginImageContextWithOptions(showSize, NO, .0);
     [self drawInRect:CGRectMake(.0, .0, ceilf(showSize.width), ceilf(showSize.height))];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
