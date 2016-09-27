@@ -106,3 +106,7 @@ ACSINGLETON_M
 
 EXTERN_STRING_M(ACUpdateCurrentLocation)
 EXTERN_STRING_M(ACUpdateCurrentHeading)
+
+BOOL ACLocationsCoordinates2DEqual(CLLocationCoordinate2D coordinate1, CLLocationCoordinate2D coordinate2) {
+    return (coordinate1.latitude == coordinate2.latitude) && (coordinate1.longitude == coordinate2.longitude);
+}
