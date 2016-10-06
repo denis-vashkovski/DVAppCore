@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface NSIndexPath(AppCore)
-+ (NSArray<NSIndexPath *> *)indexPathsForSection:(NSInteger)section rangeRows:(NSRange)rangeRows;
++ (NSArray<NSIndexPath *> *)ac_indexPathsForSection:(NSInteger)section rangeRows:(NSRange)rangeRows;
 @end

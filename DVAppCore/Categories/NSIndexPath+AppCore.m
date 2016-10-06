@@ -12,7 +12,7 @@
 
 @implementation NSIndexPath(AppCore)
 
-+ (NSArray<NSIndexPath *> *)indexPathsForSection:(NSInteger)section rangeRows:(NSRange)rangeRows {
++ (NSArray<NSIndexPath *> *)ac_indexPathsForSection:(NSInteger)section rangeRows:(NSRange)rangeRows {
     NSMutableArray *indexPaths = [NSMutableArray new];
     for (NSUInteger row = rangeRows.location; row < NSMaxRange(rangeRows); row++) {
         [indexPaths addObject:[NSIndexPath indexPathForRow:row inSection:section]];

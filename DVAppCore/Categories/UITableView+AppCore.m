@@ -30,11 +30,9 @@
 }
 
 - (void)ac_insertRowsAtSection:(NSUInteger)section rangeRows:(NSRange)rangeRows withRowAnimation:(UITableViewRowAnimation)animation {
-    if (![self ac_isValidRangeRows:rangeRows forSection:section]) return;
-    
-    NSArray *updateCell = [NSIndexPath indexPathsForSection:section rangeRows:rangeRows];
-    if (ValidArray(updateCell)) {
-        [self insertRowsAtIndexPaths:updateCell withRowAnimation:animation];
+    NSArray *insertCells = [NSIndexPath ac_indexPathsForSection:section rangeRows:rangeRows];
+    if (ValidArray(insertCells)) {
+        [self insertRowsAtIndexPaths:insertCells withRowAnimation:animation];
     }
 }
 
@@ -43,20 +41,16 @@
 }
 
 - (void)ac_reloadRowsAtSection:(NSUInteger)section rangeRows:(NSRange)rangeRows withRowAnimation:(UITableViewRowAnimation)animation {
-    if (![self ac_isValidRangeRows:rangeRows forSection:section]) return;
-    
-    NSArray *updateCell = [NSIndexPath indexPathsForSection:section rangeRows:rangeRows];
-    if (ValidArray(updateCell)) {
-        [self reloadRowsAtIndexPaths:updateCell withRowAnimation:animation];
+    NSArray *reloadCells = [NSIndexPath ac_indexPathsForSection:section rangeRows:rangeRows];
+    if (ValidArray(reloadCells)) {
+        [self reloadRowsAtIndexPaths:reloadCells withRowAnimation:animation];
     }
 }
 
 - (void)ac_deleteRowsAtSection:(NSUInteger)section rangeRows:(NSRange)rangeRows withRowAnimation:(UITableViewRowAnimation)animation {
-    if (![self ac_isValidRangeRows:rangeRows forSection:section]) return;
-    
-    NSArray *updateCell = [NSIndexPath indexPathsForSection:section rangeRows:rangeRows];
-    if (ValidArray(updateCell)) {
-        [self deleteRowsAtIndexPaths:updateCell withRowAnimation:animation];
+    NSArray *deleteCells = [NSIndexPath ac_indexPathsForSection:section rangeRows:rangeRows];
+    if (ValidArray(deleteCells)) {
+        [self deleteRowsAtIndexPaths:deleteCells withRowAnimation:animation];
     }
 }
 
