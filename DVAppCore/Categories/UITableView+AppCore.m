@@ -9,14 +9,11 @@
 #import "UITableView+AppCore.h"
 
 #import "NSArray+AppCore.h"
+#import "NSIndexPath+AppCore.h"
 
 #import "ACConstants.h"
 
 @implementation UITableView(AppCore)
-- (void)ac_reloadVisibleRows {
-    [self reloadRowsAtIndexPaths:self.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationNone];
-}
-
 - (void)ac_setTopColor:(UIColor *)topColor bottomColor:(UIColor *)bottomColor {
     if ([topColor isEqual:bottomColor]) {
         [self setBackgroundColor:topColor];
@@ -32,18 +29,39 @@
     }
 }
 
-- (void)ac_reloadRowsAtSection:(NSUInteger)section rangeRows:(NSRange)rangeRows withRowAnimation:(UITableViewRowAnimation)animation {
-    if ((self.numberOfSections < section) || ([self numberOfRowsInSection:section] < NSMaxRange(rangeRows))) {
-        return;
-    }
+- (void)ac_insertRowsAtSection:(NSUInteger)section rangeRows:(NSRange)rangeRows withRowAnimation:(UITableViewRowAnimation)animation {
+    if (![self ac_isValidRangeRows:rangeRows forSection:section]) return;
     
-    NSMutableArray *updateCell = [NSMutableArray new];
-    for (NSUInteger row = rangeRows.location; row < NSMaxRange(rangeRows); row++) {
-        [updateCell addObject:[NSIndexPath indexPathForRow:row inSection:section]];
-    }
-    
+    NSArray *updateCell = [NSIndexPath indexPathsForSection:section rangeRows:rangeRows];
     if (ValidArray(updateCell)) {
-        [self reloadRowsAtIndexPaths:[NSArray arrayWithArray:updateCell] withRowAnimation:animation];
+        [self insertRowsAtIndexPaths:updateCell withRowAnimation:animation];
     }
+}
+
+- (void)ac_reloadVisibleRows {
+    [self reloadRowsAtIndexPaths:self.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationNone];
+}
+
+- (void)ac_reloadRowsAtSection:(NSUInteger)section rangeRows:(NSRange)rangeRows withRowAnimation:(UITableViewRowAnimation)animation {
+    if (![self ac_isValidRangeRows:rangeRows forSection:section]) return;
+    
+    NSArray *updateCell = [NSIndexPath indexPathsForSection:section rangeRows:rangeRows];
+    if (ValidArray(updateCell)) {
+        [self reloadRowsAtIndexPaths:updateCell withRowAnimation:animation];
+    }
+}
+
+- (void)ac_deleteRowsAtSection:(NSUInteger)section rangeRows:(NSRange)rangeRows withRowAnimation:(UITableViewRowAnimation)animation {
+    if (![self ac_isValidRangeRows:rangeRows forSection:section]) return;
+    
+    NSArray *updateCell = [NSIndexPath indexPathsForSection:section rangeRows:rangeRows];
+    if (ValidArray(updateCell)) {
+        [self deleteRowsAtIndexPaths:updateCell withRowAnimation:animation];
+    }
+}
+
+#pragma mark - Utils
+- (BOOL)ac_isValidRangeRows:(NSRange)rangeRows forSection:(NSUInteger)section {
+    return (self.numberOfSections > section) && ([self numberOfRowsInSection:section] > NSMaxRange(rangeRows));
 }
 @end

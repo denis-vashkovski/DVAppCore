@@ -62,6 +62,7 @@
 		41C58C041C7B4BC7008FEADD /* ACDataKeeper.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C58C031C7B4BC7008FEADD /* ACDataKeeper.m */; };
 		41C662111CD878C300ED81CA /* ACTemplateCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C662101CD878C300ED81CA /* ACTemplateCVC.m */; };
 		41C662141CD8804300ED81CA /* ACTemplatePVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C662131CD8804300ED81CA /* ACTemplatePVC.m */; };
+		41DED3991DA64A7E00ADB3C1 /* NSIndexPath+AppCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 41DED3981DA64A7E00ADB3C1 /* NSIndexPath+AppCore.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -185,6 +186,8 @@
 		41C662101CD878C300ED81CA /* ACTemplateCVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACTemplateCVC.m; sourceTree = "<group>"; };
 		41C662121CD8804300ED81CA /* ACTemplatePVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACTemplatePVC.h; sourceTree = "<group>"; };
 		41C662131CD8804300ED81CA /* ACTemplatePVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACTemplatePVC.m; sourceTree = "<group>"; };
+		41DED3971DA64A7E00ADB3C1 /* NSIndexPath+AppCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexPath+AppCore.h"; sourceTree = "<group>"; };
+		41DED3981DA64A7E00ADB3C1 /* NSIndexPath+AppCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexPath+AppCore.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -395,6 +398,8 @@
 				414702921C6E1C7F00F97990 /* NSDate+AppCore.m */,
 				414702941C6E1D7100F97990 /* NSDictionary+AppCore.h */,
 				414702951C6E1D7100F97990 /* NSDictionary+AppCore.m */,
+				41DED3971DA64A7E00ADB3C1 /* NSIndexPath+AppCore.h */,
+				41DED3981DA64A7E00ADB3C1 /* NSIndexPath+AppCore.m */,
 				4147028E1C6E1C2700F97990 /* NSHTTPURLResponse+AppCore.h */,
 				4147028F1C6E1C2700F97990 /* NSHTTPURLResponse+AppCore.m */,
 				412F5EE81CF8679D006539CC /* NSLayoutConstraint+AppCore.h */,
@@ -641,6 +646,7 @@
 				416BD9661D460DE700A6AB37 /* ACLocalizationHelper.m in Sources */,
 				41B052981CEB4A7B007D2F79 /* NSLayoutConstraintHairline.m in Sources */,
 				414702A81C6E21F500F97990 /* UINavigationController+AppCore.m in Sources */,
+				41DED3991DA64A7E00ADB3C1 /* NSIndexPath+AppCore.m in Sources */,
 				41C58C041C7B4BC7008FEADD /* ACDataKeeper.m in Sources */,
 				412F5EED1CF8682E006539CC /* UITableView+AppCore.m in Sources */,
 				410FB3961CA2824B0079B2A2 /* ViewController.m in Sources */,

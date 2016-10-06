@@ -36,6 +36,8 @@
 - (BOOL)ac_isOnlyDigits;
 - (BOOL)ac_isOnlyLetters;
 - (BOOL)ac_isOnlyLettersAndDigits;
+
+- (NSURL *)ac_asURL;
 @end
 
 #define UnnilStr(str) ( ( str && [str isKindOfClass:[NSString class]] ) ? (str) : @"" )

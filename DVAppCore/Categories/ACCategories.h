@@ -12,6 +12,7 @@
 #import "NSData+AppCore.h"
 #import "NSDate+AppCore.h"
 #import "NSDictionary+AppCore.h"
+#import "NSIndexPath+AppCore.h"
 #import "NSHTTPURLResponse+AppCore.h"
 #import "NSMutableURLRequest+AppCore.h"
 #import "NSLayoutConstraint+AppCore.h"

@@ -170,4 +170,8 @@
     return (ValidStr(self) && [self ac_isValidRegexp:ONLY_LETTERS_AND_DIGITS]);
 }
 
+- (NSURL *)ac_asURL {
+    return ValidStr(self) ? [NSURL URLWithString:self] : nil;
+}
+
 @end
