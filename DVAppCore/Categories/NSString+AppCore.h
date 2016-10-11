@@ -38,6 +38,8 @@
 - (BOOL)ac_isOnlyLettersAndDigits;
 
 - (NSURL *)ac_asURL;
+
+- (NSString *)ac_replacingWithPattern:(NSString *)pattern templateString:(NSString *)templateString;
 @end
 
 #define UnnilStr(str) ( ( str && [str isKindOfClass:[NSString class]] ) ? (str) : @"" )

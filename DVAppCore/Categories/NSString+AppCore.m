@@ -174,4 +174,14 @@
     return ValidStr(self) ? [NSURL URLWithString:self] : nil;
 }
 
+- (NSString *)ac_replacingWithPattern:(NSString *)pattern templateString:(NSString *)templateString {
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern
+                                                                           options:NSRegularExpressionCaseInsensitive
+                                                                             error:nil];
+    return [regex stringByReplacingMatchesInString:self
+                                           options:0
+                                             range:NSMakeRange(0, self.length)
+                                      withTemplate:templateString];
+}
+
 @end
