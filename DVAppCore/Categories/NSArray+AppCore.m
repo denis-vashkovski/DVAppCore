@@ -8,6 +8,8 @@
 
 #import "NSArray+AppCore.h"
 
+#import "NSString+AppCore.h"
+
 @implementation NSArray(AppCore)
 
 + (BOOL)ac_isValidArray:(id)object {
@@ -23,7 +25,7 @@
 }
 
 - (NSString *)ac_jsonString {
-    return [[NSString alloc] initWithData:self.ac_jsonData encoding:NSUTF8StringEncoding];
+    return [[NSString alloc] initWithData:self.ac_jsonData encoding:NSUTF8StringEncoding].ac_removeAllWhitespaceAndNewlineAndTab;
 }
 
 @end

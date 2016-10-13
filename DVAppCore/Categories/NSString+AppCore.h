@@ -24,6 +24,7 @@
 
 - (UIImage *)ac_decodeBase64ToImage;
 - (NSString *)ac_encodeForUrl;
+- (NSString *)ac_removeAllWhitespaceAndNewlineAndTab;
 
 - (NSAttributedString *)ac_htmlAttributedStringWithFont:(UIFont *)font colorHex:(NSString *)colorHex;
 - (NSAttributedString *)ac_htmlAttributedString;

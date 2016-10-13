@@ -8,6 +8,8 @@
 
 #import "NSDictionary+AppCore.h"
 
+#import "NSString+AppCore.h"
+
 @implementation NSDictionary(AppCore)
 
 + (BOOL)ac_isValidDictionary:(id)object {
@@ -59,7 +61,7 @@
 }
 
 - (NSString *)ac_jsonString {
-    return [[NSString alloc] initWithData:self.ac_jsonData encoding:NSUTF8StringEncoding];
+    return [[NSString alloc] initWithData:self.ac_jsonData encoding:NSUTF8StringEncoding].ac_removeAllWhitespaceAndNewlineAndTab;
 }
 
 @end

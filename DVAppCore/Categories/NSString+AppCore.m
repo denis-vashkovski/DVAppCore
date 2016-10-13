@@ -95,6 +95,10 @@
     return result;
 }
 
+- (NSString *)ac_removeAllWhitespaceAndNewlineAndTab {
+    return [[self copy] ac_replacingWithPattern:@"[\\n\\t ]+" templateString:@""];
+}
+
 #pragma mark - HTML
 #define HTML_FONT_DEFAULT [UIFont systemFontOfSize:17.]
 #define HTML_COLOR_HEX_DEFAULT @"000000"
