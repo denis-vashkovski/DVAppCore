@@ -18,4 +18,12 @@
     return ![self count];
 }
 
+- (NSData *)ac_jsonData {
+    return [NSJSONSerialization dataWithJSONObject:self options:NSJSONWritingPrettyPrinted error:nil];
+}
+
+- (NSString *)ac_jsonString {
+    return [[NSString alloc] initWithData:self.ac_jsonData encoding:NSUTF8StringEncoding];
+}
+
 @end

@@ -54,12 +54,10 @@
             [vc.tabBarItem setTitle:[titles objectAtIndex:indexTab]];
         }
         if (ValidArray(images)) {
-            [vc.tabBarItem setImage:[[images objectAtIndex:indexTab]
-                                     imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
+            [vc.tabBarItem setImage:[[images objectAtIndex:indexTab] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
         }
         if (ValidArray(selectedImages)) {
-            [vc.tabBarItem setImage:[[selectedImages objectAtIndex:indexTab]
-                                     imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
+            [vc.tabBarItem setSelectedImage:[[selectedImages objectAtIndex:indexTab] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
         }
     }
 }

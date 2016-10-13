@@ -54,4 +54,12 @@
     return [[self ac_numberForKey:key] floatValue];
 }
 
+- (NSData *)ac_jsonData {
+    return [NSJSONSerialization dataWithJSONObject:self options:NSJSONWritingPrettyPrinted error:nil];
+}
+
+- (NSString *)ac_jsonString {
+    return [[NSString alloc] initWithData:self.ac_jsonData encoding:NSUTF8StringEncoding];
+}
+
 @end

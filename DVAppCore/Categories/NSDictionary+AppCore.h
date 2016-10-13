@@ -23,6 +23,9 @@
 - (BOOL)ac_boolForKey:(NSString *)key;
 - (int)ac_intForKey:(NSString *)key;
 - (float)ac_floatForKey:(NSString *)key;
+
+- (NSData *)ac_jsonData;
+- (NSString *)ac_jsonString;
 @end
 
 #define ValidDictionary(dictionary) [NSDictionary ac_isValidDictionary:dictionary]

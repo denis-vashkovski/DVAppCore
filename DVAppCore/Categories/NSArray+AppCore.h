@@ -14,6 +14,9 @@
  @abstract Return YES if number elements in array equals 0
  */
 - (BOOL)ac_isEmpty;
+
+- (NSData *)ac_jsonData;
+- (NSString *)ac_jsonString;
 @end
 
 #define ValidArray(array) [NSArray ac_isValidArray:array]
