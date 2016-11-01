@@ -10,6 +10,8 @@
 #import <UIKit/UIKit.h>
 
 @interface UIImage(AppCore)
++ (instancetype)ac_launchImage;
+
 - (NSString *)ac_base64;
 - (UIImage *)ac_resizeWithNewSize:(CGSize)newSize;
 - (UIImage *)ac_resizeWithMinSide:(CGFloat)minSide;
