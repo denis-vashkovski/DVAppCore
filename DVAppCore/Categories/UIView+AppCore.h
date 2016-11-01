@@ -26,6 +26,7 @@ typedef enum {
 
 - (void)ac_setBackgroundClearColor;
 - (void)ac_setBorderWidth:(float)width color:(UIColor *)color;
+- (void)ac_setShadowColor:(UIColor *)color opacity:(CGFloat)opacity radius:(CGFloat)radius offset:(CGSize)offset;
 - (void)ac_setBackgroundImageByName:(NSString *)imageName;
 - (void)ac_setBackgroundImage:(UIImage *)image;
 - (void)ac_setHidden:(BOOL)hidden animate:(BOOL)animate;

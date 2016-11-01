@@ -95,6 +95,17 @@ CATEGORY_PROPERTY_GET(UIColor *, ac_staticBackgroundColor)
     [self.layer setBorderColor:color.CGColor];
 }
 
+- (void)ac_setShadowColor:(UIColor *)color opacity:(CGFloat)opacity radius:(CGFloat)radius offset:(CGSize)offset {
+    if (!color || (opacity == .0) || (radius == .0)) return;
+    
+    [self setClipsToBounds:NO];
+    
+    [self.layer setShadowColor:color.CGColor];
+    [self.layer setShadowOpacity:opacity];
+    [self.layer setShadowRadius:radius];
+    [self.layer setShadowOffset:offset];
+}
+
 - (void)ac_setBackgroundImageByName:(NSString *)imageName {
     if (!ValidStr(imageName)) {
         return;

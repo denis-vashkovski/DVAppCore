@@ -50,4 +50,15 @@
                                        : CGSizeMake(minSide, minSide * (self.size.height / self.size.width)))];
 }
 
+- (UIImage *)ac_imageWithInsets:(UIEdgeInsets)insets {
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(self.size.width + insets.left + insets.right,
+                                                      self.size.height + insets.top + insets.bottom),
+                                           NO,
+                                           .0);
+    [self drawInRect:CGRectMake(insets.left, insets.top, self.size.width, self.size.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
 @end

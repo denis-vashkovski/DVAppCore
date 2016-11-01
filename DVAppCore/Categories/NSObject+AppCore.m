@@ -139,7 +139,7 @@
         return NO;
     }
     
-    NSString *fullPath = [NSString ac_fullPathLibraryDirectoryWithLastComponent:name];
+    NSString *fullPath = [NSString ac_fullPathDocumentDirectoryWithLastComponent:name];
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:object];
     return [data writeToFile:fullPath atomically:YES];
 }
@@ -149,7 +149,7 @@
         return nil;
     }
     
-    NSString *fullPath = [NSString ac_fullPathLibraryDirectoryWithLastComponent:name];
+    NSString *fullPath = [NSString ac_fullPathDocumentDirectoryWithLastComponent:name];
     NSData *data = [NSData dataWithContentsOfFile:fullPath];
     return data ? [NSKeyedUnarchiver unarchiveObjectWithData:data] : nil;
 }
@@ -159,7 +159,7 @@
         return NO;
     }
     
-    NSString *fullPath = [NSString ac_fullPathLibraryDirectoryWithLastComponent:name];
+    NSString *fullPath = [NSString ac_fullPathDocumentDirectoryWithLastComponent:name];
     return ([[NSFileManager defaultManager] fileExistsAtPath:fullPath] &&
             [[NSFileManager defaultManager] removeItemAtPath:fullPath error:nil]);
 }

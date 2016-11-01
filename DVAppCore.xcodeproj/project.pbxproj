@@ -57,12 +57,14 @@
 		41B1836D1CDB201000A9023B /* ACLocationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B1836C1CDB201000A9023B /* ACLocationHelper.m */; };
 		41B331241D58C70E00504F19 /* UIBarButtonItem+AppCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B331231D58C70E00504F19 /* UIBarButtonItem+AppCore.m */; };
 		41BFF1261CAD0FFD00DC8C16 /* ContactObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 41BFF1251CAD0FFD00DC8C16 /* ContactObjectTests.m */; };
+		41C177391DC32DA2001CE503 /* NSMutableArray+AppCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C177381DC32DA2001CE503 /* NSMutableArray+AppCore.m */; };
 		41C58BFD1C7AFD1F008FEADD /* NSNotificationCenter+AppCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C58BFC1C7AFD1F008FEADD /* NSNotificationCenter+AppCore.m */; };
 		41C58C001C7B2C6C008FEADD /* ACRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C58BFF1C7B2C6C008FEADD /* ACRouter.m */; };
 		41C58C041C7B4BC7008FEADD /* ACDataKeeper.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C58C031C7B4BC7008FEADD /* ACDataKeeper.m */; };
 		41C662111CD878C300ED81CA /* ACTemplateCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C662101CD878C300ED81CA /* ACTemplateCVC.m */; };
 		41C662141CD8804300ED81CA /* ACTemplatePVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C662131CD8804300ED81CA /* ACTemplatePVC.m */; };
 		41DED3991DA64A7E00ADB3C1 /* NSIndexPath+AppCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 41DED3981DA64A7E00ADB3C1 /* NSIndexPath+AppCore.m */; };
+		41E228021DBE328B00E4334B /* NSNumber+AppCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E228011DBE328B00E4334B /* NSNumber+AppCore.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -176,6 +178,8 @@
 		41B331221D58C70E00504F19 /* UIBarButtonItem+AppCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+AppCore.h"; sourceTree = "<group>"; };
 		41B331231D58C70E00504F19 /* UIBarButtonItem+AppCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+AppCore.m"; sourceTree = "<group>"; };
 		41BFF1251CAD0FFD00DC8C16 /* ContactObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactObjectTests.m; sourceTree = "<group>"; };
+		41C177371DC32DA2001CE503 /* NSMutableArray+AppCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+AppCore.h"; sourceTree = "<group>"; };
+		41C177381DC32DA2001CE503 /* NSMutableArray+AppCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+AppCore.m"; sourceTree = "<group>"; };
 		41C58BFB1C7AFD1F008FEADD /* NSNotificationCenter+AppCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+AppCore.h"; sourceTree = "<group>"; };
 		41C58BFC1C7AFD1F008FEADD /* NSNotificationCenter+AppCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+AppCore.m"; sourceTree = "<group>"; };
 		41C58BFE1C7B2C6C008FEADD /* ACRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRouter.h; sourceTree = "<group>"; };
@@ -188,6 +192,8 @@
 		41C662131CD8804300ED81CA /* ACTemplatePVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACTemplatePVC.m; sourceTree = "<group>"; };
 		41DED3971DA64A7E00ADB3C1 /* NSIndexPath+AppCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexPath+AppCore.h"; sourceTree = "<group>"; };
 		41DED3981DA64A7E00ADB3C1 /* NSIndexPath+AppCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexPath+AppCore.m"; sourceTree = "<group>"; };
+		41E228001DBE328B00E4334B /* NSNumber+AppCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+AppCore.h"; sourceTree = "<group>"; };
+		41E228011DBE328B00E4334B /* NSNumber+AppCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+AppCore.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -404,10 +410,14 @@
 				4147028F1C6E1C2700F97990 /* NSHTTPURLResponse+AppCore.m */,
 				412F5EE81CF8679D006539CC /* NSLayoutConstraint+AppCore.h */,
 				412F5EE91CF8679D006539CC /* NSLayoutConstraint+AppCore.m */,
+				41C177371DC32DA2001CE503 /* NSMutableArray+AppCore.h */,
+				41C177381DC32DA2001CE503 /* NSMutableArray+AppCore.m */,
 				415FECF51C96E3910084F2CC /* NSMutableURLRequest+AppCore.h */,
 				415FECF61C96E3910084F2CC /* NSMutableURLRequest+AppCore.m */,
 				41C58BFB1C7AFD1F008FEADD /* NSNotificationCenter+AppCore.h */,
 				41C58BFC1C7AFD1F008FEADD /* NSNotificationCenter+AppCore.m */,
+				41E228001DBE328B00E4334B /* NSNumber+AppCore.h */,
+				41E228011DBE328B00E4334B /* NSNumber+AppCore.m */,
 				4147029A1C6E1ECF00F97990 /* NSObject+AppCore.h */,
 				4147029B1C6E1ECF00F97990 /* NSObject+AppCore.m */,
 				4147028B1C6E182300F97990 /* NSString+AppCore.h */,
@@ -643,9 +653,11 @@
 				41216DD11C77329400543459 /* ACDesignHelper.m in Sources */,
 				4147029F1C6E1FB000F97990 /* UIColor+AppCore.m in Sources */,
 				4147029C1C6E1ECF00F97990 /* NSObject+AppCore.m in Sources */,
+				41E228021DBE328B00E4334B /* NSNumber+AppCore.m in Sources */,
 				416BD9661D460DE700A6AB37 /* ACLocalizationHelper.m in Sources */,
 				41B052981CEB4A7B007D2F79 /* NSLayoutConstraintHairline.m in Sources */,
 				414702A81C6E21F500F97990 /* UINavigationController+AppCore.m in Sources */,
+				41C177391DC32DA2001CE503 /* NSMutableArray+AppCore.m in Sources */,
 				41DED3991DA64A7E00ADB3C1 /* NSIndexPath+AppCore.m in Sources */,
 				41C58C041C7B4BC7008FEADD /* ACDataKeeper.m in Sources */,
 				412F5EED1CF8682E006539CC /* UITableView+AppCore.m in Sources */,

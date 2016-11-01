@@ -12,6 +12,7 @@
 @interface UIColor(AppCore)
 + (UIColor *)ac_colorFromHexString:(NSString *)hexString alpha:(float)alpha;
 + (UIColor *)ac_colorFromHexString:(NSString *)hexString;
++ (UIColor *)ac_randomColor;
 
 - (BOOL)ac_isEqualToColor:(UIColor *)color withTolerance:(CGFloat)tolerance;
 - (BOOL)ac_isEqualToColor:(UIColor *)color;
@@ -20,10 +21,13 @@
 - (CGFloat)ac_green;
 - (CGFloat)ac_blue;
 - (CGFloat)ac_alpha;
+
+- (NSString *)ac_hexString;
 @end
 
 #define ACColorHexA(hexStr, alphaValue) [UIColor ac_colorFromHexString:(hexStr) alpha:(alphaValue)]
 #define ACColorHex(hexStr) ACColorHexA((hexStr), 1.f)
+#define ACColorRandom [UIColor ac_randomColor]
 
 #define ACColorClear ACColorHexA(@"ffffff", .0)
 #define ACColorWhite ACColorHex(@"ffffff")

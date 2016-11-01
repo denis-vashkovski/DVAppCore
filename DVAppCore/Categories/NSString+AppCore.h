@@ -11,6 +11,10 @@
 
 @interface NSString(AppCore)
 + (BOOL)ac_isValidString:(id)object;
+
++ (NSString *)ac_fullPathDirectoryByType:(NSSearchPathDirectory)type lastComponent:(NSString *)lastComponent;
++ (NSString *)ac_fullPathDirectoryByType:(NSSearchPathDirectory)type;
++ (NSString *)ac_fullPathDocumentDirectoryWithLastComponent:(NSString *)lastComponent;
 + (NSString *)ac_fullPathLibraryDirectoryWithLastComponent:(NSString *)lastComponent;
 
 - (BOOL)ac_isEmpty;

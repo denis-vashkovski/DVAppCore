@@ -13,6 +13,7 @@
 - (NSString *)ac_base64;
 - (UIImage *)ac_resizeWithNewSize:(CGSize)newSize;
 - (UIImage *)ac_resizeWithMinSide:(CGFloat)minSide;
+- (UIImage *)ac_imageWithInsets:(UIEdgeInsets)insets;
 @end
 
 #define DVImageNamed(name) [UIImage imageNamed:name]

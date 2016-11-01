@@ -36,16 +36,22 @@
     return [self ac_colorFromHexString:hexString alpha:1.0f];
 }
 
++ (UIColor *)ac_randomColor {
+    return [UIColor colorWithRed:(float)(arc4random() % 256) / 256.
+                           green:(float)(arc4random() % 256) / 256.
+                            blue:(float)(arc4random() % 256) / 256.
+                           alpha:1.];
+}
+
 - (BOOL)ac_isEqualToColor:(UIColor *)color withTolerance:(CGFloat)tolerance {
     CGFloat r1, g1, b1, a1, r2, g2, b2, a2;
     [self getRed:&r1 green:&g1 blue:&b1 alpha:&a1];
     [color getRed:&r2 green:&g2 blue:&b2 alpha:&a2];
     
-    return
-    fabs(r1 - r2) <= tolerance &&
-    fabs(g1 - g2) <= tolerance &&
-    fabs(b1 - b2) <= tolerance &&
-    fabs(a1 - a2) <= tolerance;
+    return (fabs(r1 - r2) <= tolerance &&
+            fabs(g1 - g2) <= tolerance &&
+            fabs(b1 - b2) <= tolerance &&
+            fabs(a1 - a2) <= tolerance);
 }
 
 - (BOOL)ac_isEqualToColor:(UIColor *)color {
@@ -75,6 +81,19 @@
     CGFloat alpha = .0f;
     [self getRed:nil green:nil blue:nil alpha:&alpha];
     return alpha;
+}
+
+- (NSString *)ac_hexString {
+    const CGFloat *components = CGColorGetComponents(self.CGColor);
+    
+    CGFloat r = components[0];
+    CGFloat g = components[1];
+    CGFloat b = components[2];
+    
+    return [NSString stringWithFormat:@"#%02lX%02lX%02lX",
+            lroundf(r * 255.),
+            lroundf(g * 255.),
+            lroundf(b * 255.)];
 }
 
 @end

@@ -16,15 +16,25 @@
     return (object && [object isKindOfClass:[NSString class]] && !((NSString *)object).ac_isEmpty);
 }
 
-+ (NSString *)ac_fullPathLibraryDirectoryWithLastComponent:(NSString *)lastComponent {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
-    NSString *plistDirectory = [paths objectAtIndex:0];
-    NSString *fullPath = plistDirectory;
++ (NSString *)ac_fullPathDirectoryByType:(NSSearchPathDirectory)type lastComponent:(NSString *)lastComponent {
+    NSString *fullPath = NSSearchPathForDirectoriesInDomains(type, NSUserDomainMask, YES).firstObject;
     if (lastComponent && !lastComponent.ac_isEmpty) {
         fullPath = [fullPath stringByAppendingPathComponent:lastComponent];
     }
     
     return fullPath;
+}
+
++ (NSString *)ac_fullPathDirectoryByType:(NSSearchPathDirectory)type {
+    return [self ac_fullPathDirectoryByType:type lastComponent:nil];
+}
+
++ (NSString *)ac_fullPathDocumentDirectoryWithLastComponent:(NSString *)lastComponent {
+    return [self ac_fullPathDirectoryByType:NSDocumentDirectory lastComponent:lastComponent];
+}
+
++ (NSString *)ac_fullPathLibraryDirectoryWithLastComponent:(NSString *)lastComponent {
+    return [self ac_fullPathDirectoryByType:NSLibraryDirectory lastComponent:lastComponent];
 }
 
 - (BOOL)ac_isEmpty {

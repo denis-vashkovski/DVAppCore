@@ -11,3 +11,5 @@
 @interface NSIndexPath(AppCore)
 + (NSArray<NSIndexPath *> *)ac_indexPathsForSection:(NSInteger)section rangeRows:(NSRange)rangeRows;
 @end
+
+#define NSIndexPathZero [NSIndexPath indexPathForRow:0 inSection:0]
