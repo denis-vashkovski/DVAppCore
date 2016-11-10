@@ -26,6 +26,8 @@ CATEGORY_PROPERTY_GET_SET_BOOL(visible, setVisible:);
 CATEGORY_PROPERTY_GET_SET_BOOL(viewAppearNotFirstTime, setViewAppearNotFirstTime:);
 @end
 
+@interface UIViewController()<UIGestureRecognizerDelegate>
+@end
 @implementation UIViewController(AppCore)
 
 AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_viewDidLoad) originalSelector:@selector(viewDidLoad)];
@@ -83,6 +85,7 @@ AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_viewDidLoad) originalSel
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                         action:@selector(ac_hideKeyboard)];
     gestureRecognizer.cancelsTouchesInView = NO;
+    [gestureRecognizer setDelegate:self];
     [self.view addGestureRecognizer:gestureRecognizer];
 }
 
@@ -191,6 +194,11 @@ AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_viewDidLoad) originalSel
 
 - (void)ac_hideKeyboard {
     [self.view endEditing:NO];
+}
+
+#pragma mark - UIGestureRecognizerDelegate
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    return ![touch.view isKindOfClass:[UIControl class]];
 }
 
 @end
