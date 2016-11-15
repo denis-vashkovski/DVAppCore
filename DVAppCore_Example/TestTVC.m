@@ -10,6 +10,7 @@
 
 #import "UIViewController+AppCore.h"
 #import "UITableViewCell+AppCore.h"
+#import "UIView+AppCore.h"
 
 #import "ACRouter.h"
 

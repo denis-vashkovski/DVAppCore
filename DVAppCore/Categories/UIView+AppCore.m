@@ -21,11 +21,11 @@
 }
 
 AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_setBackgroundColor:) originalSelector:@selector(setBackgroundColor:)];
-             [self ac_addSwizzlingSelector:@selector(ac_layoutSubviews) originalSelector:@selector(layoutSubviews)];)
+             [self ac_addSwizzlingSelector:@selector(acv_layoutSubviews) originalSelector:@selector(layoutSubviews)];)
 
 #define MASK_LAYER_NAME @"mask_layer_name"
-- (void)ac_layoutSubviews {
-    [self ac_layoutSubviews];
+- (void)acv_layoutSubviews {
+    [self acv_layoutSubviews];
     
     if (self.ac_shapeType != ACShapeTypeDefault) {
         [self setAc_shapeType:self.ac_shapeType];
