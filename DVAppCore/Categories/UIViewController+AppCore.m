@@ -196,6 +196,12 @@ AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_viewDidLoad) originalSel
     [self.view endEditing:NO];
 }
 
+- (UINavigationController *)ac_embedInNavigationController {
+    if (self.navigationController) return self.navigationController;
+    
+    return [[UINavigationController alloc] initWithRootViewController:self];
+}
+
 #pragma mark - UIGestureRecognizerDelegate
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
     return ![touch.view isKindOfClass:[UIControl class]];

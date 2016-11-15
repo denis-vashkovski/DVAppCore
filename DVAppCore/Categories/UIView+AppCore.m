@@ -16,7 +16,26 @@
 
 @implementation UIView(AppCore)
 
-AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_setBackgroundColor:) originalSelector:@selector(setBackgroundColor:)];)
++ (instancetype)ac_newInstanceFromNib {
+    return [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:nil options:nil] lastObject];
+}
+
+AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_setBackgroundColor:) originalSelector:@selector(setBackgroundColor:)];
+             [self ac_addSwizzlingSelector:@selector(ac_layoutSubviews) originalSelector:@selector(layoutSubviews)];)
+
+#define MASK_LAYER_NAME @"mask_layer_name"
+- (void)ac_layoutSubviews {
+    [self ac_layoutSubviews];
+    
+    if (self.ac_shapeType != ACShapeTypeDefault) {
+        [self setAc_shapeType:self.ac_shapeType];
+    }
+    
+    CALayer *mask = [self ac_layerWithName:MASK_LAYER_NAME];
+    if (mask) {
+        [self ac_addMaskWithColor:[UIColor colorWithCGColor:mask.backgroundColor]];
+    }
+}
 
 CATEGORY_PROPERTY_GET_NSNUMBER_PRIMITIVE(ACShapeType, ac_shapeType, intValue);
 - (void)setAc_shapeType:(ACShapeType)ac_shapeType {
@@ -157,7 +176,6 @@ CATEGORY_PROPERTY_GET(UIColor *, ac_staticBackgroundColor)
     return nil;
 }
 
-#define MASK_LAYER_NAME @"mask_layer_name"
 - (CALayer *)ac_addMaskWithColor:(UIColor *)color {
     CALayer *mask = [self ac_layerWithName:MASK_LAYER_NAME];
     if (mask) {
@@ -268,6 +286,14 @@ VIEW_WITH_TAG(UICollectionView, collectionViewWithTag)
     
     for (UIView *subview in self.subviews) {
         [subview removeFromSuperview];
+    }
+}
+
+- (void)ac_removeAllGestureRecognizers {
+    if (!ValidArray(self.gestureRecognizers)) return;
+    
+    for (UIGestureRecognizer *gestureRecognizer in self.gestureRecognizers) {
+        [self removeGestureRecognizer:gestureRecognizer];
     }
 }
 

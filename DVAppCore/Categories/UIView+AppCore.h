@@ -17,6 +17,8 @@ typedef enum {
 } ACShapeType;
 
 @interface UIView(AppCore)
++ (instancetype)ac_newInstanceFromNib;
+
 @property (nonatomic) ACShapeType ac_shapeType;
 @property (nonatomic, strong) NSDictionary *ac_userInfo;
 @property (nonatomic) UIEdgeInsets ac_contentOffset;
@@ -64,6 +66,7 @@ typedef enum {
 - (UICollectionView *)collectionViewWithTag:(NSInteger)tag;
 
 - (void)ac_removeAllSubviews;
+- (void)ac_removeAllGestureRecognizers;
 @end
 
 // UITableViewCell base tags

@@ -26,4 +26,6 @@
 - (BOOL)ac_isNowLoading;
 
 - (void)ac_hideKeyboard;
+
+- (UINavigationController *)ac_embedInNavigationController;
 @end
