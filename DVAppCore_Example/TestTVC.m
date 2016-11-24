@@ -15,7 +15,7 @@
 #import "ACRouter.h"
 
 @interface TestTVC ()
-
+@property (nonatomic) BOOL empty;
 @end
 
 @implementation TestTVC
@@ -25,7 +25,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return self.empty ? 0 : 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -41,6 +41,11 @@
     [cell setBackgroundColor:[UIColor darkGrayColor]];
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.empty = YES;
+    [tableView reloadData];
 }
 
 @end

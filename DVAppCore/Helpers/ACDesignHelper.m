@@ -33,6 +33,16 @@ ACSINGLETON_M_INIT(initInstanceWith)
     _designDictionary = [NSMutableDictionary new];
 }
 
+- (void)setCurrentDesign:(NSDictionary *)currentDesign {
+    _currentDesign = currentDesign;
+    
+    if (ValidArray(_currentDesign)) {
+        for (NSString *key in _currentDesign.allKeys) {
+            [self applyValue:_currentDesign[key] byKey:key];
+        }
+    }
+}
+
 + (id)valueByKey:(NSString *)key {
     id value = nil;
     if (ValidStr(key)) {
@@ -47,18 +57,40 @@ ACSINGLETON_M_INIT(initInstanceWith)
 + (BOOL)setValue:(id)value byKey:(NSString *)key {
     if (ValidStr(key) && value) {
         [[[self getInstance] designDictionary] setObject:value forKey:key];
+        [[self getInstance] applyValue:value byKey:key];
+        
         return YES;
     }
     return NO;
 }
 
 + (void)setDesignClass:(Class)designClass {
-    if (!designClass || ![designClass isSubclassOfClass:[ACDesign class]]) {
-        return;
-    }
+    if (!designClass || ![designClass isSubclassOfClass:[ACDesign class]]) return;
     
     [[self getInstance] setCurrentDesign:[designClass design]];
     [[NSNotificationCenter defaultCenter] ac_postNotificationName:ACUpdateDesign];
+}
+
+- (void)applyValue:(id)value byKey:(NSString *)key {
+    if (!ValidStr(key) || !value) return;
+    
+    if ([key isEqualToString:ACDesignColorNavigationBarTint]) {
+        [[UINavigationBar appearance] setBarTintColor:ACDesign(ACDesignColorNavigationBarTint)];
+    } else if ([key isEqualToString:ACDesignColorNavigationTint]) {
+        [[UINavigationBar appearance] setTintColor:ACDesign(ACDesignColorNavigationTint)];
+    } else if ([key isEqualToString:ACDesignAttributesNavigationTitleText]) {
+        [[UINavigationBar appearance] setTitleTextAttributes:ACDesign(ACDesignAttributesNavigationTitleText)];
+    } else if ([key isEqualToString:ACDesignColorTabBarTint]) {
+        [[UITabBar appearance] setBarTintColor:ACDesign(ACDesignColorTabBarTint)];
+    } else if ([key isEqualToString:ACDesignColorTabTint]) {
+        [[UITabBar appearance] setTintColor:ACDesign(ACDesignColorTabTint)];
+    } else if ([key isEqualToString:ACDesignAttributesTabItemTitleTextAttributes]) {
+        [[UITabBarItem appearance] setTitleTextAttributes:ACDesign(ACDesignAttributesTabItemTitleTextAttributes) forState:UIControlStateNormal];
+    } else if ([key isEqualToString:ACDesignAttributesTabItemSelectedTitleTextAttributes]) {
+        [[UITabBarItem appearance] setTitleTextAttributes:ACDesign(ACDesignAttributesTabItemSelectedTitleTextAttributes) forState:UIControlStateSelected];
+    } else if ([key isEqualToString:ACDesignPositionAdjustmentTabItemTitle]) {
+        [[UITabBarItem appearance] setTitlePositionAdjustment:((NSValue *)ACDesign(ACDesignPositionAdjustmentTabItemTitle)).UIOffsetValue];
+    }
 }
 
 @end
@@ -67,3 +99,14 @@ EXTERN_STRING_M(ACDesignColorRefreshControlTVC);
 EXTERN_STRING_M(ACDesignColorProgressView);
 EXTERN_STRING_M(ACDesignColorProgressActivityIndicator);
 EXTERN_STRING_M(ACDesignColorWindowForAlerts);
+
+// global design
+EXTERN_STRING_M(ACDesignColorNavigationBarTint)
+EXTERN_STRING_M(ACDesignColorNavigationTint)
+EXTERN_STRING_M(ACDesignAttributesNavigationTitleText)
+
+EXTERN_STRING_M(ACDesignColorTabBarTint)
+EXTERN_STRING_M(ACDesignColorTabTint)
+EXTERN_STRING_M(ACDesignAttributesTabItemTitleTextAttributes)
+EXTERN_STRING_M(ACDesignAttributesTabItemSelectedTitleTextAttributes)
+EXTERN_STRING_M(ACDesignPositionAdjustmentTabItemTitle)

@@ -35,6 +35,7 @@ typedef enum {
 
 - (CALayer *)ac_layerWithName:(NSString *)name;
 - (CALayer *)ac_addMaskWithColor:(UIColor *)color;
+- (CAGradientLayer *)ac_addGradientWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint colors:(NSArray<UIColor *> *)colors;
 
 - (void)ac_rotateWithDuration:(NSTimeInterval)duration angle:(CGFloat)angle;
 - (void)ac_addFadeAnimationWithDuration:(NSTimeInterval)duration;
@@ -44,9 +45,10 @@ typedef enum {
 - (void)ac_bringToFront;
 - (void)ac_sendToBack;
 
-- (void)ac_addConstraintsWithVisualFormat:(NSString *)format views:(NSDictionary<NSString *,id> *)views;
+- (void)ac_addConstraintsWithVisualFormat:(NSString *)format views:(NSDictionary<NSString *, id> *)views;
 - (void)ac_addConstraintsSuperviewWithInsets:(UIEdgeInsets)insets;
 - (void)ac_addConstraintsEqualSuperview;
+- (void)ac_addConstraintsCenterSuperview;
 
 - (UILabel *)labelWithTag:(NSInteger)tag;
 - (UIImageView *)imageViewWithTag:(NSInteger)tag;

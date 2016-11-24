@@ -70,3 +70,16 @@ EXTERN_STRING_H(ACDesignColorRefreshControlTVC)
 EXTERN_STRING_H(ACDesignColorProgressView)
 EXTERN_STRING_H(ACDesignColorProgressActivityIndicator)
 EXTERN_STRING_H(ACDesignColorWindowForAlerts)
+
+// global design
+EXTERN_STRING_H(ACDesignColorNavigationBarTint)
+EXTERN_STRING_H(ACDesignColorNavigationTint)
+EXTERN_STRING_H(ACDesignAttributesNavigationTitleText)                  // NSDictionary
+
+EXTERN_STRING_H(ACDesignColorTabBarTint)
+EXTERN_STRING_H(ACDesignColorTabTint)
+EXTERN_STRING_H(ACDesignAttributesTabItemTitleTextAttributes)           // NSDictionary
+EXTERN_STRING_H(ACDesignAttributesTabItemSelectedTitleTextAttributes)   // NSDictionary
+EXTERN_STRING_H(ACDesignPositionAdjustmentTabItemTitle)                 // UIOffset
+
+#warning TODO add logic for fonts

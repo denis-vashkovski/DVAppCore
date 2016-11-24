@@ -19,6 +19,8 @@
 - (BOOL)ac_isViewAppearNotFirstTime;
 - (CGRect)ac_visibleFrame;
 
+- (UIBarButtonItem *)ac_backButton;
+- (void)ac_onBackButtonTouch:(UIBarButtonItem *)sender;
 - (void)ac_removeBackButton;
 
 - (void)ac_startLoadingProcess;

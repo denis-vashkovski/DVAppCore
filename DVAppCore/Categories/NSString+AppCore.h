@@ -32,6 +32,7 @@
 
 - (NSAttributedString *)ac_htmlAttributedStringWithFont:(UIFont *)font colorHex:(NSString *)colorHex;
 - (NSAttributedString *)ac_htmlAttributedString;
+- (NSAttributedString *)ac_attributedStringDefaultWithFont:(UIFont *)font;
 
 - (BOOL)ac_isValidRegexp:(NSString *)regexp;
 - (BOOL)ac_isValidEmail;

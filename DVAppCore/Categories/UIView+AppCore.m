@@ -24,6 +24,7 @@ AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_setBackgroundColor:) ori
              [self ac_addSwizzlingSelector:@selector(acv_layoutSubviews) originalSelector:@selector(layoutSubviews)];)
 
 #define MASK_LAYER_NAME @"mask_layer_name"
+#define GRADIENT_LAYER_NAME @"gradient_layer_name"
 - (void)acv_layoutSubviews {
     [self acv_layoutSubviews];
     
@@ -35,14 +36,16 @@ AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_setBackgroundColor:) ori
     if (mask) {
         [self ac_addMaskWithColor:[UIColor colorWithCGColor:mask.backgroundColor]];
     }
+    
+    if (self.layer.mask && [self.layer.mask.name isEqualToString:GRADIENT_LAYER_NAME]) {
+        CAGradientLayer *gradient = (CAGradientLayer *)self.layer.mask;
+        [self ac_addGradientWithStartPoint:gradient.startPoint endPoint:gradient.endPoint colors:gradient.colors];
+    }
 }
 
 CATEGORY_PROPERTY_GET_NSNUMBER_PRIMITIVE(ACShapeType, ac_shapeType, intValue);
 - (void)setAc_shapeType:(ACShapeType)ac_shapeType {
-    objc_setAssociatedObject(self,
-                             @selector(ac_shapeType),
-                             [NSNumber numberWithInt:ac_shapeType],
-                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, @selector(ac_shapeType), [NSNumber numberWithInt:ac_shapeType], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
     [self setClipsToBounds:YES];
     
@@ -58,8 +61,7 @@ CATEGORY_PROPERTY_GET_NSNUMBER_PRIMITIVE(ACShapeType, ac_shapeType, intValue);
             self.layer.cornerRadius = ceilf(MIN(self.frame.size.width, self.frame.size.height) / 2.);
             break;
         }
-        default:
-            break;
+        default: break;
     }
 }
 
@@ -192,6 +194,19 @@ CATEGORY_PROPERTY_GET(UIColor *, ac_staticBackgroundColor)
     return mask;
 }
 
+- (CAGradientLayer *)ac_addGradientWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint colors:(NSArray<UIColor *> *)colors {
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    [gradient setName:GRADIENT_LAYER_NAME];
+    [gradient setFrame:CGRectMake(.0, .0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame))];
+    [gradient setColors:colors];
+    [gradient setStartPoint:startPoint];
+    [gradient setEndPoint:endPoint];
+    
+    self.layer.mask = gradient;
+    
+    return gradient;
+}
+
 #pragma mark - Animations
 - (void)ac_rotateWithDuration:(NSTimeInterval)duration angle:(CGFloat)angle {
     [UIView animateWithDuration:duration animations:^{
@@ -230,14 +245,12 @@ CATEGORY_PROPERTY_GET(UIColor *, ac_staticBackgroundColor)
 }
 
 #pragma mark - Constraints
-- (void)ac_addConstraintsWithVisualFormat:(NSString *)format views:(NSDictionary<NSString *,id> *)views {
+- (void)ac_addConstraintsWithVisualFormat:(NSString *)format views:(NSDictionary<NSString *, id> *)views {
     [self addConstraints:[NSLayoutConstraint ac_constraintsWithVisualFormat:format views:views]];
 }
 
 - (void)ac_addConstraintsSuperviewWithInsets:(UIEdgeInsets)insets {
-    if (!self.superview) {
-        return;
-    }
+    if (!self.superview) return;
     
     NSDictionary *views = @{ @"self": self };
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -256,6 +269,26 @@ CATEGORY_PROPERTY_GET(UIColor *, ac_staticBackgroundColor)
 
 - (void)ac_addConstraintsEqualSuperview {
     [self ac_addConstraintsSuperviewWithInsets:UIEdgeInsetsZero];
+}
+
+- (void)ac_addConstraintsCenterSuperview {
+    if (!self.superview) return;
+    
+    [self setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self
+                                                               attribute:NSLayoutAttributeCenterX
+                                                               relatedBy:NSLayoutRelationEqual
+                                                                  toItem:self.superview
+                                                               attribute:NSLayoutAttributeCenterX
+                                                              multiplier:1.
+                                                                constant:0]];
+    [self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self
+                                                               attribute:NSLayoutAttributeCenterY
+                                                               relatedBy:NSLayoutRelationEqual
+                                                                  toItem:self.superview
+                                                               attribute:NSLayoutAttributeCenterY
+                                                              multiplier:1.
+                                                                constant:0]];
 }
 
 #pragma mark - viewWithTag

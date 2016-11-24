@@ -6,9 +6,8 @@
 //  Copyright © 2016 Denis Vashkovski. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "ACTemplateAppDelegate.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-@property (strong, nonatomic) UIWindow *window;
+@interface AppDelegate : ACTemplateAppDelegate
 @end
 

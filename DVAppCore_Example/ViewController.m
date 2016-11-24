@@ -8,13 +8,14 @@
 
 #import "ViewController.h"
 
-#import "UIView+AppCore.h"
-#import "UIBarButtonItem+AppCore.h"
+#import "ACImagePicker.h"
+
 #import "UINavigationController+AppCore.h"
 
 #import "TestTVC.h"
+#import "ACWebViewController.h"
 
-@interface ViewController ()
+@interface ViewController ()<ACImagePickerDelegate>
 
 @end
 
@@ -22,12 +23,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [[self.view viewWithTag:1] setAc_shapeType:ACShapeTypeCircle];
 }
 
+#pragma mark - ACImagePickerDelegate
+- (void)ac_imagePickerController:(ACImagePicker *)acImagePicker didFinishPickingMedia:(id)media {
+    NSLog(@"");
+}
+
+#pragma mark - Actions
 - (IBAction)onRightBarButtonTouch:(id)sender {
-    NSLog(@"!!!!!!!!!!");
+    [ACImagePicker showSheetWithButtonTakeTitle:@"Take"
+                                    chooseTitle:@"Choose" 
+                                    cancelTitle:@"Cancel" 
+                                       targetVC:self
+                                  allowsEditing:NO
+                                     mediaTypes:ACMediaTypePhoto];
 }
 
 - (IBAction)onButtonNextTouch:(id)sender {
@@ -35,6 +45,9 @@
                                        animationType:ACAnimationTransitionFlipFromTop
                                    animationDuration:.5
                                    completionHandler:nil];
+    
+//    [ACWebViewController openUrl:[NSURL URLWithString:@"https://google.com"] withPushingNVC:self.navigationController];
+//    [ACWebViewController openUrl:[NSURL URLWithString:@"https://google.com"] withPresentingVC:self];
 }
 
 @end

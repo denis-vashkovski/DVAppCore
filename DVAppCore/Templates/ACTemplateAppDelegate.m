@@ -14,6 +14,11 @@
 #import "ACDesignHelper.h"
 #import "ACLocalizationHelper.h"
 
+#pragma mark - ACTemplateAppDelegate
+@interface ACTemplateAppDelegate()
+@property (nonatomic, strong) NSMutableDictionary<NSString *,NSNumber *> *ac_interfaceOrientations;
+@end
+
 @implementation ACTemplateAppDelegate
 
 - (UIWindow *)windowForAlerts {
@@ -41,4 +46,81 @@
     ACDesignSet(ACDesignColorWindowForAlerts, ACColorHexA(@"#000000", .0));
 }
 
+- (UIInterfaceOrientationMask)ac_interfaceOrientationsDefault {
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (void)ac_addInterfaceOrientations:(UIInterfaceOrientationMask)interfaceOrientations forVC:(Class)vc {
+    if (!self.ac_interfaceOrientations) {
+        self.ac_interfaceOrientations = [NSMutableDictionary new];
+    }
+    
+    [self.ac_interfaceOrientations setObject:@(interfaceOrientations) forKey:NSStringFromClass(vc)];
+}
+
+@end
+
+#pragma mark - UIViewController(ACOrientation)
+@implementation UIViewController(orientationFix)
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    NSNumber *interfaceOrientationsData = [self ac_interfaceOrientationsData];
+    return interfaceOrientationsData ? interfaceOrientationsData.integerValue : [[self ac_appDelegate] ac_interfaceOrientationsDefault];
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    NSNumber *interfaceOrientationsData = [self ac_interfaceOrientationsData];
+    return [self interfaceOrientationByMask:(interfaceOrientationsData
+                                             ? interfaceOrientationsData.integerValue
+                                             : [[self ac_appDelegate] ac_interfaceOrientationsDefault])];
+}
+
+- (BOOL)shouldAutorotate {
+    return YES;
+}
+
+#pragma mark Utils
+- (ACTemplateAppDelegate *)ac_appDelegate {
+    return (ACTemplateAppDelegate *)[UIApplication sharedApplication].delegate;
+}
+
+- (NSNumber *)ac_interfaceOrientationsData {
+    NSNumber *interfaceOrientationsData = [self ac_appDelegate].ac_interfaceOrientations[NSStringFromClass([self class])];
+    
+    if (!interfaceOrientationsData) {
+        if ([self isKindOfClass:[UINavigationController class]]) {
+            UIViewController *visibleVC = ((UINavigationController *)self).visibleViewController;
+            interfaceOrientationsData = [self ac_appDelegate].ac_interfaceOrientations[NSStringFromClass([visibleVC class])];
+        }
+    }
+    
+    return interfaceOrientationsData;
+}
+
+- (UIInterfaceOrientation)interfaceOrientationByMask:(UIInterfaceOrientationMask)interfaceOrientationMask {
+    UIInterfaceOrientation interfaceOrientation = 0;
+    
+    if (interfaceOrientationMask & UIInterfaceOrientationMaskAll) {
+        interfaceOrientation = (UIInterfaceOrientationPortrait |
+                                UIInterfaceOrientationLandscapeLeft |
+                                UIInterfaceOrientationLandscapeRight |
+                                UIInterfaceOrientationPortraitUpsideDown);
+    } else if (interfaceOrientationMask & UIInterfaceOrientationMaskLandscape) {
+        interfaceOrientation = UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight;
+    } else {
+        if (interfaceOrientationMask & UIInterfaceOrientationMaskPortrait) {
+            interfaceOrientation |= UIInterfaceOrientationPortrait;
+        }
+        if (interfaceOrientationMask & UIInterfaceOrientationMaskLandscapeLeft) {
+            interfaceOrientation |= UIInterfaceOrientationLandscapeLeft;
+        }
+        if (interfaceOrientationMask & UIInterfaceOrientationMaskLandscapeRight) {
+            interfaceOrientation |= UIInterfaceOrientationLandscapeRight;
+        }
+        if (interfaceOrientationMask & UIInterfaceOrientationMaskPortraitUpsideDown) {
+            interfaceOrientation |= UIInterfaceOrientationPortraitUpsideDown;
+        }
+    }
+    
+    return interfaceOrientation;
+}
 @end

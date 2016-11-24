@@ -10,33 +10,39 @@
 
 #import "UIColor+AppCore.h"
 #import "ACDesignHelper.h"
+#import "NSObject+AppCore.h"
+#import "UIView+AppCore.h"
 
 @implementation UITableViewController(AppCore)
 
+AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_tvc_viewDidLoad) originalSelector:@selector(viewDidLoad)];
+             [self ac_addSwizzlingSelector:@selector(ac_tvc_viewWillDisappear:) originalSelector:@selector(viewWillDisappear:)];)
+
+#pragma mark - Swizzling methods
+- (void)ac_tvc_viewDidLoad {
+    [self ac_tvc_viewDidLoad];
+}
+
+- (void)ac_tvc_viewWillDisappear:(BOOL)animated {
+    [self ac_tvc_viewWillDisappear:animated];
+}
+
 - (void)ac_initRefreshView {
-    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl = [UIRefreshControl new];
     [self.refreshControl setTintColor:ACDesign(ACDesignColorRefreshControlTVC)];
-    [self.refreshControl addTarget:self
-                            action:@selector(ac_refreshView)
-                  forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl addTarget:self action:@selector(ac_refreshView) forControlEvents:UIControlEventValueChanged];
     self.refreshControl.layer.zPosition = self.tableView.backgroundView.layer.zPosition + 1;
 }
 
 - (void)ac_startRefreshingTable {
-    if (!self.refreshControl || (self.tableView.contentOffset.y > .0)) {
-        return;
-    }
+    if (!self.refreshControl || (self.tableView.contentOffset.y > .0)) return;
     
-    [self.tableView setContentOffset:CGPointMake(.0,
-                                                 (self.tableView.contentOffset.y - CGRectGetHeight(self.refreshControl.frame)))
-                            animated:YES];
+    [self.tableView setContentOffset:CGPointMake(.0, (self.tableView.contentOffset.y - CGRectGetHeight(self.refreshControl.frame))) animated:YES];
     [self.refreshControl beginRefreshing];
 }
 
 - (void)ac_endRefreshingTable {
-    if (!self.refreshControl) {
-        return;
-    }
+    if (!self.refreshControl) return;
     
     [self.refreshControl endRefreshing];
 }
@@ -47,6 +53,27 @@
 
 - (BOOL)ac_isDragging {
     return self.tableView.dragging || self.tableView.decelerating;
+}
+
+- (void)ac_showViewForEmptyTableView {
+    UIView *viewForEmptyTableView = nil;
+    if ((self.tableView.visibleCells > 0) || !(viewForEmptyTableView = [self ac_viewForEmptyTableView:self.tableView])) return;
+    
+    [self.tableView setBackgroundView:viewForEmptyTableView];
+}
+
+- (void)ac_hiddenViewForEmptyTableView {
+    [self.tableView.backgroundView ac_removeAllSubviews];
+}
+
+#pragma mark - ACTableViewDataSource
+- (UIView *)ac_viewForEmptyTableView:(UITableView *)tableView {
+    return nil;
+}
+
+#pragma mark - Observer
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
+    
 }
 
 @end

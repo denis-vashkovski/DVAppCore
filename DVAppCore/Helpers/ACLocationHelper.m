@@ -11,6 +11,8 @@
 #import "ACLog.h"
 #import "NSNotificationCenter+AppCore.h"
 
+#import <MapKit/MapKit.h>
+
 @interface ACLocationHelper()<CLLocationManagerDelegate>
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @end
@@ -100,6 +102,24 @@ ACSINGLETON_M
 
 - (double)distanceToLocation:(CLLocationCoordinate2D)location {
     return [self distanceBetween:self.currentCoordinate and:location];
+}
+
+- (double)radiusTo:(NSArray *)annotations annotationsVisibleCountMin:(NSUInteger)annotationsVisibleCountMin {
+    double radius = .0;
+    
+    if (ValidArray(annotations) && (annotationsVisibleCountMin > 0)) {
+        NSMutableArray<NSNumber *> *distanceList = [NSMutableArray new];
+        for (id<MKAnnotation> annotation in annotations) {
+            [distanceList addObject:@([self distanceToLocation:annotation.coordinate])];
+        }
+        
+        [distanceList sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES]]];
+        radius = [distanceList[(distanceList.count < annotationsVisibleCountMin)
+                               ? (distanceList.count - 1)
+                               : (annotationsVisibleCountMin - 1)] doubleValue];
+    }
+    
+    return radius;
 }
 
 @end

@@ -12,6 +12,7 @@
 #import "NSObject+AppCore.h"
 
 #import "UIColor+AppCore.h"
+#import "UIView+AppCore.h"
 
 #import "ACConstants.h"
 #import "ACTemplateAppDelegate.h"
@@ -82,8 +83,18 @@ AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_viewDidLoad) originalSel
 - (void)ac_viewDidLoad {
     [self ac_viewDidLoad];
     
-    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                                        action:@selector(ac_hideKeyboard)];
+    if (self.navigationController) {
+        if ((self.navigationController.viewControllers.count > 1)) {
+            UIBarButtonItem *backButton = [self ac_backButton];
+            if (backButton) {
+                [self.navigationItem setLeftBarButtonItem:backButton];
+            }
+        } else {
+            [self ac_removeBackButton];
+        }
+    }
+    
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ac_hideKeyboard)];
     gestureRecognizer.cancelsTouchesInView = NO;
     [gestureRecognizer setDelegate:self];
     [self.view addGestureRecognizer:gestureRecognizer];
@@ -106,6 +117,17 @@ AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_viewDidLoad) originalSel
 
 - (BOOL)ac_isViewAppearNotFirstTime {
     return self.viewAppearNotFirstTime;
+}
+
+- (UIBarButtonItem *)ac_backButton {
+    return [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_arrow_back"]
+                                            style:UIBarButtonItemStyleDone
+                                           target:self
+                                           action:@selector(ac_onBackButtonTouch:)];
+}
+
+- (void)ac_onBackButtonTouch:(UIBarButtonItem *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)ac_removeBackButton {
@@ -151,11 +173,11 @@ AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_viewDidLoad) originalSel
 - (UIView *)progressViewBackground {
     static UIView *progressViewBackground = nil;
     if (!progressViewBackground) {
-        progressViewBackground = [[UIView alloc] initWithFrame:CGRectMake(.0, .0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        progressViewBackground = [UIView new];
         [progressViewBackground setBackgroundColor:ACDesign(ACDesignColorProgressView)];
-        
-        self.activityIndicator.center = progressViewBackground.center;
         [progressViewBackground addSubview:self.activityIndicator];
+        
+        [self.activityIndicator ac_addConstraintsCenterSuperview];
     }
     return progressViewBackground;
 }
@@ -178,15 +200,14 @@ AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_viewDidLoad) originalSel
         
         if (windowForAlert.isHidden) {
             [windowForAlert addSubview:self.progressViewBackground];
+            [self.progressViewBackground ac_addConstraintsEqualSuperview];
             [windowForAlert setHidden:NO];
         }
     }
 }
 
 - (void)removeProgressView {
-    if (!self.progressViewBackground) {
-        return;
-    }
+    if (!self.progressViewBackground) return;
     
     [self.progressViewBackground.superview setHidden:YES];
     [self.progressViewBackground removeFromSuperview];
@@ -198,7 +219,6 @@ AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_viewDidLoad) originalSel
 
 - (UINavigationController *)ac_embedInNavigationController {
     if (self.navigationController) return self.navigationController;
-    
     return [[UINavigationController alloc] initWithRootViewController:self];
 }
 

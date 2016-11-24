@@ -54,6 +54,20 @@
     }
 }
 
+- (NSString *)ac_registerNibByCellClass:(Class)cellClass {
+    NSString *cellClassName = NSStringFromClass(cellClass);
+    [self registerNib:[UINib nibWithNibName:cellClassName bundle:nil] forCellReuseIdentifier:cellClassName];
+    
+    return cellClassName;
+}
+
+- (NSString *)ac_registerNibByHeaderFooterClass:(Class)headerFooterClass {
+    NSString *viewClassName = NSStringFromClass(headerFooterClass);
+    [self registerNib:[UINib nibWithNibName:viewClassName bundle:nil] forHeaderFooterViewReuseIdentifier:viewClassName];
+    
+    return viewClassName;
+}
+
 #pragma mark - Utils
 - (BOOL)ac_isValidRangeRows:(NSRange)rangeRows forSection:(NSUInteger)section {
     return (self.numberOfSections > section) && ([self numberOfRowsInSection:section] > NSMaxRange(rangeRows));

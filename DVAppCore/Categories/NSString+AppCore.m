@@ -144,6 +144,15 @@
     return [self ac_htmlAttributedStringWithFont:HTML_FONT_DEFAULT colorHex:HTML_COLOR_HEX_DEFAULT];
 }
 
+- (NSAttributedString *)ac_attributedStringDefaultWithFont:(UIFont *)font {
+    if (!font) return nil;
+    
+    NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
+    [paragraph setLineSpacing:1.];
+    
+    return [[NSAttributedString alloc] initWithString:self attributes:@{ NSFontAttributeName: font, NSParagraphStyleAttributeName: paragraph }];
+}
+
 #pragma mark - Regexp
 - (BOOL)ac_isValidRegexp:(NSString *)regexp {
     return [[NSPredicate predicateWithFormat:@"SELF MATCHES %@", UnnilStr(regexp)] evaluateWithObject:self];

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "ACSingleton.h"
+
 #import <CoreLocation/CoreLocation.h>
 
 @protocol ACLocationHelperDelegate;
@@ -31,6 +32,7 @@ ACSINGLETON_H
 
 - (double)distanceBetween:(CLLocationCoordinate2D)location1 and:(CLLocationCoordinate2D)location2;
 - (double)distanceToLocation:(CLLocationCoordinate2D)location;
+- (double)radiusTo:(NSArray *)annotations annotationsVisibleCountMin:(NSUInteger)annotationsVisibleCountMin;
 @end
 
 @protocol ACLocationHelperDelegate <NSObject>

@@ -11,4 +11,7 @@
 @interface ACTemplateAppDelegate : UIResponder<UIApplicationDelegate>
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UIWindow *windowForAlerts;
+
+- (UIInterfaceOrientationMask)ac_interfaceOrientationsDefault;
+- (void)ac_addInterfaceOrientations:(UIInterfaceOrientationMask)interfaceOrientations forVC:(Class)vc;
 @end

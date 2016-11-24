@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "DVAppCore"
-  s.version      = "0.3.1"
+  s.version      = "0.3.2"
   s.summary      = "Set of useful categories and helpers."
   s.description  = <<-DESC
                     The DVAppCore for iOS provides:
@@ -9,6 +9,7 @@ Pod::Spec.new do |s|
                     * Templates
                     * Helpers
                     * Models
+                    * Controllers
                     DESC
   s.homepage            = 'https://github.com/denis-vashkovski/DVAppCore'
   s.license             = { :type => 'MIT', :file => 'LICENSE' }
@@ -46,6 +47,9 @@ Pod::Spec.new do |s|
     helpers.subspec 'Design' do |design|
       design.ios.source_files = 'DVAppCore/Helpers/ACDesignHelper.{h,m}'
     end
+    helpers.subspec 'ImagePicker' do |imagePicker|
+      imagePicker.ios.source_files = 'DVAppCore/Helpers/ACImagePicker.{h,m}'
+    end
     helpers.subspec 'Logging' do |logging|
       logging.ios.source_files = 'DVAppCore/Helpers/ACLog.{h,m}'
     end
@@ -71,6 +75,11 @@ Pod::Spec.new do |s|
   s.subspec 'Templates' do |templates|
     templates.ios.source_files = 'DVAppCore/Templates/*.{h,m}'
     templates.dependency 'DVAppCore/Helpers'
+  end
+
+  s.subspec 'Controllers' do |controllers|
+   controllers = 'DVAppCore/Controllers/*.{h,m}'
+   controllers 'DVAppCore/Categories'
   end
 
   s.ios.source_files = 'DVAppCore/DVAppCore.{h,m}'
