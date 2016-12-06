@@ -78,8 +78,8 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Controllers' do |controllers|
-   controllers = 'DVAppCore/Controllers/*.{h,m}'
-   controllers 'DVAppCore/Categories'
+   controllers.ios.source_files = 'DVAppCore/Controllers/*.{h,m}'
+   controllers.dependency 'DVAppCore/Categories'
   end
 
   s.ios.source_files = 'DVAppCore/DVAppCore.{h,m}'
