@@ -114,7 +114,9 @@ ACSINGLETON_M
                            CNContactPhoneNumbersKey,
                            CNContactEmailAddressesKey ];
         
-        NSPredicate *predicate = ValidStr(name) ? [CNContact predicateForContactsMatchingName:name] : [CNContact predicateForContactsInContainerWithIdentifier:store.defaultContainerIdentifier];
+        NSPredicate *predicate = (ValidStr(name)
+                                  ? [CNContact predicateForContactsMatchingName:name]
+                                  : [CNContact predicateForContactsInContainerWithIdentifier:store.defaultContainerIdentifier]);
         
         NSError *error = nil;
         NSArray *cnContacts = [store unifiedContactsMatchingPredicate:predicate keysToFetch:keys error:&error];
@@ -128,7 +130,9 @@ ACSINGLETON_M
         }
     } else {
         ABAddressBookRef addressBookRef = ABAddressBookCreateWithOptions(NULL, nil);
-        NSArray *allContacts = ValidStr(name) ? (__bridge NSArray *)ABAddressBookCopyPeopleWithName(addressBookRef, (__bridge CFStringRef)name) : (__bridge NSArray *)ABAddressBookCopyArrayOfAllPeople(addressBookRef);
+        NSArray *allContacts = (ValidStr(name)
+                                ? (__bridge NSArray *)ABAddressBookCopyPeopleWithName(addressBookRef, (__bridge CFStringRef)name)
+                                : (__bridge NSArray *)ABAddressBookCopyArrayOfAllPeople(addressBookRef));
         
         for (id record in allContacts) {
             [contactList addObject:[self contactObjectFromRecord:record]];
@@ -155,6 +159,55 @@ ACSINGLETON_M
         [picker setPeoplePickerDelegate:_self];
         
         return picker;
+    }
+}
+
+#warning TODO add logic for adding a contact
++ (BOOL)addContact:(CNMutableContact *)contact {
+//    CNMutableContact *contact = [[CNMutableContact alloc] init];
+//    contact.familyName = @"Doe";
+//    contact.givenName = @"John";
+//    
+//    CNLabeledValue *homePhone = [CNLabeledValue labeledValueWithLabel:CNLabelHome
+//                                                                value:[CNPhoneNumber phoneNumberWithStringValue:@"312-555-1212"]];
+//    contact.phoneNumbers = @[homePhone];
+    
+    if (!contact) return NO;
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
+        CNSaveRequest *request = [[CNSaveRequest alloc] init];
+        [request addContact:contact toContainerWithIdentifier:nil];
+        
+        NSError *saveError = nil;
+        CNContactStore *store = [[CNContactStore alloc] init];
+        if (![store executeSaveRequest:request error:&saveError]) {
+            NSLog(@"error = %@", saveError);
+            return NO;
+        }
+    } else {
+        
+    }
+    
+    return YES;
+}
+
++ (UIViewController *)viewControllerWithAddContact:(CNMutableContact *)contact delegate:(id<ACContactsHelperDelegate>)delegate {
+    if (!contact) return nil;
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
+        CNContactStore *store = [[CNContactStore alloc] init];
+        
+        CNContactViewController *controller = [CNContactViewController viewControllerForUnknownContact:contact];
+        controller.contactStore = store;
+//        controller.delegate = self;
+        
+        return controller;
+    } else {
+        ABUnknownPersonViewController *controller = [[ABUnknownPersonViewController alloc] init];
+//        controller.displayedPerson = person;
+        controller.allowsAddingToAddressBook = YES;
+        
+        return controller;
     }
 }
 

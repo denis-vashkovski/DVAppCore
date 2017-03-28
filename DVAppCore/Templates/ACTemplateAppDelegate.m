@@ -14,6 +14,11 @@
 #import "ACDesignHelper.h"
 #import "ACLocalizationHelper.h"
 
+@interface ACAlertVC : UIViewController
+@end
+@implementation ACAlertVC
+@end
+
 #pragma mark - ACTemplateAppDelegate
 @interface ACTemplateAppDelegate()
 @property (nonatomic, strong) NSMutableDictionary<NSString *,NSNumber *> *ac_interfaceOrientations;
@@ -27,6 +32,9 @@
         _windowForAlerts.backgroundColor = ACDesign(ACDesignColorWindowForAlerts);
         _windowForAlerts.windowLevel = UIWindowLevelStatusBar + 1;
         _windowForAlerts.hidden = YES;
+        
+        [_windowForAlerts setRootViewController:[ACAlertVC new]];
+        [self ac_addInterfaceOrientations:UIInterfaceOrientationMaskAll forVC:[_windowForAlerts.rootViewController class]];
     }
     
     return _windowForAlerts;

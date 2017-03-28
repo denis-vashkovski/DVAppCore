@@ -74,6 +74,10 @@ static const unsigned componentUnits = (NSYearCalendarUnit
     return [self ac_date:dateString dateFormat:dateFormat timeZoneAbbreviation:nil];
 }
 
++ (instancetype)ac_dateWithTimestamp:(NSTimeInterval)timestamp {
+    return [NSDate dateWithTimeIntervalSince1970:(timestamp / SECOND_IN_MILLISECONDS)];
+}
+
 - (NSString *)ac_stringWithFormat:(NSString *)format timeZoneAbbreviation:(NSString *)timeZoneAbbreviation {
     if (!format || format.ac_isEmpty) {
         return nil;
@@ -140,6 +144,10 @@ static const unsigned componentUnits = (NSYearCalendarUnit
 
 - (NSInteger)ac_age {
     return [[NSDate ac_currentCalendar] components:componentUnits fromDate:self toDate:[NSDate date] options:0].year;
+}
+
+- (NSTimeInterval)ac_timestamp {
+    return [self timeIntervalSince1970] * SECOND_IN_MILLISECONDS;
 }
 
 - (NSInteger)ac_seconds {

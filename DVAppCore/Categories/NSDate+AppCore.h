@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#define SECOND_IN_MILLISECONDS 1000
 #define SECONDS_IN_SECONDS   1
 #define MINUTE_IN_SECONDS    60
 #define HOUR_IN_SECONDS     (60 * 60)
@@ -29,6 +30,7 @@
 + (instancetype)ac_date:(NSString *)dateString dateFormat:(NSString *)dateFormat timeZoneAbbreviation:(NSString *)timeZoneAbbreviation;
 + (instancetype)ac_date:(NSString *)dateString dateFormat:(NSString *)dateFormat;
 + (instancetype)ac_dateUTC:(NSString *)dateString dateFormat:(NSString *)dateFormat;
++ (instancetype)ac_dateWithTimestamp:(NSTimeInterval)timestamp;
 
 - (NSString *)ac_stringWithFormat:(NSString *)format timeZoneAbbreviation:(NSString *)timeZoneAbbreviation;
 - (NSString *)ac_stringWithFormat:(NSString *)format;
@@ -43,6 +45,7 @@
 - (BOOL)ac_isTheSameDayThan:(NSDate *)date;
 
 - (NSInteger)ac_age;
+- (NSTimeInterval)ac_timestamp;
 
 @property (readonly) NSInteger ac_seconds;
 @property (readonly) NSInteger ac_minute;

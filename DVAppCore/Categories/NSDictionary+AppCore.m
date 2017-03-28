@@ -12,6 +12,12 @@
 
 @implementation NSDictionary(AppCore)
 
++ (instancetype)ac_dictionaryWithJson:(NSString *)json {
+    return ValidStr(json) ? [NSJSONSerialization JSONObjectWithData:[json dataUsingEncoding:NSUTF8StringEncoding]
+                                                            options:0
+                                                              error:nil] : nil;
+}
+
 + (BOOL)ac_isValidDictionary:(id)object {
     return (object && [object isKindOfClass:[NSDictionary class]] && !((NSDictionary *)object).ac_isEmpty);
 }

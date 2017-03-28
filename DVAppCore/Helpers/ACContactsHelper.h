@@ -19,6 +19,7 @@
 @end
 
 #import <UIKit/UIKit.h>
+@class CNMutableContact;
 @protocol ACContactsHelperDelegate;
 
 @interface ACContactsHelper : NSObject
@@ -26,6 +27,10 @@
 + (NSArray<ACContactObject *> *)getAllContacts;
 + (NSArray<ACContactObject *> *)getContactsByName:(NSString *)name;
 + (UIViewController *)contactsViewControllerWithDelegate:(id<ACContactsHelperDelegate>)delegate;
+
+#warning TODO uncomment
+//+ (BOOL)addContact:(CNMutableContact *)contact;
+//+ (UIViewController *)viewControllerWithAddContact:(CNMutableContact *)contact delegate:(id<ACContactsHelperDelegate>)delegate;
 @end
 
 @protocol ACContactsHelperDelegate <NSObject>

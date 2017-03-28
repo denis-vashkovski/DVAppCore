@@ -330,5 +330,31 @@ VIEW_WITH_TAG(UICollectionView, collectionViewWithTag)
     }
 }
 
+#pragma mark - Frame
+- (CGRect)ac_offsetDx:(CGFloat)dx dy:(CGFloat)dy {
+    [self setFrame:CGRectOffset(self.frame, dx, dy)];
+    return self.frame;
+}
+
+- (CGRect)ac_repositionX:(CGFloat)x y:(CGFloat)y {
+    CGRect frame = self.frame;
+    frame.origin.x = x;
+    frame.origin.y = y;
+    
+    [self setFrame:frame];
+    
+    return self.frame;
+}
+
+- (CGRect)ac_resizeWidth:(CGFloat)width height:(CGFloat)height {
+    CGRect frame = self.frame;
+    frame.size.width = width;
+    frame.size.height = height;
+    
+    [self setFrame:frame];
+    
+    return self.frame;
+}
+
 @end
 

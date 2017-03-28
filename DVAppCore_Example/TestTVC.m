@@ -24,6 +24,13 @@
     return (TestTVC *)[ACRouter getVCByName:@"TestTVC" storyboardName:@"Main"];
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self ac_startLoadingProcess];
+    [NSTimer scheduledTimerWithTimeInterval:2. target:self selector:@selector(timerAction) userInfo:nil repeats:NO];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.empty ? 0 : 1;
 }
@@ -46,6 +53,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     self.empty = YES;
     [tableView reloadData];
+}
+
+#pragma mark - Actions
+- (void)timerAction {
+    [self ac_stopLoadingProcess];
 }
 
 @end

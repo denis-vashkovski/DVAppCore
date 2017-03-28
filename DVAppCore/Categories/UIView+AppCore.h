@@ -69,6 +69,10 @@ typedef enum {
 
 - (void)ac_removeAllSubviews;
 - (void)ac_removeAllGestureRecognizers;
+
+- (CGRect)ac_offsetDx:(CGFloat)dx dy:(CGFloat)dy;
+- (CGRect)ac_repositionX:(CGFloat)x y:(CGFloat)y;
+- (CGRect)ac_resizeWidth:(CGFloat)width height:(CGFloat)height;
 @end
 
 // UITableViewCell base tags

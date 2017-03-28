@@ -8,6 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum {
+    ACDeviceModelUnknown,
+    
+    // iPhone
+    ACDeviceModelIPhone4OrLess,
+    ACDeviceModelIPhone5,
+    ACDeviceModelIPhone6,
+    ACDeviceModelIPhone6p,
+    
+    // iPad
+    ACDeviceModelIPadPro
+} ACDeviceModel;
+
 @interface UIDevice(AppCore)
-- (void)setOrientation:(UIDeviceOrientation)orientation;
+- (void)ac_setOrientation:(UIDeviceOrientation)orientation;
+- (ACDeviceModel)ac_deviceModel;
 @end

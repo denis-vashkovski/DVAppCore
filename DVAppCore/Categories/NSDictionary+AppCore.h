@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface NSDictionary(AppCore)
++ (instancetype)ac_dictionaryWithJson:(NSString *)json;
+
 + (BOOL)ac_isValidDictionary:(id)object;
 /*!
  @abstract Return YES if number elements in dictionary equals 0
