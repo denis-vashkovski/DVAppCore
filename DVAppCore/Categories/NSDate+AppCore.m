@@ -10,15 +10,15 @@
 
 #import "NSString+AppCore.h"
 
-static const unsigned componentUnits = (NSYearCalendarUnit
-                                        | NSMonthCalendarUnit
-                                        | NSDayCalendarUnit
-                                        | NSWeekCalendarUnit
-                                        | NSHourCalendarUnit
-                                        | NSMinuteCalendarUnit
-                                        | NSSecondCalendarUnit
-                                        | NSWeekdayCalendarUnit
-                                        | NSWeekdayOrdinalCalendarUnit);
+static const unsigned componentUnits = (NSCalendarUnitYear
+                                        | NSCalendarUnitMonth
+                                        | NSCalendarUnitDay
+                                        | NSCalendarUnitWeekOfMonth
+                                        | NSCalendarUnitHour
+                                        | NSCalendarUnitMinute
+                                        | NSCalendarUnitSecond
+                                        | NSCalendarUnitWeekday
+                                        | NSCalendarUnitWeekdayOrdinal);
 
 @implementation NSDate(AppCore)
 
@@ -31,7 +31,7 @@ static const unsigned componentUnits = (NSYearCalendarUnit
 }
 
 + (NSInteger)ac_currentTimeZone {
-    return round([NSTimeZone localTimeZone].secondsFromGMT / HOUR_IN_SECONDS);
+    return round([NSTimeZone localTimeZone].secondsFromGMT / AC_HOUR_IN_SECONDS);
 }
 
 + (instancetype)ac_dateWithYear:(NSUInteger)year month:(NSUInteger)month day:(NSUInteger)day hour:(NSUInteger)hour minute:(NSUInteger)minute {
@@ -67,7 +67,7 @@ static const unsigned componentUnits = (NSYearCalendarUnit
 }
 
 + (instancetype)ac_dateUTC:(NSString *)dateString dateFormat:(NSString *)dateFormat {
-    return [self ac_date:dateString dateFormat:dateFormat timeZoneAbbreviation:UTC_KEY];
+    return [self ac_date:dateString dateFormat:dateFormat timeZoneAbbreviation:AC_UTC_KEY];
 }
 
 + (instancetype)ac_date:(NSString *)dateString dateFormat:(NSString *)dateFormat {
@@ -75,7 +75,7 @@ static const unsigned componentUnits = (NSYearCalendarUnit
 }
 
 + (instancetype)ac_dateWithTimestamp:(NSTimeInterval)timestamp {
-    return [NSDate dateWithTimeIntervalSince1970:(timestamp / SECOND_IN_MILLISECONDS)];
+    return [NSDate dateWithTimeIntervalSince1970:(timestamp / AC_SECOND_IN_MILLISECONDS)];
 }
 
 - (NSString *)ac_stringWithFormat:(NSString *)format timeZoneAbbreviation:(NSString *)timeZoneAbbreviation {
@@ -85,7 +85,7 @@ static const unsigned componentUnits = (NSYearCalendarUnit
     
     NSDateFormatter *df = [NSDateFormatter new];
     [df setDateFormat:format];
-    [df setLocale:[[NSLocale alloc] initWithLocaleIdentifier:EN_US_POSIX_LOCALE_IDENTIFIER]];
+    [df setLocale:[[NSLocale alloc] initWithLocaleIdentifier:AC_EN_US_POSIX_LOCALE_IDENTIFIER]];
     
     if (timeZoneAbbreviation && !timeZoneAbbreviation.ac_isEmpty) {
         [df setTimeZone:[NSTimeZone timeZoneWithAbbreviation:timeZoneAbbreviation]];
@@ -99,12 +99,12 @@ static const unsigned componentUnits = (NSYearCalendarUnit
 }
 
 - (NSString *)ac_stringUTCWithFormat:(NSString *)format {
-    return [self ac_stringWithFormat:format timeZoneAbbreviation:UTC_KEY];
+    return [self ac_stringWithFormat:format timeZoneAbbreviation:AC_UTC_KEY];
 }
 
 - (BOOL)ac_isWeekend {
     NSCalendar *calendar = [NSDate ac_currentCalendar];
-    NSUInteger unit = NSWeekdayCalendarUnit;
+    NSUInteger unit = NSCalendarUnitWeekday;
     
     NSRange weekdayRange = [calendar maximumRangeOfUnit:unit];
     NSUInteger weekdayOfDate = [[calendar components:unit fromDate:self] weekday];
@@ -147,7 +147,7 @@ static const unsigned componentUnits = (NSYearCalendarUnit
 }
 
 - (NSTimeInterval)ac_timestamp {
-    return [self timeIntervalSince1970] * SECOND_IN_MILLISECONDS;
+    return [self timeIntervalSince1970] * AC_SECOND_IN_MILLISECONDS;
 }
 
 - (NSInteger)ac_seconds {

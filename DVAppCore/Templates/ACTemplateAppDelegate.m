@@ -28,7 +28,7 @@
 
 - (UIWindow *)windowForAlerts {
     if (!_windowForAlerts) {
-        _windowForAlerts = [[UIWindow alloc] initWithFrame:CGRectMake(.0, .0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        _windowForAlerts = [[UIWindow alloc] initWithFrame:CGRectMake(.0, .0, AC_SCREEN_WIDTH, AC_SCREEN_HEIGHT)];
         _windowForAlerts.backgroundColor = ACDesign(ACDesignColorWindowForAlerts);
         _windowForAlerts.windowLevel = UIWindowLevelStatusBar + 1;
         _windowForAlerts.hidden = YES;

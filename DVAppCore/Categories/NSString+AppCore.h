@@ -48,5 +48,5 @@
 - (NSString *)ac_replacingWithPattern:(NSString *)pattern templateString:(NSString *)templateString;
 @end
 
-#define UnnilStr(str) ( ( str && [str isKindOfClass:[NSString class]] ) ? (str) : @"" )
-#define ValidStr(str) [NSString ac_isValidString:str]
+#define ACUnnilStr(str) ( ( str && [str isKindOfClass:[NSString class]] ) ? (str) : @"" )
+#define ACValidStr(str) [NSString ac_isValidString:str]

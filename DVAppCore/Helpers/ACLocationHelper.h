@@ -40,7 +40,7 @@ ACSINGLETON_H
 - (void)ac_locationHelper:(ACLocationHelper *)locationHelper didUpdateHeading:(CLHeading *)newHeading;
 @end
 
-EXTERN_STRING_H(ACUpdateCurrentLocation)
-EXTERN_STRING_H(ACUpdateCurrentHeading)
+AC_EXTERN_STRING_H(ACUpdateCurrentLocation)
+AC_EXTERN_STRING_H(ACUpdateCurrentHeading)
 
 BOOL ACLocationsCoordinates2DEqual(CLLocationCoordinate2D coordinate1, CLLocationCoordinate2D coordinate2);

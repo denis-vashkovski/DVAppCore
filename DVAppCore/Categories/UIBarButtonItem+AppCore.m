@@ -15,7 +15,7 @@
 
 @implementation UIBarButtonItem(AppCore)
 
-CATEGORY_PROPERTY_GET_BOOL(ac_isHidden)
+AC_CATEGORY_PROPERTY_GET_BOOL(ac_isHidden)
 - (void)setAc_hidden:(BOOL)ac_hidden {
     objc_setAssociatedObject(self, @selector(ac_isHidden), [NSNumber numberWithBool:ac_hidden], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     

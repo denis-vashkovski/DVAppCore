@@ -16,7 +16,7 @@
 #import "ACConstants.h"
 #import "ACLog.h"
 
-EXTERN_STRING_M(APIServerURL);
+AC_EXTERN_STRING_M(APIServerURL);
 
 @implementation NSURLRequest(AppCore)
 
@@ -297,10 +297,10 @@ EXTERN_STRING_M(APIServerURL);
     
     NSLog(@"\nType: %@\nURL: %@\nHTTP Method: %@\nHTTP header fields: %@\nBody: %@",
           @"Request",
-          (requestCopy ? UnnilStr(requestCopy.URL.absoluteString) : @""),
-          UnnilStr(requestCopy.HTTPMethod),
-          (requestCopy.allHTTPHeaderFields ? UnnilStr(requestCopy.allHTTPHeaderFields.description) : @""),
-          UnnilStr(body));
+          (requestCopy ? ACUnnilStr(requestCopy.URL.absoluteString) : @""),
+          ACUnnilStr(requestCopy.HTTPMethod),
+          (requestCopy.allHTTPHeaderFields ? ACUnnilStr(requestCopy.allHTTPHeaderFields.description) : @""),
+          ACUnnilStr(body));
 }
 
 - (void)ac_logResponse:(NSURLResponse *)response httpURLResponse:(NSHTTPURLResponse *)HTTPURLResponse startTime:(NSDate *)startTime jsonObj:(id)jsonObj {
@@ -309,9 +309,9 @@ EXTERN_STRING_M(APIServerURL);
     [responseLog appendFormat:@"\nURL: %@", response.URL.absoluteString];
     [responseLog appendFormat:@"\nStatusCode: %ld", (HTTPURLResponse ? (long)HTTPURLResponse.statusCode : 0)];
     
-    if (HTTPURLResponse && (HTTPURLResponse.statusCode != STATUS_CODE_OK)) {
+    if (HTTPURLResponse && (HTTPURLResponse.statusCode != AC_STATUS_CODE_OK)) {
         [responseLog appendFormat:@"\nHTTP header fields: %@", ((HTTPURLResponse && HTTPURLResponse.allHeaderFields)
-                                                                ? UnnilStr(HTTPURLResponse.allHeaderFields.description)
+                                                                ? ACUnnilStr(HTTPURLResponse.allHeaderFields.description)
                                                                 : @"")];
     }
     
@@ -323,11 +323,11 @@ EXTERN_STRING_M(APIServerURL);
 
 #pragma mark - Utils
 + (NSString *)getApiFullUrlForHref:(NSString *)href {
-    return [NSString stringWithFormat:@"%@%@", UnnilStr(USER_DEFINED_BY_KEY(APIServerURL)), href];
+    return [NSString stringWithFormat:@"%@%@", ACUnnilStr(AC_USER_DEFINED_BY_KEY(APIServerURL)), href];
 }
 
 + (NSString *)prepareParameterWithKey:(NSString *)key value:(id)value {
-    if (!ValidStr(key) || !value) {
+    if (!ACValidStr(key) || !value) {
         return nil;
     }
     

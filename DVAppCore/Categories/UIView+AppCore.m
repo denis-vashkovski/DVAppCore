@@ -43,7 +43,7 @@ AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_setBackgroundColor:) ori
     }
 }
 
-CATEGORY_PROPERTY_GET_NSNUMBER_PRIMITIVE(ACShapeType, ac_shapeType, intValue);
+AC_CATEGORY_PROPERTY_GET_NSNUMBER_PRIMITIVE(ACShapeType, ac_shapeType, intValue);
 - (void)setAc_shapeType:(ACShapeType)ac_shapeType {
     objc_setAssociatedObject(self, @selector(ac_shapeType), [NSNumber numberWithInt:ac_shapeType], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
@@ -65,7 +65,7 @@ CATEGORY_PROPERTY_GET_NSNUMBER_PRIMITIVE(ACShapeType, ac_shapeType, intValue);
     }
 }
 
-CATEGORY_PROPERTY_GET_SET(NSDictionary*, ac_userInfo, setAc_userInfo:);
+AC_CATEGORY_PROPERTY_GET_SET(NSDictionary*, ac_userInfo, setAc_userInfo:);
 
 - (UIEdgeInsets)ac_contentOffset {
     return UIEdgeInsetsFromString(objc_getAssociatedObject(self, @selector(ac_contentOffset)));
@@ -85,7 +85,7 @@ CATEGORY_PROPERTY_GET_SET(NSDictionary*, ac_userInfo, setAc_userInfo:);
     objc_setAssociatedObject(self, @selector(ac_contentOffset), NSStringFromUIEdgeInsets(ac_contentOffset), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-CATEGORY_PROPERTY_GET(UIColor *, ac_staticBackgroundColor)
+AC_CATEGORY_PROPERTY_GET(UIColor *, ac_staticBackgroundColor)
 - (void)setAc_staticBackgroundColor:(UIColor *)ac_staticBackgroundColor {
     objc_setAssociatedObject(self, @selector(ac_staticBackgroundColor), ac_staticBackgroundColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [self setBackgroundColor:ac_staticBackgroundColor];
@@ -128,7 +128,7 @@ CATEGORY_PROPERTY_GET(UIColor *, ac_staticBackgroundColor)
 }
 
 - (void)ac_setBackgroundImageByName:(NSString *)imageName {
-    if (!ValidStr(imageName)) {
+    if (!ACValidStr(imageName)) {
         return;
     }
     
@@ -167,7 +167,7 @@ CATEGORY_PROPERTY_GET(UIColor *, ac_staticBackgroundColor)
 
 #pragma mark - Layers
 - (CALayer *)ac_layerWithName:(NSString *)name {
-    if (ValidStr(name)) {
+    if (ACValidStr(name)) {
         for (CALayer *layer in [self.layer sublayers]) {
             if ([[layer name] isEqualToString:name]) {
                 return layer;
@@ -297,25 +297,25 @@ CATEGORY_PROPERTY_GET(UIColor *, ac_staticBackgroundColor)
     UIView *view = [self viewWithTag:tag]; \
     return (view && [view isKindOfClass:[type class]]) ? (type *)view : nil; \
 }
-VIEW_WITH_TAG(UILabel, labelWithTag)
-VIEW_WITH_TAG(UIImageView, imageViewWithTag)
-VIEW_WITH_TAG(UIButton, buttonWithTag)
-VIEW_WITH_TAG(UITextView, textViewWithTag)
-VIEW_WITH_TAG(UITextField, textFieldWithTag)
-VIEW_WITH_TAG(UISwitch, switchWithTag)
-VIEW_WITH_TAG(UIWebView, webViewWithTag)
-VIEW_WITH_TAG(UISlider, sliderWithTag)
-VIEW_WITH_TAG(UISegmentedControl, segmentedControlWithTag)
-VIEW_WITH_TAG(UIActivityIndicatorView, activityIndicatorViewWithTag)
-VIEW_WITH_TAG(UIProgressView, progressViewWithTag)
-VIEW_WITH_TAG(UIStepper, stepperWithTag)
-VIEW_WITH_TAG(UITableView, tableViewWithTag)
-VIEW_WITH_TAG(UIDatePicker, datePickerWithTag)
-VIEW_WITH_TAG(UIPickerView, pickerViewWithTag)
-VIEW_WITH_TAG(UICollectionView, collectionViewWithTag)
+VIEW_WITH_TAG(UILabel, ac_labelWithTag)
+VIEW_WITH_TAG(UIImageView, ac_imageViewWithTag)
+VIEW_WITH_TAG(UIButton, ac_buttonWithTag)
+VIEW_WITH_TAG(UITextView, ac_textViewWithTag)
+VIEW_WITH_TAG(UITextField, ac_textFieldWithTag)
+VIEW_WITH_TAG(UISwitch, ac_switchWithTag)
+VIEW_WITH_TAG(UIWebView, ac_webViewWithTag)
+VIEW_WITH_TAG(UISlider, ac_sliderWithTag)
+VIEW_WITH_TAG(UISegmentedControl, ac_segmentedControlWithTag)
+VIEW_WITH_TAG(UIActivityIndicatorView, ac_activityIndicatorViewWithTag)
+VIEW_WITH_TAG(UIProgressView, ac_progressViewWithTag)
+VIEW_WITH_TAG(UIStepper, ac_stepperWithTag)
+VIEW_WITH_TAG(UITableView, ac_tableViewWithTag)
+VIEW_WITH_TAG(UIDatePicker, ac_datePickerWithTag)
+VIEW_WITH_TAG(UIPickerView, ac_pickerViewWithTag)
+VIEW_WITH_TAG(UICollectionView, ac_collectionViewWithTag)
 
 - (void)ac_removeAllSubviews {
-    if (!ValidArray(self.subviews)) return;
+    if (!ACValidArray(self.subviews)) return;
     
     for (UIView *subview in self.subviews) {
         [subview removeFromSuperview];
@@ -323,7 +323,7 @@ VIEW_WITH_TAG(UICollectionView, collectionViewWithTag)
 }
 
 - (void)ac_removeAllGestureRecognizers {
-    if (!ValidArray(self.gestureRecognizers)) return;
+    if (!ACValidArray(self.gestureRecognizers)) return;
     
     for (UIGestureRecognizer *gestureRecognizer in self.gestureRecognizers) {
         [self removeGestureRecognizer:gestureRecognizer];

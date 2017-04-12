@@ -23,8 +23,8 @@
 @property (nonatomic) BOOL viewAppearNotFirstTime;
 @end
 @implementation UIViewController(AppCore_Private)
-CATEGORY_PROPERTY_GET_SET_BOOL(visible, setVisible:);
-CATEGORY_PROPERTY_GET_SET_BOOL(viewAppearNotFirstTime, setViewAppearNotFirstTime:);
+AC_CATEGORY_PROPERTY_GET_SET_BOOL(visible, setVisible:);
+AC_CATEGORY_PROPERTY_GET_SET_BOOL(viewAppearNotFirstTime, setViewAppearNotFirstTime:);
 @end
 
 @interface UIViewController()<UIGestureRecognizerDelegate>
@@ -59,7 +59,7 @@ AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_viewDidLoad) originalSel
         } else {
             return vc;
         }
-    } else if (vc && ValidArray(vc.childViewControllers)) {
+    } else if (vc && ACValidArray(vc.childViewControllers)) {
         for (UIViewController *childVC in vc.childViewControllers) {
             if (childVC.view.superview && (childVC.view.superview == vc.view)) {
                 return [UIViewController ac_findBestViewController:childVC];
@@ -75,7 +75,7 @@ AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_viewDidLoad) originalSel
     return [UIViewController ac_findBestViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
 }
 
-+ (instancetype)newInstance {
++ (instancetype)ac_newInstance {
     return [self new];
 }
 
@@ -144,7 +144,7 @@ AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_viewDidLoad) originalSel
                       CGRectGetWidth(self.view.frame),
                       ((self.tabBarController && !self.hidesBottomBarWhenPushed && !self.tabBarController.tabBar.hidden)
                        ? (self.tabBarController.tabBar.frame.origin.y - y)
-                       : (SCREEN_HEIGHT - y)));
+                       : (AC_SCREEN_HEIGHT - y)));
 }
 
 #pragma mark - Loading process

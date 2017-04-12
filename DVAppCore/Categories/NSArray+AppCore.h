@@ -19,4 +19,4 @@
 - (NSString *)ac_jsonString;
 @end
 
-#define ValidArray(array) [NSArray ac_isValidArray:array]
+#define ACValidArray(array) [NSArray ac_isValidArray:array]

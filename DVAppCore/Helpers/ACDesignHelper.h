@@ -12,7 +12,7 @@
 + (NSDictionary *)design;
 @end
 
-EXTERN_STRING_H(ACUpdateDesign)
+AC_EXTERN_STRING_H(ACUpdateDesign)
 
 /*!
  @class ACDesignHelper
@@ -66,20 +66,20 @@ EXTERN_STRING_H(ACUpdateDesign)
 #define ACDesign(key) [ACDesignHelper valueByKey:(key)]
 #define ACDesignSet(key, value) [ACDesignHelper setValue:(value) byKey:(key)]
 
-EXTERN_STRING_H(ACDesignColorRefreshControlTVC)
-EXTERN_STRING_H(ACDesignColorProgressView)
-EXTERN_STRING_H(ACDesignColorProgressActivityIndicator)
-EXTERN_STRING_H(ACDesignColorWindowForAlerts)
+AC_EXTERN_STRING_H(ACDesignColorRefreshControlTVC)
+AC_EXTERN_STRING_H(ACDesignColorProgressView)
+AC_EXTERN_STRING_H(ACDesignColorProgressActivityIndicator)
+AC_EXTERN_STRING_H(ACDesignColorWindowForAlerts)
 
 // global design
-EXTERN_STRING_H(ACDesignColorNavigationBarTint)
-EXTERN_STRING_H(ACDesignColorNavigationTint)
-EXTERN_STRING_H(ACDesignAttributesNavigationTitleText)                  // NSDictionary
+AC_EXTERN_STRING_H(ACDesignColorNavigationBarTint)
+AC_EXTERN_STRING_H(ACDesignColorNavigationTint)
+AC_EXTERN_STRING_H(ACDesignAttributesNavigationTitleText)                  // NSDictionary
 
-EXTERN_STRING_H(ACDesignColorTabBarTint)
-EXTERN_STRING_H(ACDesignColorTabTint)
-EXTERN_STRING_H(ACDesignAttributesTabItemTitleTextAttributes)           // NSDictionary
-EXTERN_STRING_H(ACDesignAttributesTabItemSelectedTitleTextAttributes)   // NSDictionary
-EXTERN_STRING_H(ACDesignPositionAdjustmentTabItemTitle)                 // UIOffset
+AC_EXTERN_STRING_H(ACDesignColorTabBarTint)
+AC_EXTERN_STRING_H(ACDesignColorTabTint)
+AC_EXTERN_STRING_H(ACDesignAttributesTabItemTitleTextAttributes)           // NSDictionary
+AC_EXTERN_STRING_H(ACDesignAttributesTabItemSelectedTitleTextAttributes)   // NSDictionary
+AC_EXTERN_STRING_H(ACDesignPositionAdjustmentTabItemTitle)                 // UIOffset
 
 #warning TODO add logic for fonts

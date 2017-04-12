@@ -30,4 +30,4 @@
 - (NSString *)ac_jsonString;
 @end
 
-#define ValidDictionary(dictionary) [NSDictionary ac_isValidDictionary:dictionary]
+#define ACValidDictionary(dictionary) [NSDictionary ac_isValidDictionary:dictionary]

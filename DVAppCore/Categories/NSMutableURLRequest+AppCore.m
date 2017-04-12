@@ -14,7 +14,7 @@
 
 #define BOUNDARY_KEY @"unique-consistent-string"
 - (void)ac_appendData:(NSArray<NSData *> *)data {
-    if (!ValidArray(data)) {
+    if (!ACValidArray(data)) {
         return;
     }
     

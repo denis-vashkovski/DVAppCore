@@ -11,7 +11,7 @@
 @implementation NSHTTPURLResponse(AppCore)
 
 - (BOOL)ac_isStatusCorrect {
-    return [self statusCode] >= STATUS_CODE_OK && [self statusCode] < STATUS_CODE_MULTIPLE_CHOICES;
+    return [self statusCode] >= AC_STATUS_CODE_OK && [self statusCode] < AC_STATUS_CODE_MULTIPLE_CHOICES;
 }
 
 @end

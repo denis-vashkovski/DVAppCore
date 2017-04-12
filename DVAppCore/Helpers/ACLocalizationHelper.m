@@ -15,8 +15,8 @@
 @property (nonatomic, strong) NSBundle *languageBundle;
 @end
 
-EXTERN_STRING_M(ACUpdateLocalization);
-EXTERN_STRING_M_V(NSAppleLanguagesArray, @"AppleLanguages")
+AC_EXTERN_STRING_M(ACUpdateLocalization);
+AC_EXTERN_STRING_M_V(NSAppleLanguagesArray, @"AppleLanguages")
 
 @implementation ACLocalizationHelper
 ACSINGLETON_M_METHOD(sharedLocalizationHelper)
@@ -27,19 +27,19 @@ ACSINGLETON_M_METHOD(sharedLocalizationHelper)
 
 - (void)initLocalizationHelper {
     NSString *currentLanguage = ((NSArray *)[[NSUserDefaults standardUserDefaults] valueForKey:NSAppleLanguagesArray]).firstObject;
-    if (ValidStr(currentLanguage)) {
+    if (ACValidStr(currentLanguage)) {
         _languageBundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:currentLanguage ofType:@"lproj"]];
     }
 }
 
 - (NSString *)languageSelectedStringForKey:(NSString *)key {
-    return ((ValidStr(key) && _languageBundle)
+    return ((ACValidStr(key) && _languageBundle)
             ? [_languageBundle localizedStringForKey:key value:@"" table:nil]
             : NSLocalizedString(key, nil));
 }
 
 - (void)setLocale:(NSLocale *)locale {
-    if (!locale || !ValidStr(locale.localeIdentifier)) {
+    if (!locale || !ACValidStr(locale.localeIdentifier)) {
         return;
     }
     

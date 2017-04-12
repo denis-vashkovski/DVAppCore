@@ -8,17 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-#define SECOND_IN_MILLISECONDS 1000
-#define SECONDS_IN_SECONDS   1
-#define MINUTE_IN_SECONDS    60
-#define HOUR_IN_SECONDS     (60 * 60)
-#define DAY_IN_SECONDS      (60 * 60 * 24)
-#define WEAK_IN_SECONDS     (60 * 60 * 24 * 7)
-#define MONTH_IN_SECONDS    (60 * 60 * 24 * 7 * 30)
+#define AC_SECOND_IN_MILLISECONDS 1000
+#define AC_SECONDS_IN_SECONDS   1
+#define AC_MINUTE_IN_SECONDS    60
+#define AC_HOUR_IN_SECONDS     (60 * 60)
+#define AC_DAY_IN_SECONDS      (60 * 60 * 24)
+#define AC_WEAK_IN_SECONDS     (60 * 60 * 24 * 7)
+#define AC_MONTH_IN_SECONDS    (60 * 60 * 24 * 7 * 30)
 
-#define UTC_KEY @"UTC"
+#define AC_UTC_KEY @"UTC"
 
-#define EN_US_POSIX_LOCALE_IDENTIFIER @"en_US_POSIX"
+#define AC_EN_US_POSIX_LOCALE_IDENTIFIER @"en_US_POSIX"
 
 @interface NSDate(AppCore)
 + (NSCalendar *)ac_currentCalendar;

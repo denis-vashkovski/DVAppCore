@@ -38,8 +38,8 @@
     array = @[@""];
     XCTAssertFalse(array.ac_isEmpty);
     
-    XCTAssertTrue(ValidArray(array));
-    XCTAssertFalse(ValidArray(@""));
+    XCTAssertTrue(ACValidArray(array));
+    XCTAssertFalse(ACValidArray(@""));
 }
 
 - (void)testNSAttributedString {
@@ -115,7 +115,7 @@
     XCTAssertTrue([date ac_isTheSameDayThan:[NSDate ac_date:@"15/03/2016" dateFormat:@"dd/MM/yyyy"]]);
     XCTAssertFalse([date ac_isTheSameDayThan:[NSDate ac_date:@"13/03/2016" dateFormat:@"dd/MM/yyyy"]]);
     
-    XCTAssertEqual([NSDate ac_date:@"14/03/2015" dateFormat:@"dd/MM/yyyy"].ac_age, 1);
+    XCTAssertEqual([NSDate ac_date:@"14/03/2015" dateFormat:@"dd/MM/yyyy"].ac_age, 2);
 }
 
 - (void)testNSDictionary {
@@ -195,23 +195,23 @@
     [testObject ac_setValue:@{} forPropertyName:@"dict"];
     XCTAssertNotNil(testObject.dict);
     
-    XCTAssertTrue(ValidStr(@"test"));
-    XCTAssertFalse(ValidStr(@""));
+    XCTAssertTrue(ACValidStr(@"test"));
+    XCTAssertFalse(ACValidStr(@""));
     
-    XCTAssertTrue(ValidArray(@[@""]));
-    XCTAssertFalse(ValidArray(@[]));
+    XCTAssertTrue(ACValidArray(@[@""]));
+    XCTAssertFalse(ACValidArray(@[]));
     
-    XCTAssertTrue(ValidDictionary(@{@"key": @""}));
-    XCTAssertFalse(ValidArray(@{}));
+    XCTAssertTrue(ACValidDictionary(@{@"key": @""}));
+    XCTAssertFalse(ACValidArray(@{}));
     
-    XCTAssertTrue(Valid(@"test"));
-    XCTAssertFalse(Valid(@""));
+    XCTAssertTrue(ACValid(@"test"));
+    XCTAssertFalse(ACValid(@""));
     
-    XCTAssertTrue(Valid(@[@""]));
-    XCTAssertFalse(Valid(@[]));
+    XCTAssertTrue(ACValid(@[@""]));
+    XCTAssertFalse(ACValid(@[]));
     
-    XCTAssertTrue(Valid(@{@"key": @""}));
-    XCTAssertFalse(Valid(@{}));
+    XCTAssertTrue(ACValid(@{@"key": @""}));
+    XCTAssertFalse(ACValid(@{}));
 }
 
 - (void)testNSString {
@@ -242,7 +242,7 @@
     XCTAssertEqualObjects(str.ac_encodeForUrl, @"%22%20%5E");
     
     str = nil;
-    XCTAssertEqualObjects(UnnilStr(str), @"");
+    XCTAssertEqualObjects(ACUnnilStr(str), @"");
     
     // regexp
     str = @"test@test.com";
@@ -361,7 +361,7 @@
     
     request = [NSURLRequest ac_requestPostForRootLinkByHref:@"example"];
     XCTAssertEqualObjects(request.URL.absoluteString, @"example");
-    XCTAssertTrue(Valid(request.allHTTPHeaderFields));
+    XCTAssertTrue(ACValid(request.allHTTPHeaderFields));
     XCTAssertEqualObjects(request.HTTPMethod, @"POST");
     
     // PUT

@@ -75,7 +75,7 @@ ACSINGLETON_M_INIT(initInstanceWith)
 }
 
 - (id)objectForKey:(NSString *)key {
-    if (!ValidStr(key)) {
+    if (!ACValidStr(key)) {
         return nil;
     }
     
@@ -83,7 +83,7 @@ ACSINGLETON_M_INIT(initInstanceWith)
 }
 
 - (void)setObject:(id)object forkey:(nullable NSString *)key {
-    if (!ValidStr(key)) {
+    if (!ACValidStr(key)) {
         return;
     }
     [self.userData setObject:object forKey:key];

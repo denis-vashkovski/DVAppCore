@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "DVAppCore"
-  s.version      = "0.3.3"
+  s.version      = "0.5.1"
   s.summary      = "Set of useful categories and helpers."
   s.description  = <<-DESC
                     The DVAppCore for iOS provides:
@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   s.homepage            = 'https://github.com/denis-vashkovski/DVAppCore'
   s.license             = { :type => 'MIT', :file => 'LICENSE' }
   s.authors             = { 'Denis Vashkovski' => 'denis.vashkovski.vv@gmail.com' }
-  s.platform     = :ios, "7.1"
+  s.platform     = :ios, "8.0"
   s.source       = { :git => 'https://github.com/denis-vashkovski/DVAppCore.git', :tag => s.version.to_s }
   s.requires_arc = true
 

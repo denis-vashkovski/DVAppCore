@@ -32,8 +32,8 @@
     [self.view addSubview:_pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
     
-    if (self.delegate && [self.delegate respondsToSelector:@selector(ac_templatePVC:viewControllerForPage:)]) {
-        [self.pageViewController setViewControllers:@[[self.delegate ac_templatePVC:self viewControllerForPage:0]]
+    if (self.ac_delegate && [self.ac_delegate respondsToSelector:@selector(ac_templatePVC:viewControllerForPage:)]) {
+        [self.pageViewController setViewControllers:@[[self.ac_delegate ac_templatePVC:self viewControllerForPage:0]]
                                           direction:UIPageViewControllerNavigationDirectionForward
                                            animated:NO
                                          completion:nil];
@@ -43,26 +43,29 @@
 #pragma mark UIPageViewControllerDataSource
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
     NSInteger index = ((ACTemplatePageVC *) viewController).index;
-    if ((index == 0) || !self.delegate || ![self.delegate respondsToSelector:@selector(ac_templatePVC:viewControllerForPage:)]) {
+    if ((index == 0) || !self.ac_delegate || ![self.ac_delegate respondsToSelector:@selector(ac_templatePVC:viewControllerForPage:)]) {
         return nil;
     }
     
-    return [self.delegate ac_templatePVC:self viewControllerForPage:--index];
+    return [self.ac_delegate ac_templatePVC:self viewControllerForPage:--index];
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
     NSInteger index = ((ACTemplatePageVC *) viewController).index;
-    if (!self.delegate || ![self.delegate respondsToSelector:@selector(ac_numberOfPagesInTemplatePVC:)] || (index == (INFINITE_NUMBER_OF_PAGES - 1)) ||
-        ![self.delegate respondsToSelector:@selector(ac_templatePVC:viewControllerForPage:)]) {
+    if (!self.ac_delegate || ![self.ac_delegate respondsToSelector:@selector(ac_numberOfPagesInTemplatePVC:)] || (index == (INFINITE_NUMBER_OF_PAGES - 1)) ||
+        ![self.ac_delegate respondsToSelector:@selector(ac_templatePVC:viewControllerForPage:)]) {
         return nil;
     }
     
-    return [self.delegate ac_templatePVC:self viewControllerForPage:++index];
+    return [self.ac_delegate ac_templatePVC:self viewControllerForPage:++index];
 }
 
-- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray<UIViewController *> *)previousViewControllers transitionCompleted:(BOOL)completed {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(ac_templatePVC:pageDidAppear:)]) {
-        [self.delegate ac_templatePVC:self pageDidAppear:pageViewController.viewControllers.lastObject];
+- (void)pageViewController:(UIPageViewController *)pageViewController
+        didFinishAnimating:(BOOL)finished
+   previousViewControllers:(NSArray<UIViewController *> *)previousViewControllers
+       transitionCompleted:(BOOL)completed {
+    if (self.ac_delegate && [self.ac_delegate respondsToSelector:@selector(ac_templatePVC:pageDidAppear:)]) {
+        [self.ac_delegate ac_templatePVC:self pageDidAppear:pageViewController.viewControllers.lastObject];
     }
 }
 

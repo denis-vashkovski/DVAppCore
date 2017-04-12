@@ -11,7 +11,7 @@
 #import "NSObject+AppCore.h"
 #import "ACURLConnectionManager.h"
 
-EXTERN_STRING_H(APIServerURL)
+AC_EXTERN_STRING_H(APIServerURL)
 
 @interface NSURLRequest(AppCore)
 + (NSURLRequest *)ac_requestGetByLink:(NSString *)link parameters:(NSDictionary *)parameters headerFields:(NSDictionary *)headerFields;

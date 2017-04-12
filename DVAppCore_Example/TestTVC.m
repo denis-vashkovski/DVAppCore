@@ -20,7 +20,7 @@
 
 @implementation TestTVC
 
-+ (instancetype)newInstance {
++ (instancetype)ac_newInstance {
     return (TestTVC *)[ACRouter getVCByName:@"TestTVC" storyboardName:@"Main"];
 }
 

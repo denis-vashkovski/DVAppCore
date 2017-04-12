@@ -81,8 +81,8 @@
 @property (nonatomic, strong) UIView *separatorBottomView;
 @end
 @implementation UITableViewCell(AppCore_Private)
-CATEGORY_PROPERTY_GET_SET(UIView*, separatorTopView, setSeparatorTopView:);
-CATEGORY_PROPERTY_GET_SET(UIView*, separatorBottomView, setSeparatorBottomView:);
+AC_CATEGORY_PROPERTY_GET_SET(UIView*, separatorTopView, setSeparatorTopView:);
+AC_CATEGORY_PROPERTY_GET_SET(UIView*, separatorBottomView, setSeparatorBottomView:);
 @end
 
 @implementation UITableViewCell(AppCore)
@@ -138,7 +138,7 @@ AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_layoutSubviews) original
         [view setFrame:CGRectMake(.0,
                                   [delegate tableView:delegate.tableView heightForRowAtIndexPath:indexPath],
                                   CGRectGetWidth(delegate.tableView.frame),
-                                  SCREEN_HEIGHT * 2)];
+                                  AC_SCREEN_HEIGHT * 2)];
         [view setBackgroundColor:color];
         
         return view;

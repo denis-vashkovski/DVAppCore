@@ -19,7 +19,7 @@
 }
 @end
 
-EXTERN_STRING_M(ACUpdateDesign);
+AC_EXTERN_STRING_M(ACUpdateDesign);
 
 @interface ACDesignHelper()
 @property (nonatomic, strong) NSMutableDictionary<NSString *, id> *designDictionary;
@@ -36,7 +36,7 @@ ACSINGLETON_M_INIT(initInstanceWith)
 - (void)setCurrentDesign:(NSDictionary *)currentDesign {
     _currentDesign = currentDesign;
     
-    if (ValidArray(_currentDesign)) {
+    if (ACValidArray(_currentDesign)) {
         for (NSString *key in _currentDesign.allKeys) {
             [self applyValue:_currentDesign[key] byKey:key];
         }
@@ -45,7 +45,7 @@ ACSINGLETON_M_INIT(initInstanceWith)
 
 + (id)valueByKey:(NSString *)key {
     id value = nil;
-    if (ValidStr(key)) {
+    if (ACValidStr(key)) {
         value = [[[self getInstance] designDictionary] objectForKey:key];
         if (!value && [[self getInstance] currentDesign]) {
             value = [[[self getInstance] currentDesign] objectForKey:key];
@@ -55,7 +55,7 @@ ACSINGLETON_M_INIT(initInstanceWith)
 }
 
 + (BOOL)setValue:(id)value byKey:(NSString *)key {
-    if (ValidStr(key) && value) {
+    if (ACValidStr(key) && value) {
         [[[self getInstance] designDictionary] setObject:value forKey:key];
         [[self getInstance] applyValue:value byKey:key];
         
@@ -72,7 +72,7 @@ ACSINGLETON_M_INIT(initInstanceWith)
 }
 
 - (void)applyValue:(id)value byKey:(NSString *)key {
-    if (!ValidStr(key) || !value) return;
+    if (!ACValidStr(key) || !value) return;
     
     if ([key isEqualToString:ACDesignColorNavigationBarTint]) {
         [[UINavigationBar appearance] setBarTintColor:ACDesign(ACDesignColorNavigationBarTint)];
@@ -95,18 +95,18 @@ ACSINGLETON_M_INIT(initInstanceWith)
 
 @end
 
-EXTERN_STRING_M(ACDesignColorRefreshControlTVC);
-EXTERN_STRING_M(ACDesignColorProgressView);
-EXTERN_STRING_M(ACDesignColorProgressActivityIndicator);
-EXTERN_STRING_M(ACDesignColorWindowForAlerts);
+AC_EXTERN_STRING_M(ACDesignColorRefreshControlTVC);
+AC_EXTERN_STRING_M(ACDesignColorProgressView);
+AC_EXTERN_STRING_M(ACDesignColorProgressActivityIndicator);
+AC_EXTERN_STRING_M(ACDesignColorWindowForAlerts);
 
 // global design
-EXTERN_STRING_M(ACDesignColorNavigationBarTint)
-EXTERN_STRING_M(ACDesignColorNavigationTint)
-EXTERN_STRING_M(ACDesignAttributesNavigationTitleText)
+AC_EXTERN_STRING_M(ACDesignColorNavigationBarTint)
+AC_EXTERN_STRING_M(ACDesignColorNavigationTint)
+AC_EXTERN_STRING_M(ACDesignAttributesNavigationTitleText)
 
-EXTERN_STRING_M(ACDesignColorTabBarTint)
-EXTERN_STRING_M(ACDesignColorTabTint)
-EXTERN_STRING_M(ACDesignAttributesTabItemTitleTextAttributes)
-EXTERN_STRING_M(ACDesignAttributesTabItemSelectedTitleTextAttributes)
-EXTERN_STRING_M(ACDesignPositionAdjustmentTabItemTitle)
+AC_EXTERN_STRING_M(ACDesignColorTabBarTint)
+AC_EXTERN_STRING_M(ACDesignColorTabTint)
+AC_EXTERN_STRING_M(ACDesignAttributesTabItemTitleTextAttributes)
+AC_EXTERN_STRING_M(ACDesignAttributesTabItemSelectedTitleTextAttributes)
+AC_EXTERN_STRING_M(ACDesignPositionAdjustmentTabItemTitle)

@@ -13,7 +13,7 @@
 @implementation UIColor(AppCore)
 
 + (UIColor *)ac_colorFromHexString:(NSString *)hexString alpha:(float)alpha {
-    if (ValidStr(hexString)) {
+    if (ACValidStr(hexString)) {
         NSScanner *scanner = [NSScanner scannerWithString:hexString];
         
         if (scanner) {

@@ -18,4 +18,4 @@
 - (UIImage *)ac_imageWithInsets:(UIEdgeInsets)insets;
 @end
 
-#define DVImageNamed(name) [UIImage imageNamed:name]
+#define ACImageNamed(name) [UIImage imageNamed:name]

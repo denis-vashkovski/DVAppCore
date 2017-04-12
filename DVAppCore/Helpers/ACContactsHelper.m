@@ -23,19 +23,19 @@
 #pragma mark - ACContactObject
 @implementation ACContactObject
 - (NSString *)nameFull {
-    NSString *fullName = UnnilStr(self.firstName).lowercaseString.capitalizedString;
-    if (ValidStr(self.lastName)) {
+    NSString *fullName = ACUnnilStr(self.firstName).lowercaseString.capitalizedString;
+    if (ACValidStr(self.lastName)) {
         if (!fullName.ac_isEmpty) {
             fullName = [fullName stringByAppendingString:@" "];
         }
-        fullName = [fullName stringByAppendingString:UnnilStr(self.lastName).lowercaseString.capitalizedString];
+        fullName = [fullName stringByAppendingString:ACUnnilStr(self.lastName).lowercaseString.capitalizedString];
     }
     return fullName.ac_isEmpty ? nil : fullName;
 }
 
 - (NSString *)nameShort {
-    NSString *shortName = UnnilStr(self.firstName).lowercaseString.capitalizedString;
-    if (ValidStr(self.lastName)) {
+    NSString *shortName = ACUnnilStr(self.firstName).lowercaseString.capitalizedString;
+    if (ACValidStr(self.lastName)) {
         if (!shortName.ac_isEmpty) {
             shortName = [shortName stringByAppendingString:@" "];
             shortName = [shortName stringByAppendingString:[self.lastName substringToIndex:1].uppercaseString];
@@ -57,7 +57,7 @@
 ACSINGLETON_M
 
 + (void)authorizationWithCompletionHandler:(void (^)(BOOL))completionHandler {
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
+    if (AC_SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
         CNAuthorizationStatus authorizationStatus = [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
         
         if (authorizationStatus == CNAuthorizationStatusDenied || authorizationStatus == CNAuthorizationStatusRestricted) {
@@ -107,14 +107,14 @@ ACSINGLETON_M
 + (NSArray<ACContactObject *> *)getContactsByName:(NSString *)name {
     NSMutableArray<ACContactObject *> *contactList = [[NSMutableArray alloc] init];
     
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
+    if (AC_SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
         CNContactStore *store = [[CNContactStore alloc] init];
         NSArray *keys = @[ CNContactFamilyNameKey,
                            CNContactGivenNameKey,
                            CNContactPhoneNumbersKey,
                            CNContactEmailAddressesKey ];
         
-        NSPredicate *predicate = (ValidStr(name)
+        NSPredicate *predicate = (ACValidStr(name)
                                   ? [CNContact predicateForContactsMatchingName:name]
                                   : [CNContact predicateForContactsInContainerWithIdentifier:store.defaultContainerIdentifier]);
         
@@ -130,7 +130,7 @@ ACSINGLETON_M
         }
     } else {
         ABAddressBookRef addressBookRef = ABAddressBookCreateWithOptions(NULL, nil);
-        NSArray *allContacts = (ValidStr(name)
+        NSArray *allContacts = (ACValidStr(name)
                                 ? (__bridge NSArray *)ABAddressBookCopyPeopleWithName(addressBookRef, (__bridge CFStringRef)name)
                                 : (__bridge NSArray *)ABAddressBookCopyArrayOfAllPeople(addressBookRef));
         
@@ -139,7 +139,7 @@ ACSINGLETON_M
         }
     }
     
-    return ValidArray(contactList) ? [NSArray arrayWithArray:contactList] : nil;
+    return ACValidArray(contactList) ? [NSArray arrayWithArray:contactList] : nil;
 }
 
 + (UIViewController *)contactsViewControllerWithDelegate:(id<ACContactsHelperDelegate>)delegate {
@@ -147,7 +147,7 @@ ACSINGLETON_M
     [_self setDelegate:delegate];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K.@count > 0", ABPersonPhoneNumbersProperty];
     
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
+    if (AC_SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
         CNContactPickerViewController *picker = [CNContactPickerViewController new];
         [picker setPredicateForEnablingContact:predicate];
         [picker setDelegate:_self];
@@ -163,29 +163,82 @@ ACSINGLETON_M
 }
 
 #warning TODO add logic for adding a contact
-+ (BOOL)addContact:(CNMutableContact *)contact {
-//    CNMutableContact *contact = [[CNMutableContact alloc] init];
-//    contact.familyName = @"Doe";
-//    contact.givenName = @"John";
-//    
-//    CNLabeledValue *homePhone = [CNLabeledValue labeledValueWithLabel:CNLabelHome
-//                                                                value:[CNPhoneNumber phoneNumberWithStringValue:@"312-555-1212"]];
-//    contact.phoneNumbers = @[homePhone];
++ (BOOL)addContact:(ACContactObject *)contactObject {
+    if (!contactObject) return NO;
     
-    if (!contact) return NO;
-    
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
+    if (AC_SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
+        CNMutableContact *contact = [CNMutableContact new];
+        contact.familyName = contactObject.lastName;
+        contact.givenName = contactObject.firstName;
+        
+        CNLabeledValue *homePhone = [CNLabeledValue labeledValueWithLabel:CNLabelHome
+                                                                    value:[CNPhoneNumber phoneNumberWithStringValue:contactObject.phones.firstObject]];
+        contact.phoneNumbers = @[homePhone];
+        
         CNSaveRequest *request = [[CNSaveRequest alloc] init];
         [request addContact:contact toContainerWithIdentifier:nil];
         
-        NSError *saveError = nil;
-        CNContactStore *store = [[CNContactStore alloc] init];
-        if (![store executeSaveRequest:request error:&saveError]) {
-            NSLog(@"error = %@", saveError);
-            return NO;
-        }
+        return [[CNContactStore new] executeSaveRequest:request error:nil];
     } else {
+        ABAddressBookRef addressBook = ABAddressBookCreate();
+        ABRecordRef person = ABPersonCreate();
+        CFErrorRef anError = NULL;
         
+        if (ACValidStr(contactObject.firstName)) {
+            ABRecordSetValue(person, kABPersonFirstNameProperty, (__bridge CFTypeRef)contactObject.firstName , nil);
+        }
+        if (ACValidStr(contactObject.lastName)) {
+            ABRecordSetValue(person, kABPersonLastNameProperty, (__bridge CFTypeRef)contactObject.lastName , nil);
+        }
+        if (ACValidArray(contactObject.phones) || ACValidStr(contactObject.fax)) {
+            ABMutableMultiValueRef phoneNumberMultiValue  = ABMultiValueCreateMutable(kABMultiStringPropertyType);
+            if (ACValidArray(contactObject.phones)) {
+                for (NSString *phone in contactObject.phones) {
+                    ABMultiValueAddValueAndLabel(phoneNumberMultiValue, (__bridge CFTypeRef)phone, kABPersonPhoneMobileLabel, NULL);
+                }
+            }
+            if (ACValidStr(contactObject.fax)) {
+                ABMultiValueAddValueAndLabel(phoneNumberMultiValue, (__bridge CFTypeRef)contactObject.fax, kABPersonPhoneMobileLabel, NULL);
+            }
+            ABRecordSetValue(person, kABPersonPhoneProperty, phoneNumberMultiValue, nil);
+        }
+        if (ACValidStr(contactObject.email)) {
+            ABMutableMultiValueRef emailMultiValue  = ABMultiValueCreateMutable(kABMultiStringPropertyType);
+            ABMultiValueAddValueAndLabel(emailMultiValue, (__bridge CFTypeRef)contactObject.email, (__bridge CFStringRef)@"Public", NULL);
+            ABRecordSetValue(person, kABPersonEmailProperty, emailMultiValue, nil);
+        }
+        if (ACValidStr(contactObject.link)) {
+            ABMutableMultiValueRef urlMultiValue = ABMultiValueCreateMutable(kABMultiStringPropertyType);
+            ABMultiValueAddValueAndLabel(urlMultiValue, (__bridge CFTypeRef)contactObject.link, kABPersonHomePageLabel, NULL);
+            ABRecordSetValue(person, kABPersonURLProperty, urlMultiValue, nil);
+        }
+        if (ACValidStr(contactObject.country) || ACValidStr(contactObject.state) || ACValidStr(contactObject.city) || ACValidStr(contactObject.street) || ACValidStr(contactObject.zip)) {
+            ABMutableMultiValueRef address = ABMultiValueCreateMutable(kABDictionaryPropertyType);
+            CFStringRef keys[5];
+            keys[0] = kABPersonAddressStreetKey;
+            keys[1] = kABPersonAddressCityKey;
+            keys[2] = kABPersonAddressZIPKey;
+            keys[3] = kABPersonAddressCountryKey;
+            keys[4] = kABPersonAddressStateKey;
+            CFStringRef values[5];
+            values[0] = (__bridge_retained CFStringRef)ACUnnilStr(contactObject.street);
+            values[1] = (__bridge_retained CFStringRef)ACUnnilStr(contactObject.city);
+            values[2] = (__bridge_retained CFStringRef)ACUnnilStr(contactObject.zip);
+            values[3] = (__bridge_retained CFStringRef)ACUnnilStr(contactObject.country);
+            values[4] = (__bridge_retained CFStringRef)ACUnnilStr(contactObject.state);
+            
+            CFDictionaryRef dicref = CFDictionaryCreate(kCFAllocatorDefault, (void *)keys, (void *)values, 5, &kCFCopyStringDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+            ABMultiValueIdentifier identifier;
+            ABMultiValueAddValueAndLabel(address, dicref, kABHomeLabel, &identifier);
+            ABRecordSetValue(person, kABPersonAddressProperty, address,&anError);
+        }
+        if (ACValidStr(contactObject.note)) {
+            ABRecordSetValue(person, kABPersonNoteProperty, (__bridge CFTypeRef)contactObject.note, nil);
+        }
+        
+        ABAddressBookAddRecord(addressBook, person, nil);
+        
+        return ABAddressBookSave(addressBook, &anError);
     }
     
     return YES;
@@ -194,7 +247,7 @@ ACSINGLETON_M
 + (UIViewController *)viewControllerWithAddContact:(CNMutableContact *)contact delegate:(id<ACContactsHelperDelegate>)delegate {
     if (!contact) return nil;
     
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
+    if (AC_SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
         CNContactStore *store = [[CNContactStore alloc] init];
         
         CNContactViewController *controller = [CNContactViewController viewControllerForUnknownContact:contact];
@@ -242,7 +295,7 @@ ACSINGLETON_M
     ACContactObject *contactObject = [ACContactObject new];
     
     if (record) {
-        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
+        if (AC_SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
             CNContact *contact = (CNContact *)record;
             
             [contactObject setFirstName:contact.givenName];
@@ -265,7 +318,7 @@ ACSINGLETON_M
             
             for (CFIndex j = 0; j < ABMultiValueGetCount(phones); j++) {
                 mobileLabel = (__bridge NSString *)ABMultiValueCopyLabelAtIndex(phones, j);
-                if (!ValidStr(mobileLabel)
+                if (!ACValidStr(mobileLabel)
                     || [mobileLabel isEqualToString:(NSString *)kABPersonPhoneMobileLabel]
                     || [mobileLabel isEqualToString:(NSString *)kABPersonPhoneIPhoneLabel]) {
                     [contactObject setPhones:@[(__bridge NSString *)ABMultiValueCopyValueAtIndex(phones, j)]];

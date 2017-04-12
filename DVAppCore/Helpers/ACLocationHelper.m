@@ -107,7 +107,7 @@ ACSINGLETON_M
 - (double)radiusTo:(NSArray *)annotations annotationsVisibleCountMin:(NSUInteger)annotationsVisibleCountMin {
     double radius = .0;
     
-    if (ValidArray(annotations) && (annotationsVisibleCountMin > 0)) {
+    if (ACValidArray(annotations) && (annotationsVisibleCountMin > 0)) {
         NSMutableArray<NSNumber *> *distanceList = [NSMutableArray new];
         for (id<MKAnnotation> annotation in annotations) {
             [distanceList addObject:@([self distanceToLocation:annotation.coordinate])];
@@ -124,8 +124,8 @@ ACSINGLETON_M
 
 @end
 
-EXTERN_STRING_M(ACUpdateCurrentLocation)
-EXTERN_STRING_M(ACUpdateCurrentHeading)
+AC_EXTERN_STRING_M(ACUpdateCurrentLocation)
+AC_EXTERN_STRING_M(ACUpdateCurrentHeading)
 
 BOOL ACLocationsCoordinates2DEqual(CLLocationCoordinate2D coordinate1, CLLocationCoordinate2D coordinate2) {
     return (coordinate1.latitude == coordinate2.latitude) && (coordinate1.longitude == coordinate2.longitude);

@@ -46,7 +46,7 @@
 }
 
 - (void)removeOperationByName:(NSString *)nameOperation {
-    if (!ValidStr(nameOperation)) {
+    if (!ACValidStr(nameOperation)) {
         return;
     }
     
@@ -55,7 +55,7 @@
 }
 
 - (void)addOperation:(NSOperation *)operation withKey:(NSString *)key {
-    if (!operation || !ValidStr(key)) {
+    if (!operation || !ACValidStr(key)) {
         return;
     }
     

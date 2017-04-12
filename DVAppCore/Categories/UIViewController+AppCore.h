@@ -13,7 +13,7 @@
 + (UIViewController *)ac_findBestViewController:(UIViewController *)vc;
 + (UIViewController *)ac_currentViewController;
 
-+ (instancetype)newInstance;
++ (instancetype)ac_newInstance;
 
 - (BOOL)ac_isVisible;
 - (BOOL)ac_isViewAppearNotFirstTime;

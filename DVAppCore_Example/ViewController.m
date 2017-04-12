@@ -41,7 +41,7 @@
 }
 
 - (IBAction)onButtonNextTouch:(id)sender {
-    [self.navigationController ac_pushViewController:[TestTVC newInstance]
+    [self.navigationController ac_pushViewController:[TestTVC ac_newInstance]
                                        animationType:ACAnimationTransitionFlipFromTop
                                    animationDuration:.5
                                    completionHandler:nil];

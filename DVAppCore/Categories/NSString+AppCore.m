@@ -64,7 +64,7 @@
 #pragma mark - Encode / Decode
 #define CHARACTERS_TO_BE_ESCAPED @"!*'();:@&=+$,/?%#[]"
 - (NSString *)ac_stringByAddingPercentEscapes {
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
+    if (AC_SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
         return [self stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     } else {
         return (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
@@ -113,14 +113,14 @@
 #define HTML_FONT_DEFAULT [UIFont systemFontOfSize:17.]
 #define HTML_COLOR_HEX_DEFAULT @"000000"
 - (NSAttributedString *)ac_htmlAttributedStringWithFont:(UIFont *)font colorHex:(NSString *)colorHex {
-    if (!ValidStr(self)) {
+    if (!ACValidStr(self)) {
         return nil;
     }
     
     if (!font) {
         font = HTML_FONT_DEFAULT;
     }
-    if (!ValidStr(colorHex)) {
+    if (!ACValidStr(colorHex)) {
         colorHex = HTML_COLOR_HEX_DEFAULT;
     }
     
@@ -128,7 +128,7 @@
                                      @"<span style=\"font-family: %@; font-size: %d; color: %@\">%@</span>",
                                      font.fontName,
                                      (int)font.pointSize,
-                                     UnnilStr(colorHex),
+                                     ACUnnilStr(colorHex),
                                      [self stringByReplacingOccurrencesOfString:@"\n" withString:@"<br>"]];
     
     NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithData:[preparedFaqContents dataUsingEncoding:NSUTF8StringEncoding]
@@ -155,46 +155,46 @@
 
 #pragma mark - Regexp
 - (BOOL)ac_isValidRegexp:(NSString *)regexp {
-    return [[NSPredicate predicateWithFormat:@"SELF MATCHES %@", UnnilStr(regexp)] evaluateWithObject:self];
+    return [[NSPredicate predicateWithFormat:@"SELF MATCHES %@", ACUnnilStr(regexp)] evaluateWithObject:self];
 }
 
 #define EMAIL_REGEX @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"
 - (BOOL)ac_isValidEmail {
-    return (ValidStr(self) && [self ac_isValidRegexp:EMAIL_REGEX]);
+    return (ACValidStr(self) && [self ac_isValidRegexp:EMAIL_REGEX]);
 }
 
 #define CREDIT_CARD_NUMBER_REGEX @"[0-9]{13,16}"
 - (BOOL)ac_isValidCreditCardNumber {
-    return (ValidStr(self) && [self ac_isValidRegexp:CREDIT_CARD_NUMBER_REGEX]);
+    return (ACValidStr(self) && [self ac_isValidRegexp:CREDIT_CARD_NUMBER_REGEX]);
 }
 
 #define DOMAIN_REGEX @"^([a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\\.)+[a-zA-Z]{2,6}$"
 - (BOOL)ac_isValidDomain {
-    return (ValidStr(self) && [self ac_isValidRegexp:DOMAIN_REGEX]);
+    return (ACValidStr(self) && [self ac_isValidRegexp:DOMAIN_REGEX]);
 }
 
 #define URL_REGEXP @"^(https?://)?([\\da-z.-]+).([a-z.]{2,6})([/\\w .-]*)*/?$"
 - (BOOL)ac_isValidURL {
-    return (ValidStr(self) && [self ac_isValidRegexp:URL_REGEXP]);
+    return (ACValidStr(self) && [self ac_isValidRegexp:URL_REGEXP]);
 }
 
 #define ONLY_DIGITS_REGEX @"^[0-9]+$"
 - (BOOL)ac_isOnlyDigits {
-    return (ValidStr(self) && [self ac_isValidRegexp:ONLY_DIGITS_REGEX]);
+    return (ACValidStr(self) && [self ac_isValidRegexp:ONLY_DIGITS_REGEX]);
 }
 
 #define ONLY_LETTERS_REGEX @"^[a-zA-Z]+$"
 - (BOOL)ac_isOnlyLetters {
-    return (ValidStr(self) && [self ac_isValidRegexp:ONLY_LETTERS_REGEX]);
+    return (ACValidStr(self) && [self ac_isValidRegexp:ONLY_LETTERS_REGEX]);
 }
 
 #define ONLY_LETTERS_AND_DIGITS @"^[a-zA-Z0-9]+$"
 - (BOOL)ac_isOnlyLettersAndDigits {
-    return (ValidStr(self) && [self ac_isValidRegexp:ONLY_LETTERS_AND_DIGITS]);
+    return (ACValidStr(self) && [self ac_isValidRegexp:ONLY_LETTERS_AND_DIGITS]);
 }
 
 - (NSURL *)ac_asURL {
-    return ValidStr(self) ? [NSURL URLWithString:self] : nil;
+    return ACValidStr(self) ? [NSURL URLWithString:self] : nil;
 }
 
 - (NSString *)ac_replacingWithPattern:(NSString *)pattern templateString:(NSString *)templateString {

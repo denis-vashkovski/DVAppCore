@@ -50,22 +50,22 @@ typedef enum {
 - (void)ac_addConstraintsEqualSuperview;
 - (void)ac_addConstraintsCenterSuperview;
 
-- (UILabel *)labelWithTag:(NSInteger)tag;
-- (UIImageView *)imageViewWithTag:(NSInteger)tag;
-- (UIButton *)buttonWithTag:(NSInteger)tag;
-- (UITextView *)textViewWithTag:(NSInteger)tag;
-- (UITextField *)textFieldWithTag:(NSInteger)tag;
-- (UISwitch *)switchWithTag:(NSInteger)tag;
-- (UIWebView *)webViewWithTag:(NSInteger)tag;
-- (UISlider *)sliderWithTag:(NSInteger)tag;
-- (UISegmentedControl *)segmentedControlWithTag:(NSInteger)tag;
-- (UIActivityIndicatorView *)activityIndicatorViewWithTag:(NSInteger)tag;
-- (UIProgressView *)progressViewWithTag:(NSInteger)tag;
-- (UIStepper *)stepperWithTag:(NSInteger)tag;
-- (UITableView *)tableViewWithTag:(NSInteger)tag;
-- (UIDatePicker *)datePickerWithTag:(NSInteger)tag;
-- (UIPickerView *)pickerViewWithTag:(NSInteger)tag;
-- (UICollectionView *)collectionViewWithTag:(NSInteger)tag;
+- (UILabel *)ac_labelWithTag:(NSInteger)tag;
+- (UIImageView *)ac_imageViewWithTag:(NSInteger)tag;
+- (UIButton *)ac_buttonWithTag:(NSInteger)tag;
+- (UITextView *)ac_textViewWithTag:(NSInteger)tag;
+- (UITextField *)ac_textFieldWithTag:(NSInteger)tag;
+- (UISwitch *)ac_switchWithTag:(NSInteger)tag;
+- (UIWebView *)ac_webViewWithTag:(NSInteger)tag;
+- (UISlider *)ac_sliderWithTag:(NSInteger)tag;
+- (UISegmentedControl *)ac_segmentedControlWithTag:(NSInteger)tag;
+- (UIActivityIndicatorView *)ac_activityIndicatorViewWithTag:(NSInteger)tag;
+- (UIProgressView *)ac_progressViewWithTag:(NSInteger)tag;
+- (UIStepper *)ac_stepperWithTag:(NSInteger)tag;
+- (UITableView *)ac_tableViewWithTag:(NSInteger)tag;
+- (UIDatePicker *)ac_datePickerWithTag:(NSInteger)tag;
+- (UIPickerView *)ac_pickerViewWithTag:(NSInteger)tag;
+- (UICollectionView *)ac_collectionViewWithTag:(NSInteger)tag;
 
 - (void)ac_removeAllSubviews;
 - (void)ac_removeAllGestureRecognizers;

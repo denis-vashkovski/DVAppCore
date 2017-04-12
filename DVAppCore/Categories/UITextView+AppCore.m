@@ -18,7 +18,7 @@
 
 AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_setContentSize:) originalSelector:@selector(setContentSize:)];)
 
-CATEGORY_PROPERTY_GET_NSNUMBER_PRIMITIVE(ACContentVerticalAlignment, ac_contentVerticalAlignment, intValue);
+AC_CATEGORY_PROPERTY_GET_NSNUMBER_PRIMITIVE(ACContentVerticalAlignment, ac_contentVerticalAlignment, intValue);
 - (void)setAc_contentVerticalAlignment:(ACContentVerticalAlignment)ac_contentVerticalAlignment {
     objc_setAssociatedObject(self,
                              @selector(ac_contentVerticalAlignment),
@@ -28,7 +28,7 @@ CATEGORY_PROPERTY_GET_NSNUMBER_PRIMITIVE(ACContentVerticalAlignment, ac_contentV
 }
 
 #define LABEL_PLACEHOLDER_TAG 9876
-CATEGORY_PROPERTY_GET(NSAttributedString *, ac_placeholder)
+AC_CATEGORY_PROPERTY_GET(NSAttributedString *, ac_placeholder)
 - (void)setAc_placeholder:(NSAttributedString *)ac_placeholder {
     objc_setAssociatedObject(self, @selector(ac_placeholder), ac_placeholder, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     

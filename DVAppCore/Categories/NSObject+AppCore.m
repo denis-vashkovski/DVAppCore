@@ -38,7 +38,7 @@
 }
 
 - (NSString *)getTypeAttributePropertyByName:(NSString *)propertyName {
-    if (ValidStr(propertyName)) {
+    if (ACValidStr(propertyName)) {
         Class observedClass = self.class;
         while (observedClass) {
             objc_property_t propTitle = class_getProperty(observedClass, [propertyName UTF8String]);
@@ -135,7 +135,7 @@
 }
 
 - (BOOL)ac_saveObjectToAppDocumets:(id)object byName:(NSString *)name {
-    if (!ValidStr(name)) {
+    if (!ACValidStr(name)) {
         return NO;
     }
     
@@ -145,7 +145,7 @@
 }
 
 - (id)ac_objectFromAppDocumentsByName:(NSString *)name {
-    if (!ValidStr(name)) {
+    if (!ACValidStr(name)) {
         return nil;
     }
     
@@ -155,7 +155,7 @@
 }
 
 - (BOOL)ac_removeAppDocumentByName:(NSString *)name {
-    if (!ValidStr(name)) {
+    if (!ACValidStr(name)) {
         return NO;
     }
     

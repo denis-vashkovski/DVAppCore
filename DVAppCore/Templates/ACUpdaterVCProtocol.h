@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @protocol ACUpdaterVCProtocol <NSObject>
-- (void)didUpdatedDesign;
-- (void)didUpdatedLocalization;
+- (void)ac_didUpdatedDesign;
+- (void)ac_didUpdatedLocalization;
 @end

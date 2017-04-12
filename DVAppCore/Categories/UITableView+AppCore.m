@@ -22,7 +22,7 @@
         [self setBackgroundColor:topColor];
         
         self.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-        UIView *bigFooterView = [[UIView alloc] initWithFrame:CGRectMake(.0, .0, SCREEN_WIDTH, SCREEN_HEIGHT * 2.)];
+        UIView *bigFooterView = [[UIView alloc] initWithFrame:CGRectMake(.0, .0, AC_SCREEN_WIDTH, AC_SCREEN_HEIGHT * 2.)];
         bigFooterView.backgroundColor = bottomColor;
         bigFooterView.opaque = YES;
         [self.tableFooterView addSubview:bigFooterView];
@@ -31,7 +31,7 @@
 
 - (void)ac_insertRowsAtSection:(NSUInteger)section rangeRows:(NSRange)rangeRows withRowAnimation:(UITableViewRowAnimation)animation {
     NSArray *insertCells = [NSIndexPath ac_indexPathsForSection:section rangeRows:rangeRows];
-    if (ValidArray(insertCells)) {
+    if (ACValidArray(insertCells)) {
         [self insertRowsAtIndexPaths:insertCells withRowAnimation:animation];
     }
 }
@@ -42,14 +42,14 @@
 
 - (void)ac_reloadRowsAtSection:(NSUInteger)section rangeRows:(NSRange)rangeRows withRowAnimation:(UITableViewRowAnimation)animation {
     NSArray *reloadCells = [NSIndexPath ac_indexPathsForSection:section rangeRows:rangeRows];
-    if (ValidArray(reloadCells)) {
+    if (ACValidArray(reloadCells)) {
         [self reloadRowsAtIndexPaths:reloadCells withRowAnimation:animation];
     }
 }
 
 - (void)ac_deleteRowsAtSection:(NSUInteger)section rangeRows:(NSRange)rangeRows withRowAnimation:(UITableViewRowAnimation)animation {
     NSArray *deleteCells = [NSIndexPath ac_indexPathsForSection:section rangeRows:rangeRows];
-    if (ValidArray(deleteCells)) {
+    if (ACValidArray(deleteCells)) {
         [self deleteRowsAtIndexPaths:deleteCells withRowAnimation:animation];
     }
 }

@@ -18,8 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [[NSNotificationCenter defaultCenter] ac_addObserver:self selector:@selector(didUpdatedDesign) name:ACUpdateDesign];
-    [[NSNotificationCenter defaultCenter] ac_addObserver:self selector:@selector(didUpdatedLocalization) name:ACUpdateLocalization];
+    [[NSNotificationCenter defaultCenter] ac_addObserver:self selector:@selector(ac_didUpdatedDesign) name:ACUpdateDesign];
+    [[NSNotificationCenter defaultCenter] ac_addObserver:self selector:@selector(ac_didUpdatedLocalization) name:ACUpdateLocalization];
 }
 
 - (void)dealloc {
@@ -28,11 +28,11 @@
 }
 
 #pragma mark - ACUpdaterVCProtocol
-- (void)didUpdatedDesign {
+- (void)ac_didUpdatedDesign {
     [self.collectionView reloadData];
 }
 
-- (void)didUpdatedLocalization {
+- (void)ac_didUpdatedLocalization {
     [self.collectionView reloadData];
 }
 

@@ -10,7 +10,7 @@
 
 #import "ACSingleton.h"
 
-EXTERN_STRING_H(ACUpdateLocalization)
+AC_EXTERN_STRING_H(ACUpdateLocalization)
 
 @interface ACLocalizationHelper : NSObject
 ACSINGLETON_H_METHOD(sharedLocalizationHelper)
@@ -23,4 +23,4 @@ ACSINGLETON_H_METHOD(sharedLocalizationHelper)
 - (void)reset;
 @end
 
-#define StringByKey(key) [[ACLocalizationHelper sharedLocalizationHelper] languageSelectedStringForKey:(key)]
+#define ACStringByKey(key) [[ACLocalizationHelper sharedLocalizationHelper] languageSelectedStringForKey:(key)]

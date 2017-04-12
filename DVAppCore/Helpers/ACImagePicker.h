@@ -19,7 +19,7 @@ typedef NS_OPTIONS(NSUInteger, ACMediaType) {
 @protocol ACImagePickerDelegate;
 
 @interface ACImagePicker : NSObject
-STANDART_CREATING_NOT_AVAILABLE(showSheetForVC)
+AC_STANDART_CREATING_NOT_AVAILABLE(showSheetForVC)
 
 + (void)showSheetWithTitle:(NSString *)title
                    message:(NSString *)message

@@ -54,20 +54,20 @@ ACSINGLETON_M
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title
                                                                              message:message
                                                                       preferredStyle:UIAlertControllerStyleActionSheet];
-    [alertController addAction:[UIAlertAction actionWithTitle:(ValidStr(takeTitle) ? takeTitle : @"Take")
+    [alertController addAction:[UIAlertAction actionWithTitle:(ACValidStr(takeTitle) ? takeTitle : @"Take")
                                                         style:UIAlertActionStyleDefault
                                                       handler:
                                 ^(UIAlertAction * _Nonnull action) {
                                     showImagePicker(UIImagePickerControllerSourceTypeCamera);
                                 }]];
-    [alertController addAction:[UIAlertAction actionWithTitle:(ValidStr(chooseTitle) ? chooseTitle : @"Choose")
+    [alertController addAction:[UIAlertAction actionWithTitle:(ACValidStr(chooseTitle) ? chooseTitle : @"Choose")
                                                         style:UIAlertActionStyleDefault
                                                       handler:
                                 ^(UIAlertAction * _Nonnull action) {
                                     showImagePicker(UIImagePickerControllerSourceTypePhotoLibrary);
                                 }]];
     
-    [alertController addAction:[UIAlertAction actionWithTitle:(ValidStr(cancelTitle) ? cancelTitle : @"Cancel")
+    [alertController addAction:[UIAlertAction actionWithTitle:(ACValidStr(cancelTitle) ? cancelTitle : @"Cancel")
                                                         style:UIAlertActionStyleCancel
                                                       handler:nil]];
     
@@ -129,7 +129,7 @@ ACSINGLETON_M
         [preparedMediaTypes addObject:(NSString *)kUTTypeVideo];
     }
     
-    return ValidArray(preparedMediaTypes) ? [NSArray arrayWithArray:preparedMediaTypes] : nil;
+    return ACValidArray(preparedMediaTypes) ? [NSArray arrayWithArray:preparedMediaTypes] : nil;
 }
 
 @end

@@ -15,7 +15,7 @@
 + (NSArray *)ac_arrayObjectsByData:(NSArray<NSDictionary *> *)data classModel:(Class)classModel {
     NSMutableArray *objects = [NSMutableArray new];
     
-    if (ValidArray(data) && [classModel isSubclassOfClass:self.class]) {
+    if (ACValidArray(data) && [classModel isSubclassOfClass:self.class]) {
         for (NSDictionary *objectData in data) {
             [objects addObject:[[classModel alloc] initWithData:objectData]];
         }
@@ -27,7 +27,7 @@
 + (NSArray *)ac_arrayObjectsPrefillByData:(NSArray<NSDictionary *> *)data classModel:(Class)classModel {
     NSMutableArray *objects = [NSMutableArray new];
     
-    if (ValidArray(data) && [classModel isSubclassOfClass:self.class]) {
+    if (ACValidArray(data) && [classModel isSubclassOfClass:self.class]) {
         for (NSDictionary *objectData in data) {
             [objects addObject:[[classModel alloc] initWithPrefillData:objectData]];
         }
@@ -37,7 +37,7 @@
 }
 
 - (instancetype)initWithData:(NSDictionary *)data {
-    if ((self = [super init]) && Valid(data)) {
+    if ((self = [super init]) && ACValid(data)) {
         NSNumber *idNumber = [data ac_numberForKey:@"id"];
         if (!idNumber) idNumber = [data ac_numberForKey:@"Id"];
         if (!idNumber) idNumber = [data ac_numberForKey:@"ID"];

@@ -11,8 +11,19 @@
 @interface ACContactObject : NSObject
 @property (nonatomic, strong) NSString *firstName;
 @property (nonatomic, strong) NSString *lastName;
+
 @property (nonatomic, strong) NSString *email;
 @property (nonatomic, strong) NSArray<NSString *> *phones;
+@property (nonatomic, strong) NSString *fax;
+@property (nonatomic, strong) NSString *link;
+
+@property (nonatomic, strong) NSString *country;
+@property (nonatomic, strong) NSString *state;
+@property (nonatomic, strong) NSString *city;
+@property (nonatomic, strong) NSString *street;
+@property (nonatomic, strong) NSString *zip;
+
+@property (nonatomic, strong) NSString *note;
 
 - (NSString *)nameFull;
 - (NSString *)nameShort;
@@ -29,7 +40,7 @@
 + (UIViewController *)contactsViewControllerWithDelegate:(id<ACContactsHelperDelegate>)delegate;
 
 #warning TODO uncomment
-//+ (BOOL)addContact:(CNMutableContact *)contact;
++ (BOOL)addContact:(ACContactObject *)contactObject;
 //+ (UIViewController *)viewControllerWithAddContact:(CNMutableContact *)contact delegate:(id<ACContactsHelperDelegate>)delegate;
 @end
 

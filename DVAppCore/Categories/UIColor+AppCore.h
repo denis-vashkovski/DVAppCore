@@ -32,4 +32,5 @@
 #define ACColorClear ACColorHexA(@"ffffff", .0)
 #define ACColorWhite ACColorHex(@"ffffff")
 #define ACColorBlack ACColorHex(@"000000")
+#define ACColorGray ACColorHex(@"7f7f7f")
 #define ACColorLightGray ACColorHex(@"aaaaaa")

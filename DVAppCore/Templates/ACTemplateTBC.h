@@ -11,16 +11,16 @@
 @protocol ACTemplateTBCDataSource;
 
 @interface ACTemplateTBC : UITabBarController
-@property (nonatomic, weak) id <ACTemplateTBCDataSource> dataSource;
+@property (nonatomic, weak) id<ACTemplateTBCDataSource> ac_dataSource;
 
-- (void)reloadTabs;
+- (void)ac_reloadTabs;
 @end
 
 @protocol ACTemplateTBCDataSource <NSObject>
-- (NSArray<UIViewController *> *)viewControllersForTabs;
-- (NSArray<NSString *> *)titlesForTabs;
-- (NSArray<UIImage *> *)imagesForTabs;
+- (NSArray<UIViewController *> *)ac_viewControllersForTabs;
+- (NSArray<NSString *> *)ac_titlesForTabs;
+- (NSArray<UIImage *> *)ac_imagesForTabs;
 
 @optional
-- (NSArray<UIImage *> *)selectedImagesForTabs;
+- (NSArray<UIImage *> *)ac_selectedImagesForTabs;
 @end

@@ -16,7 +16,7 @@
 
 @interface ACTemplatePVC : ACTemplateVC
 @property (nonatomic, strong, readonly) UIPageViewController *pageViewController;
-@property (nonatomic, weak) id<ACTemplatePVCDelegate> delegate;
+@property (nonatomic, weak) id<ACTemplatePVCDelegate> ac_delegate;
 @end
 
 @protocol ACTemplatePVCDelegate <NSObject>

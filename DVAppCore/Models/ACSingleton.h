@@ -10,11 +10,11 @@
 
 #pragma mark - ACSingleton.h
 #define ACSINGLETON_H \
-STANDART_CREATING_NOT_AVAILABLE(@"getInstance"); \
+AC_STANDART_CREATING_NOT_AVAILABLE(@"getInstance"); \
 + (instancetype)getInstance;
 
 #define ACSINGLETON_H_METHOD(method_name) \
-STANDART_CREATING_NOT_AVAILABLE(@""#method_name); \
+AC_STANDART_CREATING_NOT_AVAILABLE(@""#method_name); \
 + (instancetype)method_name;
 
 #pragma mark - ACSingleton.m

@@ -28,7 +28,7 @@ static inline ACLRInsets ACLRInsetsMake(CGFloat left, CGFloat right) {
 
 #pragma mark - ACSeparator
 @interface ACSeparator : UIView
-STANDART_CREATING_NOT_AVAILABLE(@"initWithCell:")
+AC_STANDART_CREATING_NOT_AVAILABLE(@"initWithCell:")
 
 + (instancetype)separatorForCell:(UITableViewCell *)cell position:(ACSeparatorPosition)position;
 + (instancetype)separatorForCell:(UITableViewCell *)cell;

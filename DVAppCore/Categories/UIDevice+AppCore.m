@@ -16,8 +16,8 @@
     [self setValue:@(orientation) forKey:@"orientation"];
 }
 
-#define SCREEN_MAX_LENGTH MAX(SCREEN_WIDTH, SCREEN_HEIGHT)
-#define SCREEN_MIN_LENGTH MIN(SCREEN_WIDTH, SCREEN_HEIGHT)
+#define SCREEN_MAX_LENGTH MAX(AC_SCREEN_WIDTH, AC_SCREEN_HEIGHT)
+#define SCREEN_MIN_LENGTH MIN(AC_SCREEN_WIDTH, AC_SCREEN_HEIGHT)
 - (ACDeviceModel)ac_deviceModel {
     switch (UI_USER_INTERFACE_IDIOM()) {
         case UIUserInterfaceIdiomPhone:{

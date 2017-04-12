@@ -13,7 +13,7 @@
 @implementation NSDictionary(AppCore)
 
 + (instancetype)ac_dictionaryWithJson:(NSString *)json {
-    return ValidStr(json) ? [NSJSONSerialization JSONObjectWithData:[json dataUsingEncoding:NSUTF8StringEncoding]
+    return ACValidStr(json) ? [NSJSONSerialization JSONObjectWithData:[json dataUsingEncoding:NSUTF8StringEncoding]
                                                             options:0
                                                               error:nil] : nil;
 }
