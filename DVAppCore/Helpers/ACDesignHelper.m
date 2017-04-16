@@ -36,7 +36,7 @@ ACSINGLETON_M_INIT(initInstanceWith)
 - (void)setCurrentDesign:(NSDictionary *)currentDesign {
     _currentDesign = currentDesign;
     
-    if (ACValidArray(_currentDesign)) {
+    if (ACValidDictionary(_currentDesign)) {
         for (NSString *key in _currentDesign.allKeys) {
             [self applyValue:_currentDesign[key] byKey:key];
         }
