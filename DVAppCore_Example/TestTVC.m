@@ -11,6 +11,7 @@
 #import "UIViewController+AppCore.h"
 #import "UITableViewCell+AppCore.h"
 #import "UIView+AppCore.h"
+#import "UINavigationController+AppCore.h"
 
 #import "ACRouter.h"
 
@@ -51,8 +52,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.empty = YES;
-    [tableView reloadData];
+//    self.empty = YES;
+//    [tableView reloadData];
+    [self.navigationController ac_popViewControllerAnimationType:ACAnimationTransitionCrossDissolve];
 }
 
 #pragma mark - Actions

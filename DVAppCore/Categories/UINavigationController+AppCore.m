@@ -8,6 +8,8 @@
 
 #import "UINavigationController+AppCore.h"
 
+#import "ACConstants.h"
+
 @implementation UINavigationController(AppCore)
 
 - (UIViewController *)ac_previousViewController {
@@ -47,6 +49,30 @@
                             completionHandler();
                         }
                     }];
+}
+
+- (void)ac_pushViewController:(UIViewController *)viewController animationType:(ACAnimationTransition)animationType {
+    [self ac_pushViewController:viewController
+                  animationType:animationType
+              animationDuration:AC_ANIMATION_DURATION_DEFAULT
+              completionHandler:nil];
+}
+
+- (void)ac_popViewControllerAnimationType:(ACAnimationTransition)animationType
+                        animationDuration:(NSTimeInterval)animationDuration
+                        completionHandler:(void (^)())completionHandler {
+    if (self.viewControllers.count < 2) return;
+    
+    [self ac_pushViewController:self.viewControllers[self.viewControllers.count - 2]
+                  animationType:animationType
+              animationDuration:animationDuration
+              completionHandler:completionHandler];
+}
+
+- (void)ac_popViewControllerAnimationType:(ACAnimationTransition)animationType {
+    [self ac_popViewControllerAnimationType:animationType
+                          animationDuration:AC_ANIMATION_DURATION_DEFAULT
+                          completionHandler:nil];
 }
 
 @end

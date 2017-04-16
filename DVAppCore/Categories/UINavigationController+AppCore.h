@@ -27,4 +27,13 @@ typedef enum {
                 animationType:(ACAnimationTransition)animationType
             animationDuration:(NSTimeInterval)animationDuration
             completionHandler:(void (^)())completionHandler;
+
+- (void)ac_pushViewController:(UIViewController *)viewController
+                animationType:(ACAnimationTransition)animationType;
+
+- (void)ac_popViewControllerAnimationType:(ACAnimationTransition)animationType
+                        animationDuration:(NSTimeInterval)animationDuration
+                        completionHandler:(void (^)())completionHandler;
+
+- (void)ac_popViewControllerAnimationType:(ACAnimationTransition)animationType;
 @end

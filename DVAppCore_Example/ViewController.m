@@ -42,9 +42,7 @@
 
 - (IBAction)onButtonNextTouch:(id)sender {
     [self.navigationController ac_pushViewController:[TestTVC ac_newInstance]
-                                       animationType:ACAnimationTransitionFlipFromTop
-                                   animationDuration:.5
-                                   completionHandler:nil];
+                                       animationType:ACAnimationTransitionFlipFromTop];
     
 //    [ACWebViewController openUrl:[NSURL URLWithString:@"https://google.com"] withPushingNVC:self.navigationController];
 //    [ACWebViewController openUrl:[NSURL URLWithString:@"https://google.com"] withPresentingVC:self];
