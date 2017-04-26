@@ -27,6 +27,7 @@ AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_tvc_viewDidLoad) origina
     [self ac_tvc_viewWillDisappear:animated];
 }
 
+#pragma mark - ACRefreshProtocol
 - (void)ac_initRefreshView {
     self.refreshControl = [UIRefreshControl new];
     [self.refreshControl setTintColor:ACDesign(ACDesignColorRefreshControlTVC)];
@@ -34,21 +35,21 @@ AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_tvc_viewDidLoad) origina
     self.refreshControl.layer.zPosition = self.tableView.backgroundView.layer.zPosition + 1;
 }
 
-- (void)ac_startRefreshingTable {
+- (void)ac_startRefreshing {
     if (!self.refreshControl || (self.tableView.contentOffset.y > .0)) return;
     
     [self.tableView setContentOffset:CGPointMake(.0, (self.tableView.contentOffset.y - CGRectGetHeight(self.refreshControl.frame))) animated:YES];
     [self.refreshControl beginRefreshing];
 }
 
-- (void)ac_endRefreshingTable {
+- (void)ac_endRefreshing {
     if (!self.refreshControl) return;
     
     [self.refreshControl endRefreshing];
 }
 
 - (void)ac_refreshView {
-    [self ac_endRefreshingTable];
+    [self ac_endRefreshing];
 }
 
 - (BOOL)ac_isDragging {

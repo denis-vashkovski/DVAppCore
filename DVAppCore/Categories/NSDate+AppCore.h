@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+#define AC_WEEK_IN_DAYS 7
 #define AC_SECOND_IN_MILLISECONDS 1000
 #define AC_SECONDS_IN_SECONDS   1
 #define AC_MINUTE_IN_SECONDS    60
 #define AC_HOUR_IN_SECONDS     (60 * 60)
 #define AC_DAY_IN_SECONDS      (60 * 60 * 24)
-#define AC_WEAK_IN_SECONDS     (60 * 60 * 24 * 7)
-#define AC_MONTH_IN_SECONDS    (60 * 60 * 24 * 7 * 30)
+#define AC_WEEK_IN_SECONDS     (60 * 60 * 24 * AC_WEEK_IN_DAYS)
 
 #define AC_UTC_KEY @"UTC"
 

@@ -52,6 +52,7 @@
 		41807FA51C984D8A00101829 /* ACAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41807FA41C984D8A00101829 /* ACAssets.xcassets */; };
 		41807FA81C98584E00101829 /* JsonObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 41807FA71C98584E00101829 /* JsonObjectTests.m */; };
 		41807FAB1C985A6A00101829 /* SingletonTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 41807FAA1C985A6A00101829 /* SingletonTest.m */; };
+		41A3DDE61EA603A3005A7849 /* UIFont+AppCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A3DDE51EA603A3005A7849 /* UIFont+AppCore.m */; };
 		41AC959F1DE47ABD0006C776 /* ACImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 41AC959E1DE47ABD0006C776 /* ACImagePicker.m */; };
 		41AF96621D506B9200B06D87 /* ACURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 41AF96611D506B9200B06D87 /* ACURLConnection.m */; };
 		41B052981CEB4A7B007D2F79 /* NSLayoutConstraintHairline.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B052971CEB4A7B007D2F79 /* NSLayoutConstraintHairline.m */; };
@@ -65,6 +66,8 @@
 		41C58C041C7B4BC7008FEADD /* ACDataKeeper.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C58C031C7B4BC7008FEADD /* ACDataKeeper.m */; };
 		41C662111CD878C300ED81CA /* ACTemplateCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C662101CD878C300ED81CA /* ACTemplateCVC.m */; };
 		41C662141CD8804300ED81CA /* ACTemplatePVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C662131CD8804300ED81CA /* ACTemplatePVC.m */; };
+		41D3D8201EB09E610015206E /* UICollectionViewController+AppCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D3D81F1EB09E610015206E /* UICollectionViewController+AppCore.m */; };
+		41D3D8231EB0A0090015206E /* TestCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D3D8221EB0A0090015206E /* TestCVC.m */; };
 		41D91E2E1DE5709B0012E561 /* UIButton+AppCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D91E2D1DE5709B0012E561 /* UIButton+AppCore.m */; };
 		41DCF4211DDC76E90076809C /* ACWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41DCF4201DDC76E90076809C /* ACWebViewController.m */; };
 		41DED3991DA64A7E00ADB3C1 /* NSIndexPath+AppCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 41DED3981DA64A7E00ADB3C1 /* NSIndexPath+AppCore.m */; };
@@ -173,6 +176,8 @@
 		41807FA41C984D8A00101829 /* ACAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ACAssets.xcassets; sourceTree = "<group>"; };
 		41807FA71C98584E00101829 /* JsonObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonObjectTests.m; sourceTree = "<group>"; };
 		41807FAA1C985A6A00101829 /* SingletonTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingletonTest.m; sourceTree = "<group>"; };
+		41A3DDE41EA603A3005A7849 /* UIFont+AppCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+AppCore.h"; sourceTree = "<group>"; };
+		41A3DDE51EA603A3005A7849 /* UIFont+AppCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+AppCore.m"; sourceTree = "<group>"; };
 		41AC959D1DE47ABD0006C776 /* ACImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACImagePicker.h; sourceTree = "<group>"; };
 		41AC959E1DE47ABD0006C776 /* ACImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACImagePicker.m; sourceTree = "<group>"; };
 		41AF96601D506B9200B06D87 /* ACURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACURLConnection.h; sourceTree = "<group>"; };
@@ -198,6 +203,11 @@
 		41C662101CD878C300ED81CA /* ACTemplateCVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACTemplateCVC.m; sourceTree = "<group>"; };
 		41C662121CD8804300ED81CA /* ACTemplatePVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACTemplatePVC.h; sourceTree = "<group>"; };
 		41C662131CD8804300ED81CA /* ACTemplatePVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACTemplatePVC.m; sourceTree = "<group>"; };
+		41D3D81A1EB09DAA0015206E /* ACRefreshProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACRefreshProtocol.h; sourceTree = "<group>"; };
+		41D3D81E1EB09E610015206E /* UICollectionViewController+AppCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionViewController+AppCore.h"; sourceTree = "<group>"; };
+		41D3D81F1EB09E610015206E /* UICollectionViewController+AppCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionViewController+AppCore.m"; sourceTree = "<group>"; };
+		41D3D8211EB0A0090015206E /* TestCVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCVC.h; sourceTree = "<group>"; };
+		41D3D8221EB0A0090015206E /* TestCVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCVC.m; sourceTree = "<group>"; };
 		41D91E2C1DE5709B0012E561 /* UIButton+AppCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+AppCore.h"; sourceTree = "<group>"; };
 		41D91E2D1DE5709B0012E561 /* UIButton+AppCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+AppCore.m"; sourceTree = "<group>"; };
 		41DCF41F1DDC76E90076809C /* ACWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ACWebViewController.h; path = Controllers/ACWebViewController.h; sourceTree = "<group>"; };
@@ -350,6 +360,8 @@
 				410FB3951CA2824B0079B2A2 /* ViewController.m */,
 				410FB38E1CA27C6F0079B2A2 /* TestTVC.h */,
 				410FB38F1CA27C6F0079B2A2 /* TestTVC.m */,
+				41D3D8211EB0A0090015206E /* TestCVC.h */,
+				41D3D8221EB0A0090015206E /* TestCVC.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -449,10 +461,14 @@
 				41B331231D58C70E00504F19 /* UIBarButtonItem+AppCore.m */,
 				41D91E2C1DE5709B0012E561 /* UIButton+AppCore.h */,
 				41D91E2D1DE5709B0012E561 /* UIButton+AppCore.m */,
+				41D3D81E1EB09E610015206E /* UICollectionViewController+AppCore.h */,
+				41D3D81F1EB09E610015206E /* UICollectionViewController+AppCore.m */,
 				4147029D1C6E1FB000F97990 /* UIColor+AppCore.h */,
 				4147029E1C6E1FB000F97990 /* UIColor+AppCore.m */,
 				41C439E31DCC888B005ECE87 /* UIDevice+AppCore.h */,
 				41C439E41DCC888B005ECE87 /* UIDevice+AppCore.m */,
+				41A3DDE41EA603A3005A7849 /* UIFont+AppCore.h */,
+				41A3DDE51EA603A3005A7849 /* UIFont+AppCore.m */,
 				414702A01C6E207200F97990 /* UIImage+AppCore.h */,
 				414702A11C6E207200F97990 /* UIImage+AppCore.m */,
 				414702A31C6E219900F97990 /* UIImageView+AppCore.h */,
@@ -475,6 +491,7 @@
 				414702B11C6E24C100F97990 /* UIView+AppCore.m */,
 				414702B31C6E263000F97990 /* UIViewController+AppCore.h */,
 				414702B41C6E263000F97990 /* UIViewController+AppCore.m */,
+				41D3D81A1EB09DAA0015206E /* ACRefreshProtocol.h */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -687,6 +704,7 @@
 				416BFEB11D4F945B00F635DB /* ACURLConnectionManager.m in Sources */,
 				41C58C001C7B2C6C008FEADD /* ACRouter.m in Sources */,
 				412F5EEA1CF8679D006539CC /* NSLayoutConstraint+AppCore.m in Sources */,
+				41D3D8201EB09E610015206E /* UICollectionViewController+AppCore.m in Sources */,
 				41216DD11C77329400543459 /* ACDesignHelper.m in Sources */,
 				4147029F1C6E1FB000F97990 /* UIColor+AppCore.m in Sources */,
 				4147029C1C6E1ECF00F97990 /* NSObject+AppCore.m in Sources */,
@@ -698,6 +716,7 @@
 				41DED3991DA64A7E00ADB3C1 /* NSIndexPath+AppCore.m in Sources */,
 				41C58C041C7B4BC7008FEADD /* ACDataKeeper.m in Sources */,
 				412F5EED1CF8682E006539CC /* UITableView+AppCore.m in Sources */,
+				41A3DDE61EA603A3005A7849 /* UIFont+AppCore.m in Sources */,
 				410FB3961CA2824B0079B2A2 /* ViewController.m in Sources */,
 				414702B21C6E24C100F97990 /* UIView+AppCore.m in Sources */,
 				414702A21C6E207200F97990 /* UIImage+AppCore.m in Sources */,
@@ -710,6 +729,7 @@
 				414702AB1C6E223000F97990 /* UITabBar+AppCore.m in Sources */,
 				41AC959F1DE47ABD0006C776 /* ACImagePicker.m in Sources */,
 				41C662111CD878C300ED81CA /* ACTemplateCVC.m in Sources */,
+				41D3D8231EB0A0090015206E /* TestCVC.m in Sources */,
 				413091F91C71F7080080725C /* ACTemplateTVC.m in Sources */,
 				413091FC1C71F7860080725C /* UITableViewController+AppCore.m in Sources */,
 				414457B81C730AC000BF27FF /* NSData+AppCore.m in Sources */,

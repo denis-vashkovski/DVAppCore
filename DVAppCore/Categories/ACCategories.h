@@ -26,8 +26,10 @@
 #pragma mark - UIKit
 #import "UIBarButtonItem+AppCore.h"
 #import "UIButton+AppCore.h"
+#import "UICollectionViewController+AppCore.h"
 #import "UIColor+AppCore.h"
 #import "UIDevice+AppCore.h"
+#import "UIFont+AppCore.h"
 #import "UIImage+AppCore.h"
 #import "UIImageView+AppCore.h"
 #import "UILabel+AppCore.h"

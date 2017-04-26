@@ -15,6 +15,8 @@
 
 #import "ACRouter.h"
 
+#import "TestCVC.h"
+
 @interface TestTVC ()
 @property (nonatomic) BOOL empty;
 @end
@@ -22,7 +24,7 @@
 @implementation TestTVC
 
 + (instancetype)ac_newInstance {
-    return (TestTVC *)[ACRouter getVCByName:@"TestTVC" storyboardName:@"Main"];
+    return (TestTVC *)[ACRouter getVCByName:NSStringFromClass([self class]) storyboardName:@"Main"];
 }
 
 - (void)viewDidLoad {
@@ -54,7 +56,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 //    self.empty = YES;
 //    [tableView reloadData];
-    [self.navigationController ac_popViewControllerAnimationType:ACAnimationTransitionCrossDissolve];
+//    [self.navigationController ac_popViewControllerAnimationType:ACAnimationTransitionCrossDissolve];
+    
+    [self.navigationController pushViewController:[TestCVC ac_newInstance] animated:YES];
 }
 
 #pragma mark - Actions

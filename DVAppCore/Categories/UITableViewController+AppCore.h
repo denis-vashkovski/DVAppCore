@@ -9,16 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "ACRefreshProtocol.h"
+
 @protocol ACTableViewDataSource <NSObject>
 - (UIView *)ac_viewForEmptyTableView:(UITableView *)tableView;
 @end
 
-@interface UITableViewController(AppCore)<ACTableViewDataSource>
-- (void)ac_initRefreshView;
-- (void)ac_startRefreshingTable;
-- (void)ac_endRefreshingTable;
-- (void)ac_refreshView;
-
+@interface UITableViewController(AppCore)<ACTableViewDataSource, ACRefreshProtocol>
 - (BOOL)ac_isDragging;
 
 #warning TODO make it automatically
