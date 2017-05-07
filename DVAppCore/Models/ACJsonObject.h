@@ -16,4 +16,6 @@
 - (instancetype)initWithPrefillData:(NSDictionary *)data;
 
 @property (nonatomic) long uniqueId;
+
+- (NSDictionary *)rawData;
 @end

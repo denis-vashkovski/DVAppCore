@@ -44,6 +44,10 @@
 - (BOOL)ac_isOnlyLettersAndDigits;
 
 - (NSURL *)ac_asURL;
+- (NSURL *)ac_asMailURL;
+- (NSURL *)ac_asPhoneURL;
+- (NSURL *)ac_asFaceTimeURL;
+- (NSURL *)ac_asSMSURL;
 
 - (NSString *)ac_replacingWithPattern:(NSString *)pattern templateString:(NSString *)templateString;
 @end

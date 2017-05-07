@@ -16,3 +16,6 @@ ACSINGLETON_H
 + (UIViewController *)getVCByName:(NSString *)vcName storyboardName:(NSString *)storyboardName;
 + (UIViewController *)getInitialVCByStoryboardName:(NSString *)storyboardName;
 @end
+
+AC_EXTERN_STRING_H(ACRouterStoryboardIPhoneSufix)
+AC_EXTERN_STRING_H(ACRouterStoryboardIPadSufix)

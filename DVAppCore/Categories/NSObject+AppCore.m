@@ -164,4 +164,12 @@
             [[NSFileManager defaultManager] removeItemAtPath:fullPath error:nil]);
 }
 
+- (void)ac_executeInMainThread:(void (^)())handler {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (handler) {
+            handler();
+        }
+    });
+}
+
 @end

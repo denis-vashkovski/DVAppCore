@@ -10,6 +10,10 @@
 
 #import "NSObject+AppCore.h"
 
+@interface ACJsonObject()
+@property (nonatomic, strong) NSDictionary *rawData;
+@end
+
 @implementation ACJsonObject
 
 + (NSArray *)ac_arrayObjectsByData:(NSArray<NSDictionary *> *)data classModel:(Class)classModel {
@@ -38,6 +42,8 @@
 
 - (instancetype)initWithData:(NSDictionary *)data {
     if ((self = [super init]) && ACValid(data)) {
+        _rawData = data;
+        
         NSNumber *idNumber = [data ac_numberForKey:@"id"];
         if (!idNumber) idNumber = [data ac_numberForKey:@"Id"];
         if (!idNumber) idNumber = [data ac_numberForKey:@"ID"];
@@ -66,6 +72,10 @@
         }
     }
     return self;
+}
+
+- (NSDictionary *)rawData {
+    return self.rawData;
 }
 
 @end

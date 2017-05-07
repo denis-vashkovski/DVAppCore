@@ -193,8 +193,25 @@
     return (ACValidStr(self) && [self ac_isValidRegexp:ONLY_LETTERS_AND_DIGITS]);
 }
 
+#pragma mark - asURL
 - (NSURL *)ac_asURL {
     return ACValidStr(self) ? [NSURL URLWithString:self] : nil;
+}
+
+- (NSURL *)ac_asMailURL {
+    return ACValidStr(self) ? [NSURL URLWithString:[NSString stringWithFormat:@"mailto:%@", self]] : nil;
+}
+
+- (NSURL *)ac_asPhoneURL {
+    return ACValidStr(self) ? [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", self]] : nil;
+}
+
+- (NSURL *)ac_asFaceTimeURL {
+    return ACValidStr(self) ? [NSURL URLWithString:[NSString stringWithFormat:@"facetime://%@", self]] : nil;
+}
+
+- (NSURL *)ac_asSMSURL {
+    return ACValidStr(self) ? [NSURL URLWithString:[NSString stringWithFormat:@"sms:%@", self]] : nil;
 }
 
 - (NSString *)ac_replacingWithPattern:(NSString *)pattern templateString:(NSString *)templateString {
