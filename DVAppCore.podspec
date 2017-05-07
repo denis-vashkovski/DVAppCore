@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "DVAppCore"
-  s.version      = "0.5.5"
+  s.version      = "0.5.6"
   s.summary      = "Set of useful categories and helpers."
   s.description  = <<-DESC
                     The DVAppCore for iOS provides:

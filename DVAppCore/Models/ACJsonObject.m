@@ -75,7 +75,7 @@
 }
 
 - (NSDictionary *)rawData {
-    return self.rawData;
+    return _rawData;
 }
 
 @end
