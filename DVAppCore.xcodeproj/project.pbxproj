@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		410FB3901CA27C6F0079B2A2 /* TestTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 410FB38F1CA27C6F0079B2A2 /* TestTVC.m */; };
-		410FB3931CA282330079B2A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 410FB3911CA282330079B2A2 /* Main.storyboard */; };
+		410FB3931CA282330079B2A2 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 410FB3911CA282330079B2A2 /* Main_iPhone.storyboard */; };
 		410FB3961CA2824B0079B2A2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 410FB3951CA2824B0079B2A2 /* ViewController.m */; };
 		41216DD11C77329400543459 /* ACDesignHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 41216DD01C77329400543459 /* ACDesignHelper.m */; };
 		412F5EEA1CF8679D006539CC /* NSLayoutConstraint+AppCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 412F5EE91CF8679D006539CC /* NSLayoutConstraint+AppCore.m */; };
@@ -87,7 +87,7 @@
 /* Begin PBXFileReference section */
 		410FB38E1CA27C6F0079B2A2 /* TestTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTVC.h; sourceTree = "<group>"; };
 		410FB38F1CA27C6F0079B2A2 /* TestTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTVC.m; sourceTree = "<group>"; };
-		410FB3921CA282330079B2A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		410FB3921CA282330079B2A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		410FB3941CA2824B0079B2A2 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		410FB3951CA2824B0079B2A2 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		410FB3971CA2970F0079B2A2 /* DVAppCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DVAppCore.h; sourceTree = "<group>"; };
@@ -348,7 +348,7 @@
 		414702781C6E14DF00F97990 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				410FB3911CA282330079B2A2 /* Main.storyboard */,
+				410FB3911CA282330079B2A2 /* Main_iPhone.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -679,7 +679,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				410FB3931CA282330079B2A2 /* Main.storyboard in Resources */,
+				410FB3931CA282330079B2A2 /* Main_iPhone.storyboard in Resources */,
 				414702601C6E147500F97990 /* Assets.xcassets in Resources */,
 				41807FA51C984D8A00101829 /* ACAssets.xcassets in Resources */,
 			);
@@ -782,12 +782,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		410FB3911CA282330079B2A2 /* Main.storyboard */ = {
+		410FB3911CA282330079B2A2 /* Main_iPhone.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				410FB3921CA282330079B2A2 /* Base */,
 			);
-			name = Main.storyboard;
+			name = Main_iPhone.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

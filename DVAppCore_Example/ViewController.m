@@ -9,6 +9,7 @@
 #import "ViewController.h"
 
 #import "ACImagePicker.h"
+#import "ACRouter.h"
 
 #import "UINavigationController+AppCore.h"
 
@@ -20,6 +21,10 @@
 @end
 
 @implementation ViewController
+
++ (instancetype)ac_newInstance {
+    return (ViewController *)[ACRouter getVCByName:NSStringFromClass([self class]) storyboardName:@"Main"];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

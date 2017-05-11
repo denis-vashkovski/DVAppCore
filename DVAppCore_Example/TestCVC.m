@@ -8,10 +8,14 @@
 
 #import "TestCVC.h"
 
+#import "UIViewController+AppCore.h"
 #import "UICollectionViewController+AppCore.h"
 #import "UIColor+AppCore.h"
+#import "UINavigationController+AppCore.h"
 
 #import "ACRouter.h"
+
+#import "ViewController.h"
 
 @interface TestCVC ()
 
@@ -34,6 +38,10 @@
 - (void)ac_refreshView {
     [self.collectionView setBackgroundColor:[UIColor ac_randomColor]];
     [self ac_endRefreshing];
+}
+
+- (void)ac_onBackButtonTouch:(UIBarButtonItem *)sender {
+    [self.navigationController ac_popToRootViewControllerAnimationType:ACAnimationTransitionCurlDown];
 }
 
 @end

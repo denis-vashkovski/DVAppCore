@@ -18,7 +18,7 @@ ACSINGLETON_M
         NSString *sufix = nil;
         switch ([UIDevice currentDevice].userInterfaceIdiom) {
             case UIUserInterfaceIdiomPhone:
-                sufix = ACRouterStoryboardIPadSufix;
+                sufix = ACRouterStoryboardIPhoneSufix;
                 break;
             case UIUserInterfaceIdiomPad:
                 sufix = ACRouterStoryboardIPadSufix;
