@@ -25,19 +25,20 @@
 @end
 
 @implementation ACTemplateAppDelegate
+@synthesize ac_subWindow = _ac_subWindow;
 
-- (UIWindow *)windowForAlerts {
-    if (!_windowForAlerts) {
-        _windowForAlerts = [[UIWindow alloc] initWithFrame:CGRectMake(.0, .0, AC_SCREEN_WIDTH, AC_SCREEN_HEIGHT)];
-        _windowForAlerts.backgroundColor = ACDesign(ACDesignColorWindowForAlerts);
-        _windowForAlerts.windowLevel = UIWindowLevelStatusBar + 1;
-        _windowForAlerts.hidden = YES;
+- (UIWindow *)ac_subWindow {
+    if (!_ac_subWindow) {
+        _ac_subWindow = [[UIWindow alloc] initWithFrame:CGRectMake(.0, .0, AC_SCREEN_WIDTH, AC_SCREEN_HEIGHT)];
+        _ac_subWindow.backgroundColor = ACDesign(ACDesignColorWindowForAlerts);
+        _ac_subWindow.windowLevel = UIWindowLevelStatusBar + 1;
+        _ac_subWindow.hidden = YES;
         
-        [_windowForAlerts setRootViewController:[ACAlertVC new]];
-        [self ac_addInterfaceOrientations:UIInterfaceOrientationMaskAll forVC:[_windowForAlerts.rootViewController class]];
+        [_ac_subWindow setRootViewController:[ACAlertVC new]];
+        [self ac_addInterfaceOrientations:UIInterfaceOrientationMaskAll forVC:[_ac_subWindow.rootViewController class]];
     }
     
-    return _windowForAlerts;
+    return _ac_subWindow;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {

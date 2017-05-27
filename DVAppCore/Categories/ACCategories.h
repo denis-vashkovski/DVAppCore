@@ -33,6 +33,7 @@
 #import "UIImage+AppCore.h"
 #import "UIImageView+AppCore.h"
 #import "UILabel+AppCore.h"
+#import "UINavigationBar+AppCore.h"
 #import "UINavigationController+AppCore.h"
 #import "UITabBar+AppCore.h"
 #import "UITableView+AppCore.h"

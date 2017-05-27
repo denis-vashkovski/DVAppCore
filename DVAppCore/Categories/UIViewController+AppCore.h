@@ -15,6 +15,8 @@
 
 + (instancetype)ac_newInstance;
 
+- (void)ac_initBackButtonIfNeeded;
+
 - (BOOL)ac_isVisible;
 - (BOOL)ac_isViewAppearNotFirstTime;
 - (CGRect)ac_visibleFrame;

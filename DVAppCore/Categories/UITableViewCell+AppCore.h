@@ -46,6 +46,8 @@ AC_STANDART_CREATING_NOT_AVAILABLE(@"initWithCell:")
 @property (nonatomic, strong, readonly) ACSeparator *ac_separatorTop;
 @property (nonatomic, strong, readonly) ACSeparator *ac_separatorBottom;
 
-- (UIView *)ac_addContainerAfterScrollWithColor:(UIColor *)color delegate:(UITableViewController *)delegate indexPath:(NSIndexPath *)indexPath;
+- (UIView *)pp_addContainerAfterScrollWithColor:(UIColor *)color
+                                      tableView:(UITableView *)tableView
+                                      indexPath:(NSIndexPath *)indexPath;
 - (UITableView *)ac_tableView;
 @end

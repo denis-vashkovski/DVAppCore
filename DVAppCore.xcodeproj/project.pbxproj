@@ -52,6 +52,7 @@
 		41807FA51C984D8A00101829 /* ACAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41807FA41C984D8A00101829 /* ACAssets.xcassets */; };
 		41807FA81C98584E00101829 /* JsonObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 41807FA71C98584E00101829 /* JsonObjectTests.m */; };
 		41807FAB1C985A6A00101829 /* SingletonTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 41807FAA1C985A6A00101829 /* SingletonTest.m */; };
+		419265B31ECB27D400C7A876 /* UINavigationBar+AppCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 419265B21ECB27D400C7A876 /* UINavigationBar+AppCore.m */; };
 		41A3DDE61EA603A3005A7849 /* UIFont+AppCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A3DDE51EA603A3005A7849 /* UIFont+AppCore.m */; };
 		41AC959F1DE47ABD0006C776 /* ACImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 41AC959E1DE47ABD0006C776 /* ACImagePicker.m */; };
 		41AF96621D506B9200B06D87 /* ACURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 41AF96611D506B9200B06D87 /* ACURLConnection.m */; };
@@ -176,6 +177,8 @@
 		41807FA41C984D8A00101829 /* ACAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ACAssets.xcassets; sourceTree = "<group>"; };
 		41807FA71C98584E00101829 /* JsonObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonObjectTests.m; sourceTree = "<group>"; };
 		41807FAA1C985A6A00101829 /* SingletonTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingletonTest.m; sourceTree = "<group>"; };
+		419265B11ECB27D400C7A876 /* UINavigationBar+AppCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+AppCore.h"; sourceTree = "<group>"; };
+		419265B21ECB27D400C7A876 /* UINavigationBar+AppCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+AppCore.m"; sourceTree = "<group>"; };
 		41A3DDE41EA603A3005A7849 /* UIFont+AppCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+AppCore.h"; sourceTree = "<group>"; };
 		41A3DDE51EA603A3005A7849 /* UIFont+AppCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+AppCore.m"; sourceTree = "<group>"; };
 		41AC959D1DE47ABD0006C776 /* ACImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACImagePicker.h; sourceTree = "<group>"; };
@@ -475,6 +478,8 @@
 				414702A41C6E219900F97990 /* UIImageView+AppCore.m */,
 				414457C21C734FF300BF27FF /* UILabel+AppCore.h */,
 				414457C31C734FF300BF27FF /* UILabel+AppCore.m */,
+				419265B11ECB27D400C7A876 /* UINavigationBar+AppCore.h */,
+				419265B21ECB27D400C7A876 /* UINavigationBar+AppCore.m */,
 				414702A61C6E21F500F97990 /* UINavigationController+AppCore.h */,
 				414702A71C6E21F500F97990 /* UINavigationController+AppCore.m */,
 				414702A91C6E223000F97990 /* UITabBar+AppCore.h */,
@@ -729,6 +734,7 @@
 				414702AB1C6E223000F97990 /* UITabBar+AppCore.m in Sources */,
 				41AC959F1DE47ABD0006C776 /* ACImagePicker.m in Sources */,
 				41C662111CD878C300ED81CA /* ACTemplateCVC.m in Sources */,
+				419265B31ECB27D400C7A876 /* UINavigationBar+AppCore.m in Sources */,
 				41D3D8231EB0A0090015206E /* TestCVC.m in Sources */,
 				413091F91C71F7080080725C /* ACTemplateTVC.m in Sources */,
 				413091FC1C71F7860080725C /* UITableViewController+AppCore.m in Sources */,

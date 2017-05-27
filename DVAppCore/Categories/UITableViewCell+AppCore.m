@@ -117,14 +117,14 @@ AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_layoutSubviews) original
 }
 
 #define CONTAINER_AFTER_SCROLL_TAG 999
-- (UIView *)ac_addContainerAfterScrollWithColor:(UIColor *)color
-                                       delegate:(UITableViewController *)delegate
+- (UIView *)pp_addContainerAfterScrollWithColor:(UIColor *)color
+                                      tableView:(UITableView *)tableView
                                       indexPath:(NSIndexPath *)indexPath {
     UIView *view = [self viewWithTag:CONTAINER_AFTER_SCROLL_TAG];
     
-    if (delegate && delegate.tableView && indexPath &&
-        indexPath.section == (delegate.tableView.numberOfSections - 1) &&
-        indexPath.row == ([delegate.tableView numberOfRowsInSection:indexPath.section] - 1)) {
+    if (tableView && tableView.delegate && indexPath &&
+        indexPath.section == (tableView.numberOfSections - 1) &&
+        indexPath.row == ([tableView numberOfRowsInSection:indexPath.section] - 1)) {
         
         [self setClipsToBounds:NO];
         
@@ -136,8 +136,8 @@ AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_layoutSubviews) original
         }
         
         [view setFrame:CGRectMake(.0,
-                                  [delegate tableView:delegate.tableView heightForRowAtIndexPath:indexPath],
-                                  CGRectGetWidth(delegate.tableView.frame),
+                                  [tableView.delegate tableView:tableView heightForRowAtIndexPath:indexPath],
+                                  CGRectGetWidth(tableView.frame),
                                   AC_SCREEN_HEIGHT * 2)];
         [view setBackgroundColor:color];
         

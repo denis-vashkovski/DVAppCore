@@ -11,5 +11,11 @@
 typedef void (^ACButtonActionBlock)(UIButton *button);
 
 @interface UIButton(AppCore)
+- (void)ac_initWithTitle:(NSString *)title
+              titleColor:(UIColor *)titleColor
+                    font:(UIFont *)font
+                  target:(id)target
+                  action:(SEL)action;
+
 - (void)ac_addAction:(ACButtonActionBlock)action forControlEvents:(UIControlEvents)controlEvents;
 @end

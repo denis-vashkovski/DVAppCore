@@ -83,17 +83,6 @@ AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_viewDidLoad) originalSel
 - (void)ac_viewDidLoad {
     [self ac_viewDidLoad];
     
-    if (self.navigationController) {
-        if ((self.navigationController.viewControllers.count > 1)) {
-            UIBarButtonItem *backButton = [self ac_backButton];
-            if (backButton) {
-                [self.navigationItem setLeftBarButtonItem:backButton];
-            }
-        } else {
-            [self ac_removeBackButton];
-        }
-    }
-    
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ac_hideKeyboard)];
     gestureRecognizer.cancelsTouchesInView = NO;
     [gestureRecognizer setDelegate:self];
@@ -109,6 +98,19 @@ AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_viewDidLoad) originalSel
 - (void)ac_viewWillDisappear:(BOOL)animated {
     [self ac_viewWillDisappear:animated];
     [self setVisible:NO];
+}
+
+- (void)ac_initBackButtonIfNeeded {
+    if (!self.navigationController) return;
+    
+    if ((self.navigationController.viewControllers.count > 1)) {
+        UIBarButtonItem *backButton = [self ac_backButton];
+        if (backButton) {
+            [self.navigationItem setLeftBarButtonItem:backButton];
+        }
+    } else {
+        [self ac_removeBackButton];
+    }
 }
 
 - (BOOL)ac_isVisible {
@@ -196,12 +198,12 @@ AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_viewDidLoad) originalSel
     id appDelegate = [UIApplication sharedApplication].delegate;
     
     if ([appDelegate isKindOfClass:[ACTemplateAppDelegate class]]) {
-        UIWindow *windowForAlert = ((ACTemplateAppDelegate *)[UIApplication sharedApplication].delegate).windowForAlerts;
+        UIWindow *subWindow = ((ACTemplateAppDelegate *)[UIApplication sharedApplication].delegate).ac_subWindow;
         
-        if (windowForAlert.isHidden) {
-            [windowForAlert addSubview:self.progressViewBackground];
+        if (subWindow.isHidden) {
+            [subWindow addSubview:self.progressViewBackground];
             [self.progressViewBackground ac_addConstraintsEqualSuperview];
-            [windowForAlert setHidden:NO];
+            [subWindow setHidden:NO];
         }
     }
 }

@@ -297,7 +297,7 @@ AC_EXTERN_STRING_M(APIServerURL);
     
     NSLog(@"\nType: %@\nURL: %@\nHTTP Method: %@\nHTTP header fields: %@\nBody: %@",
           @"Request",
-          (requestCopy ? ACUnnilStr(requestCopy.URL.absoluteString) : @""),
+          (requestCopy ? ACUnnilStr(requestCopy.URL.absoluteString.ac_decodeForUrl) : @""),
           ACUnnilStr(requestCopy.HTTPMethod),
           (requestCopy.allHTTPHeaderFields ? ACUnnilStr(requestCopy.allHTTPHeaderFields.description) : @""),
           ACUnnilStr(body));
@@ -306,7 +306,7 @@ AC_EXTERN_STRING_M(APIServerURL);
 - (void)ac_logResponse:(NSURLResponse *)response httpURLResponse:(NSHTTPURLResponse *)HTTPURLResponse startTime:(NSDate *)startTime jsonObj:(id)jsonObj {
     NSMutableString *responseLog = [NSMutableString new];
     [responseLog appendString:@"\nType: Response"];
-    [responseLog appendFormat:@"\nURL: %@", response.URL.absoluteString];
+    [responseLog appendFormat:@"\nURL: %@", response.URL.absoluteString.ac_decodeForUrl];
     [responseLog appendFormat:@"\nStatusCode: %ld", (HTTPURLResponse ? (long)HTTPURLResponse.statusCode : 0)];
     
     if (HTTPURLResponse && (HTTPURLResponse.statusCode != AC_STATUS_CODE_OK)) {

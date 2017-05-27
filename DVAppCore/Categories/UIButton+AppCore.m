@@ -14,6 +14,18 @@ static char ACButtonBlockKey;
 
 @implementation UIButton(AppCore)
 
+- (void)ac_initWithTitle:(NSString *)title
+              titleColor:(UIColor *)titleColor
+                    font:(UIFont *)font
+                  target:(id)target
+                  action:(SEL)action {
+    [self setTitle:title forState:UIControlStateNormal];
+    [self setTitleColor:titleColor forState:UIControlStateNormal];
+    [self.titleLabel setFont:font];
+    [self removeTarget:self action:nil forControlEvents:UIControlEventAllEvents];
+    [self addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+}
+
 - (void)ac_addAction:(ACButtonActionBlock)action forControlEvents:(UIControlEvents)controlEvents {
 //#pragma clang diagnostic push
 //#pragma clang diagnostic ignored "-Wundeclared-selector"

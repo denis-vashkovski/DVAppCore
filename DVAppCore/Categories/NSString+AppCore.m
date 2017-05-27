@@ -105,6 +105,10 @@
     return result;
 }
 
+- (NSString *)ac_decodeForUrl {
+    return [self stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+}
+
 - (NSString *)ac_removeAllWhitespaceAndNewlineAndTab {
     return [[self copy] ac_replacingWithPattern:@"[\\n\\t ]+" templateString:@""];
 }

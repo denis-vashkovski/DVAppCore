@@ -6,8 +6,8 @@
 //  Copyright © 2017 Denis Vashkovski. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "ACTemplateCVC.h"
 
-@interface TestCVC : UICollectionViewController
+@interface TestCVC : ACTemplateCVC
 
 @end
