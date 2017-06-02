@@ -73,7 +73,7 @@ AC_EXTERN_STRING_M(APIServerURL);
 }
 
 #pragma mark - POST Root link
-+ (NSURLRequest *)ac_requestPostByLink:(NSString *)link body:(NSData *)body headerFields:(NSDictionary *)headerFields data:(NSArray<NSData *> *)data {
++ (NSURLRequest *)ac_requestPostByLink:(NSString *)link body:(NSData *)body headerFields:(NSDictionary *)headerFields data:(NSArray<ACHTTPBodyData *> *)data {
     NSURL *url = [NSURL URLWithString:link];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     [request setHTTPMethod:AC_HTTP_METHOD_POST];
@@ -98,7 +98,7 @@ AC_EXTERN_STRING_M(APIServerURL);
 + (NSURLRequest *)ac_requestPostByLink:(NSString *)link
                             parameters:(NSDictionary *)parameters
                           headerFields:(NSDictionary *)headerFields
-                                  data:(NSArray<NSData *> *)data {
+                                  data:(NSArray<ACHTTPBodyData *> *)data {
     NSMutableString *varsStr = [NSMutableString string];
     if (parameters && parameters.count > 0) {
         BOOL first = YES;
@@ -118,7 +118,7 @@ AC_EXTERN_STRING_M(APIServerURL);
 + (NSURLRequest *)ac_requestPostForRootLinkByHref:(NSString *)href
                                        parameters:(NSDictionary *)parameters
                                      headerFields:(NSDictionary *)headerFields
-                                             data:(NSArray<NSData *> *)data {
+                                             data:(NSArray<ACHTTPBodyData *> *)data {
     return [self ac_requestPostByLink:[self getApiFullUrlForHref:href] parameters:parameters headerFields:headerFields data:data];
 }
 
@@ -141,7 +141,7 @@ AC_EXTERN_STRING_M(APIServerURL);
 }
 
 #pragma mark - PUT Root link
-+ (NSURLRequest *)ac_requestPutByLink:(NSString *)link body:(NSData *)body headerFields:(NSDictionary *)headerFields data:(NSArray<NSData *> *)data {
++ (NSURLRequest *)ac_requestPutByLink:(NSString *)link body:(NSData *)body headerFields:(NSDictionary *)headerFields data:(NSArray<ACHTTPBodyData *> *)data {
     NSMutableURLRequest *request = [[self ac_requestPostByLink:link
                                                           body:body
                                                   headerFields:headerFields
@@ -151,7 +151,7 @@ AC_EXTERN_STRING_M(APIServerURL);
     return request;
 }
 
-+ (NSURLRequest *)ac_requestPutByLink:(NSString *)link parameters:(NSDictionary *)parameters headerFields:(NSDictionary *)headerFields data:(NSArray<NSData *> *)data {
++ (NSURLRequest *)ac_requestPutByLink:(NSString *)link parameters:(NSDictionary *)parameters headerFields:(NSDictionary *)headerFields data:(NSArray<ACHTTPBodyData *> *)data {
     NSMutableURLRequest *request = [[self ac_requestPostByLink:link
                                                     parameters:parameters
                                                   headerFields:headerFields
@@ -161,7 +161,7 @@ AC_EXTERN_STRING_M(APIServerURL);
     return request;
 }
 
-+ (NSURLRequest *)ac_requestPutForRootLinkByHref:(NSString *)href parameters:(NSDictionary *)parameters headerFields:(NSDictionary *)headerFields data:(NSArray<NSData *> *)data {
++ (NSURLRequest *)ac_requestPutForRootLinkByHref:(NSString *)href parameters:(NSDictionary *)parameters headerFields:(NSDictionary *)headerFields data:(NSArray<ACHTTPBodyData *> *)data {
     return [self ac_requestPutByLink:[self getApiFullUrlForHref:href] parameters:parameters headerFields:headerFields data:data];
 }
 
@@ -178,7 +178,7 @@ AC_EXTERN_STRING_M(APIServerURL);
 }
 
 #pragma mark - DELETE Root link
-+ (NSURLRequest *)ac_requestDeleteByLink:(NSString *)link body:(NSData *)body headerFields:(NSDictionary *)headerFields data:(NSArray<NSData *> *)data {
++ (NSURLRequest *)ac_requestDeleteByLink:(NSString *)link body:(NSData *)body headerFields:(NSDictionary *)headerFields data:(NSArray<ACHTTPBodyData *> *)data {
     NSMutableURLRequest *request = [[self ac_requestPostByLink:link
                                                           body:body
                                                   headerFields:headerFields
@@ -188,7 +188,7 @@ AC_EXTERN_STRING_M(APIServerURL);
     return request;
 }
 
-+ (NSURLRequest *)ac_requestDeleteByLink:(NSString *)link parameters:(NSDictionary *)parameters headerFields:(NSDictionary *)headerFields data:(NSArray<NSData *> *)data {
++ (NSURLRequest *)ac_requestDeleteByLink:(NSString *)link parameters:(NSDictionary *)parameters headerFields:(NSDictionary *)headerFields data:(NSArray<ACHTTPBodyData *> *)data {
     NSMutableURLRequest *request = [[self ac_requestPostByLink:link
                                                     parameters:parameters
                                                   headerFields:headerFields
@@ -198,7 +198,7 @@ AC_EXTERN_STRING_M(APIServerURL);
     return request;
 }
 
-+ (NSURLRequest *)ac_requestDeleteForRootLinkByHref:(NSString *)href parameters:(NSDictionary *)parameters headerFields:(NSDictionary *)headerFields data:(NSArray<NSData *> *)data {
++ (NSURLRequest *)ac_requestDeleteForRootLinkByHref:(NSString *)href parameters:(NSDictionary *)parameters headerFields:(NSDictionary *)headerFields data:(NSArray<ACHTTPBodyData *> *)data {
     return [self ac_requestDeleteByLink:[self getApiFullUrlForHref:href] parameters:parameters headerFields:headerFields data:data];
 }
 

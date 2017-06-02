@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "NSObject+AppCore.h"
+#import "NSMutableURLRequest+AppCore.h"
 #import "ACURLConnectionManager.h"
 
 AC_EXTERN_STRING_H(APIServerURL)
@@ -22,23 +23,23 @@ AC_EXTERN_STRING_H(APIServerURL)
 + (NSURLRequest *)ac_requestGetForRootLinkByHref:(NSString *)href parameters:(NSDictionary *)parameters;
 + (NSURLRequest *)ac_requestGetForRootLinkByHref:(NSString *)href;
 
-+ (NSURLRequest *)ac_requestPostByLink:(NSString *)link body:(NSData *)body headerFields:(NSDictionary *)headerFields data:(NSArray<NSData *> *)data;
-+ (NSURLRequest *)ac_requestPostByLink:(NSString *)link parameters:(NSDictionary *)parameters headerFields:(NSDictionary *)headerFields data:(NSArray<NSData *> *)data;
-+ (NSURLRequest *)ac_requestPostForRootLinkByHref:(NSString *)href parameters:(NSDictionary *)parameters headerFields:(NSDictionary *)headerFields data:(NSArray<NSData *> *)data;
++ (NSURLRequest *)ac_requestPostByLink:(NSString *)link body:(NSData *)body headerFields:(NSDictionary *)headerFields data:(NSArray<ACHTTPBodyData *> *)data;
++ (NSURLRequest *)ac_requestPostByLink:(NSString *)link parameters:(NSDictionary *)parameters headerFields:(NSDictionary *)headerFields data:(NSArray<ACHTTPBodyData *> *)data;
++ (NSURLRequest *)ac_requestPostForRootLinkByHref:(NSString *)href parameters:(NSDictionary *)parameters headerFields:(NSDictionary *)headerFields data:(NSArray<ACHTTPBodyData *> *)data;
 + (NSURLRequest *)ac_requestPostForRootLinkByHref:(NSString *)href parameters:(NSDictionary *)parameters headerFields:(NSDictionary *)headerFields;
 + (NSURLRequest *)ac_requestPostForRootLinkByHref:(NSString *)href parameters:(NSDictionary *)parameters;
 + (NSURLRequest *)ac_requestPostForRootLinkByHref:(NSString *)href;
 
-+ (NSURLRequest *)ac_requestPutByLink:(NSString *)link body:(NSData *)body headerFields:(NSDictionary *)headerFields data:(NSArray<NSData *> *)data;
-+ (NSURLRequest *)ac_requestPutByLink:(NSString *)link parameters:(NSDictionary *)parameters headerFields:(NSDictionary *)headerFields data:(NSArray<NSData *> *)data;
-+ (NSURLRequest *)ac_requestPutForRootLinkByHref:(NSString *)href parameters:(NSDictionary *)parameters headerFields:(NSDictionary *)headerFields data:(NSArray<NSData *> *)data;
++ (NSURLRequest *)ac_requestPutByLink:(NSString *)link body:(NSData *)body headerFields:(NSDictionary *)headerFields data:(NSArray<ACHTTPBodyData *> *)data;
++ (NSURLRequest *)ac_requestPutByLink:(NSString *)link parameters:(NSDictionary *)parameters headerFields:(NSDictionary *)headerFields data:(NSArray<ACHTTPBodyData *> *)data;
++ (NSURLRequest *)ac_requestPutForRootLinkByHref:(NSString *)href parameters:(NSDictionary *)parameters headerFields:(NSDictionary *)headerFields data:(NSArray<ACHTTPBodyData *> *)data;
 + (NSURLRequest *)ac_requestPutForRootLinkByHref:(NSString *)href parameters:(NSDictionary *)parameters headerFields:(NSDictionary *)headerFields;
 + (NSURLRequest *)ac_requestPutForRootLinkByHref:(NSString *)href parameters:(NSDictionary *)parameters;
 + (NSURLRequest *)ac_requestPutForRootLinkByHref:(NSString *)href;
 
-+ (NSURLRequest *)ac_requestDeleteByLink:(NSString *)link body:(NSData *)body headerFields:(NSDictionary *)headerFields data:(NSArray<NSData *> *)data;
-+ (NSURLRequest *)ac_requestDeleteByLink:(NSString *)link parameters:(NSDictionary *)parameters headerFields:(NSDictionary *)headerFields data:(NSArray<NSData *> *)data;
-+ (NSURLRequest *)ac_requestDeleteForRootLinkByHref:(NSString *)href parameters:(NSDictionary *)parameters headerFields:(NSDictionary *)headerFields data:(NSArray<NSData *> *)data;
++ (NSURLRequest *)ac_requestDeleteByLink:(NSString *)link body:(NSData *)body headerFields:(NSDictionary *)headerFields data:(NSArray<ACHTTPBodyData *> *)data;
++ (NSURLRequest *)ac_requestDeleteByLink:(NSString *)link parameters:(NSDictionary *)parameters headerFields:(NSDictionary *)headerFields data:(NSArray<ACHTTPBodyData *> *)data;
++ (NSURLRequest *)ac_requestDeleteForRootLinkByHref:(NSString *)href parameters:(NSDictionary *)parameters headerFields:(NSDictionary *)headerFields data:(NSArray<ACHTTPBodyData *> *)data;
 + (NSURLRequest *)ac_requestDeleteForRootLinkByHref:(NSString *)href parameters:(NSDictionary *)parameters headerFields:(NSDictionary *)headerFields;
 + (NSURLRequest *)ac_requestDeleteForRootLinkByHref:(NSString *)href parameters:(NSDictionary *)parameters;
 + (NSURLRequest *)ac_requestDeleteForRootLinkByHref:(NSString *)href;
