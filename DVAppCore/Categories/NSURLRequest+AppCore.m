@@ -20,6 +20,17 @@ AC_EXTERN_STRING_M(APIServerURL);
 
 @implementation NSURLRequest(AppCore)
 
++ (void)ac_checkInternetConnection:(void (^)(BOOL))handler {
+    NSMutableURLRequest *request = [self ac_requestGetByLink:@"http://google.com"].mutableCopy;
+    [request setHTTPMethod:AC_HTTP_METHOD_HEAD];
+    
+    [request ac_sendAsynchronousWithCompletionHandler:^(id data, NSHTTPURLResponse *response) {
+        if (handler) {
+            handler(response.statusCode == AC_STATUS_CODE_OK);
+        }
+    }];
+}
+
 #pragma mark - GET
 + (NSURLRequest *)ac_requestGetByLink:(NSString *)link
                            parameters:(NSDictionary *)parameters

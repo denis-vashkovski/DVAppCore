@@ -15,6 +15,8 @@
 AC_EXTERN_STRING_H(APIServerURL)
 
 @interface NSURLRequest(AppCore)
++ (void)ac_checkInternetConnection:(void (^)(BOOL exist))handler;
+
 + (NSURLRequest *)ac_requestGetByLink:(NSString *)link parameters:(NSDictionary *)parameters headerFields:(NSDictionary *)headerFields;
 + (NSURLRequest *)ac_requestGetByLink:(NSString *)link parameters:(NSDictionary *)parameters;
 + (NSURLRequest *)ac_requestGetByLink:(NSString *)link;

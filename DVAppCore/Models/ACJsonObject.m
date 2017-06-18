@@ -10,6 +10,8 @@
 
 #import "NSObject+AppCore.h"
 
+AC_EXTERN_STRING_M_V(ACJsonObjectRawDataKey, @"raw_data")
+
 @interface ACJsonObject()
 @property (nonatomic, strong) NSDictionary *rawData;
 @end
@@ -76,6 +78,15 @@
 
 - (NSDictionary *)rawData {
     return _rawData;
+}
+
+#pragma mark - NSCoding
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    return [self initWithData:[aDecoder decodeObjectForKey:ACJsonObjectRawDataKey]];
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.rawData forKey:ACJsonObjectRawDataKey];
 }
 
 @end

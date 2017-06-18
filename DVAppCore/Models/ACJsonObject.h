@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ACJsonObject : NSObject
+@interface ACJsonObject : NSObject<NSCoding>
 + (NSArray *)ac_arrayObjectsByData:(NSArray<NSDictionary *> *)data classModel:(Class)classModel;
 + (NSArray *)ac_arrayObjectsPrefillByData:(NSArray<NSDictionary *> *)data classModel:(Class)classModel;
 

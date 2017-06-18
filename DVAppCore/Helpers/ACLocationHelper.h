@@ -36,6 +36,7 @@ ACSINGLETON_H
 @end
 
 @protocol ACLocationHelperDelegate <NSObject>
+@optional
 - (void)ac_locationHelper:(ACLocationHelper *)locationHelper didUpdateLocation:(CLLocationCoordinate2D)currentCoordinate;
 - (void)ac_locationHelper:(ACLocationHelper *)locationHelper didUpdateHeading:(CLHeading *)newHeading;
 @end

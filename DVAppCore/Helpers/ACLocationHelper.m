@@ -40,7 +40,9 @@ ACSINGLETON_M
         
         [_locationManager startUpdatingLocation];
         
-        return YES;
+        CLAuthorizationStatus authorizationStatus = [CLLocationManager authorizationStatus];
+        return ((authorizationStatus == kCLAuthorizationStatusAuthorizedAlways) ||
+                (authorizationStatus == kCLAuthorizationStatusAuthorizedWhenInUse));
     } else {
         return NO;
     }
