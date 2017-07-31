@@ -11,6 +11,8 @@
 IB_DESIGNABLE
 
 @interface UIBarButtonItem(AppCore)
++ (instancetype)ac_barButtonFixedSpaceWithWidth:(CGFloat)width;
+
 @property(nonatomic, getter=ac_isHidden) IBInspectable BOOL ac_hidden;
 - (void)ac_setHidden:(BOOL)hidden animate:(BOOL)animate;
 @end

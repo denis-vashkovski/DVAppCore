@@ -54,10 +54,10 @@
             [vc.tabBarItem setTitle:[titles objectAtIndex:indexTab]];
         }
         if (ACValidArray(images)) {
-            [vc.tabBarItem setImage:[[images objectAtIndex:indexTab] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
+            [vc.tabBarItem setImage:[images objectAtIndex:indexTab]];
         }
         if (ACValidArray(selectedImages)) {
-            [vc.tabBarItem setSelectedImage:[[selectedImages objectAtIndex:indexTab] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
+            [vc.tabBarItem setSelectedImage:[selectedImages objectAtIndex:indexTab]];
         }
     }
 }

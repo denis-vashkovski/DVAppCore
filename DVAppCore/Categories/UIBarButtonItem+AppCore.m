@@ -15,6 +15,15 @@
 
 @implementation UIBarButtonItem(AppCore)
 
++ (instancetype)ac_barButtonFixedSpaceWithWidth:(CGFloat)width {
+    UIBarButtonItem *barButtonBetween = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                                                                      target:nil
+                                                                                      action:nil];
+    [barButtonBetween setWidth:width];
+    
+    return barButtonBetween;
+}
+
 AC_CATEGORY_PROPERTY_GET_BOOL(ac_isHidden)
 - (void)setAc_hidden:(BOOL)ac_hidden {
     objc_setAssociatedObject(self, @selector(ac_isHidden), [NSNumber numberWithBool:ac_hidden], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
