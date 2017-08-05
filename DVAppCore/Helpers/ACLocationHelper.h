@@ -24,6 +24,7 @@ ACSINGLETON_H
 
 - (BOOL)authorize:(LHAuthType)authType;
 
+@property (readonly) CLAuthorizationStatus authorizationStatus;
 @property (readonly, nonatomic) CLLocationCoordinate2D currentCoordinate;
 @property (readonly, nonatomic) BOOL isUserLocationDetected;
 @property (readonly, nonatomic) CLHeading *currentHeading;
@@ -37,6 +38,7 @@ ACSINGLETON_H
 
 @protocol ACLocationHelperDelegate <NSObject>
 @optional
+- (void)ac_locationHelper:(ACLocationHelper *)locationHelper didChangeAuthorizationStatus:(CLAuthorizationStatus)status;
 - (void)ac_locationHelper:(ACLocationHelper *)locationHelper didUpdateLocation:(CLLocationCoordinate2D)currentCoordinate;
 - (void)ac_locationHelper:(ACLocationHelper *)locationHelper didUpdateHeading:(CLHeading *)newHeading;
 @end

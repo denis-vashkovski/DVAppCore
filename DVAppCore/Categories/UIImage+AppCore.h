@@ -16,6 +16,9 @@
 - (UIImage *)ac_resizeWithNewSize:(CGSize)newSize;
 - (UIImage *)ac_resizeWithMinSide:(CGFloat)minSide;
 - (UIImage *)ac_imageWithInsets:(UIEdgeInsets)insets;
+
+- (UIImage *)ac_alwaysTemplate;
+- (UIImage *)ac_alwaysOriginal;
 @end
 
 #define ACImageNamed(name) [UIImage imageNamed:name]

@@ -40,9 +40,9 @@ ACSINGLETON_M
         
         [_locationManager startUpdatingLocation];
         
-        CLAuthorizationStatus authorizationStatus = [CLLocationManager authorizationStatus];
-        return ((authorizationStatus == kCLAuthorizationStatusAuthorizedAlways) ||
-                (authorizationStatus == kCLAuthorizationStatusAuthorizedWhenInUse));
+        _authorizationStatus = [CLLocationManager authorizationStatus];
+        return ((self.authorizationStatus == kCLAuthorizationStatusAuthorizedAlways) ||
+                (self.authorizationStatus == kCLAuthorizationStatusAuthorizedWhenInUse));
     } else {
         return NO;
     }
@@ -54,6 +54,8 @@ ACSINGLETON_M
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+    _authorizationStatus = status;
+    
     switch (status) {
         case kCLAuthorizationStatusNotDetermined:
         case kCLAuthorizationStatusRestricted:
@@ -62,6 +64,10 @@ ACSINGLETON_M
         default:
             [_locationManager startUpdatingLocation];
             break;
+    }
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ac_locationHelper:didChangeAuthorizationStatus:)]) {
+        [self.delegate ac_locationHelper:self didChangeAuthorizationStatus:status];
     }
 }
 

@@ -78,4 +78,12 @@
     return newImage;
 }
 
+- (UIImage *)ac_alwaysTemplate {
+    return [self imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+}
+
+- (UIImage *)ac_alwaysOriginal {
+    return [self imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+}
+
 @end
