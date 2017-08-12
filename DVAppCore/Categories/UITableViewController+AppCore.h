@@ -18,7 +18,7 @@
 @interface UITableViewController(AppCore)<ACTableViewDataSource, ACRefreshProtocol>
 - (BOOL)ac_isDragging;
 
-TODO make it automatically
+// TODO make it automatically
 - (void)ac_showViewForEmptyTableView;
 - (void)ac_hiddenViewForEmptyTableView;
 @end

@@ -50,7 +50,7 @@ ACSINGLETON_M
         }
     };
     
-TODO corrected default buttons titles
+// TODO corrected default buttons titles
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title
                                                                              message:message
                                                                       preferredStyle:UIAlertControllerStyleActionSheet];
@@ -108,7 +108,7 @@ TODO corrected default buttons titles
         if ([mediaType isEqualToString:(NSString *)kUTTypeImage]) {
             [self.targetVC ac_imagePickerController:self didFinishPickingMedia:info[UIImagePickerControllerOriginalImage]];
         } else if ([mediaType isEqualToString:(NSString *)kUTTypeVideo]) {
-TODO add video
+// TODO add video
         }
     }
     [self imagePickerControllerDidCancel:picker];

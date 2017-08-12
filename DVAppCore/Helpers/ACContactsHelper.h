@@ -39,7 +39,7 @@
 + (NSArray<ACContactObject *> *)getContactsByName:(NSString *)name;
 + (UIViewController *)contactsViewControllerWithDelegate:(id<ACContactsHelperDelegate>)delegate;
 
-TODO uncomment
+// TODO uncomment
 + (BOOL)addContact:(ACContactObject *)contactObject;
 //+ (UIViewController *)viewControllerWithAddContact:(CNMutableContact *)contact delegate:(id<ACContactsHelperDelegate>)delegate;
 @end

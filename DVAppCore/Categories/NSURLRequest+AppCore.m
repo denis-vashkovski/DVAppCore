@@ -226,8 +226,8 @@ AC_EXTERN_STRING_M(APIServerURL);
 }
 
 #pragma mark - Send
-TODO add ACURLConnectionManager
-TODO add ACURLConnection
+// TODO add ACURLConnectionManager
+// TODO add ACURLConnection
 - (void)ac_sendAsynchronousWithCompletionHandler:(ACURLCompletionHadler)handler {
     [self ac_logRequest];
     

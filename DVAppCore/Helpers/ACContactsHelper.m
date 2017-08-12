@@ -162,7 +162,7 @@ ACSINGLETON_M
     }
 }
 
-TODO add logic for adding a contact
+// TODO add logic for adding a contact
 + (BOOL)addContact:(ACContactObject *)contactObject {
     if (!contactObject) return NO;
     
