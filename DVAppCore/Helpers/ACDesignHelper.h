@@ -82,4 +82,4 @@ AC_EXTERN_STRING_H(ACDesignAttributesTabItemTitleTextAttributes)           // NS
 AC_EXTERN_STRING_H(ACDesignAttributesTabItemSelectedTitleTextAttributes)   // NSDictionary
 AC_EXTERN_STRING_H(ACDesignPositionAdjustmentTabItemTitle)                 // UIOffset
 
-#warning TODO add logic for fonts
+TODO add logic for fonts

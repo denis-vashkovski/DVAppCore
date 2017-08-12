@@ -51,6 +51,10 @@ ACSINGLETON_M
 #pragma mark - CLLocationManagerDelegate
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     NSLog(@"didFailWithError: %@", error);
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ac_locationHelper:didFailWithError:)]) {
+        [self.delegate ac_locationHelper:self didFailWithError:error];
+    }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {

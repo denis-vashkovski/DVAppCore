@@ -38,6 +38,7 @@ ACSINGLETON_H
 
 @protocol ACLocationHelperDelegate <NSObject>
 @optional
+- (void)ac_locationHelper:(ACLocationHelper *)locationHelper didFailWithError:(NSError *)error;
 - (void)ac_locationHelper:(ACLocationHelper *)locationHelper didChangeAuthorizationStatus:(CLAuthorizationStatus)status;
 - (void)ac_locationHelper:(ACLocationHelper *)locationHelper didUpdateLocation:(CLLocationCoordinate2D)currentCoordinate;
 - (void)ac_locationHelper:(ACLocationHelper *)locationHelper didUpdateHeading:(CLHeading *)newHeading;

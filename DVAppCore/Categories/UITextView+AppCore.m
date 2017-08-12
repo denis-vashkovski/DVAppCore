@@ -84,7 +84,7 @@ AC_CATEGORY_PROPERTY_GET(NSAttributedString *, ac_placeholder)
 - (void)ac_setContentSize:(CGSize)contentSize {
     [self ac_setContentSize:contentSize];
     
-#warning TODO fail test without comment
+TODO fail test without comment
 //    [self updateContentPosition];
 }
 
