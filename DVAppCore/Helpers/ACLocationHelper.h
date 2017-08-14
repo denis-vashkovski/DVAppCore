@@ -48,3 +48,5 @@ AC_EXTERN_STRING_H(ACUpdateCurrentLocation)
 AC_EXTERN_STRING_H(ACUpdateCurrentHeading)
 
 BOOL ACLocationsCoordinates2DEqual(CLLocationCoordinate2D coordinate1, CLLocationCoordinate2D coordinate2);
+
+extern NSInteger const kCLAuthorizationStatusDisabled;

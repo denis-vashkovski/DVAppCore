@@ -13,6 +13,8 @@
 
 #import <MapKit/MapKit.h>
 
+NSInteger const kCLAuthorizationStatusDisabled = -1;
+
 @interface ACLocationHelper()<CLLocationManagerDelegate>
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @end
@@ -44,6 +46,7 @@ ACSINGLETON_M
         return ((self.authorizationStatus == kCLAuthorizationStatusAuthorizedAlways) ||
                 (self.authorizationStatus == kCLAuthorizationStatusAuthorizedWhenInUse));
     } else {
+        _authorizationStatus = kCLAuthorizationStatusDisabled;
         return NO;
     }
 }
