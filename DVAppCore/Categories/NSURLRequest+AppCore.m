@@ -235,7 +235,9 @@ AC_EXTERN_STRING_M(APIServerURL);
     
     void (^completionBlock)(NSURLResponse *response, NSData *data, NSError *connectionError) =
     ^void(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        [self ac_executeInMainThread:^{
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        }];
         
         id jsonObj = nil;
         NSHTTPURLResponse *HTTPURLResponse = nil;
@@ -255,7 +257,9 @@ AC_EXTERN_STRING_M(APIServerURL);
         }
     };
     
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    [self ac_executeInMainThread:^{
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    }];
     
     NSURLSession *session = [NSURLSession sharedSession];
     [[session dataTaskWithRequest:self
@@ -272,7 +276,10 @@ AC_EXTERN_STRING_M(APIServerURL);
     __block NSURLResponse *urlResponse = nil;
     __block NSData *data = nil;
     
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    [self ac_executeInMainThread:^{
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    }];
+    
     NSDate *currentTime = [NSDate date];
     
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
@@ -285,7 +292,9 @@ AC_EXTERN_STRING_M(APIServerURL);
       }] resume];
     dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
     
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    [self ac_executeInMainThread:^{
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    }];
     
     if (urlResponse && [urlResponse isKindOfClass:[NSHTTPURLResponse class]]) {
         *response = (NSHTTPURLResponse *)urlResponse;
