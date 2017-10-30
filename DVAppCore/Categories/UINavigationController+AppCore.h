@@ -27,7 +27,7 @@ typedef enum {
 - (void)ac_pushViewController:(UIViewController *)viewController
                 animationType:(ACAnimationTransition)animationType
             animationDuration:(NSTimeInterval)animationDuration
-            completionHandler:(void (^)())completionHandler;
+            completionHandler:(void (^)(void))completionHandler;
 
 - (void)ac_pushViewController:(UIViewController *)viewController
                 animationType:(ACAnimationTransition)animationType;
@@ -35,13 +35,13 @@ typedef enum {
 #pragma mark - Pop
 - (void)ac_popViewControllerAnimationType:(ACAnimationTransition)animationType
                         animationDuration:(NSTimeInterval)animationDuration
-                        completionHandler:(void (^)())completionHandler;
+                        completionHandler:(void (^)(void))completionHandler;
 
 - (void)ac_popViewControllerAnimationType:(ACAnimationTransition)animationType;
 
 - (void)ac_popToRootViewControllerAnimationType:(ACAnimationTransition)animationType
                               animationDuration:(NSTimeInterval)animationDuration
-                              completionHandler:(void (^)())completionHandler;
+                              completionHandler:(void (^)(void))completionHandler;
 
 - (void)ac_popToRootViewControllerAnimationType:(ACAnimationTransition)animationType;
 
@@ -49,7 +49,7 @@ typedef enum {
 - (void)ac_setViewControllers:(NSArray<UIViewController *> *)viewControllers
                 animationType:(ACAnimationTransition)animationType
             animationDuration:(NSTimeInterval)animationDuration
-            completionHandler:(void (^)())completionHandler;
+            completionHandler:(void (^)(void))completionHandler;
 
 - (void)ac_setViewControllers:(NSArray<UIViewController *> *)viewControllers
                 animationType:(ACAnimationTransition)animationType;

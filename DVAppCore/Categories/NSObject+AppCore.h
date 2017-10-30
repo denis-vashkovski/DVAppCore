@@ -24,7 +24,7 @@
 - (id)ac_objectFromAppDocumentsByName:(NSString *)name;
 - (BOOL)ac_removeAppDocumentByName:(NSString *)name;
 
-- (void)ac_executeInMainThread:(void (^)())handler;
+- (void)ac_executeInMainThread:(void (^)(void))handler;
 @end
 
 #define ACValid(object)   [object isKindOfClass:[NSArray class]]        ? ACValidArray(object) : \

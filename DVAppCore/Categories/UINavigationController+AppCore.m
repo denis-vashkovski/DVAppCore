@@ -27,7 +27,7 @@ typedef enum {
 - (void)ac_pushViewController:(UIViewController *)viewController
                 animationType:(ACAnimationTransition)animationType
             animationDuration:(NSTimeInterval)animationDuration
-            completionHandler:(void (^)())completionHandler {
+            completionHandler:(void (^)(void))completionHandler {
     [self ac_setViewControllers:@[ viewController ]
                            type:ACTransitionTypePushOrPop
                   animationType:animationType
@@ -45,7 +45,7 @@ typedef enum {
 #pragma mark - Pop
 - (void)ac_popViewControllerAnimationType:(ACAnimationTransition)animationType
                         animationDuration:(NSTimeInterval)animationDuration
-                        completionHandler:(void (^)())completionHandler {
+                        completionHandler:(void (^)(void))completionHandler {
     if (self.viewControllers.count < 2) return;
     
     [self ac_pushViewController:self.viewControllers[self.viewControllers.count - 2]
@@ -62,7 +62,7 @@ typedef enum {
 
 - (void)ac_popToRootViewControllerAnimationType:(ACAnimationTransition)animationType
                               animationDuration:(NSTimeInterval)animationDuration
-                              completionHandler:(void (^)())completionHandler {
+                              completionHandler:(void (^)(void))completionHandler {
     [self ac_pushViewController:self.viewControllers.firstObject animationType:animationType];
 }
 
@@ -76,7 +76,7 @@ typedef enum {
 - (void)ac_setViewControllers:(NSArray<UIViewController *> *)viewControllers
                 animationType:(ACAnimationTransition)animationType
             animationDuration:(NSTimeInterval)animationDuration
-            completionHandler:(void (^)())completionHandler {
+            completionHandler:(void (^)(void))completionHandler {
     [self ac_setViewControllers:viewControllers
                            type:ACTransitionTypeSet
                   animationType:animationType
@@ -97,7 +97,7 @@ typedef enum {
                          type:(ACTransitionType)type
                 animationType:(ACAnimationTransition)animationType
             animationDuration:(NSTimeInterval)animationDuration
-            completionHandler:(void (^)())completionHandler {
+            completionHandler:(void (^)(void))completionHandler {
     if (!ACValidArray(viewControllers)) return;
     
     static NSDictionary *convertTransitionType;
