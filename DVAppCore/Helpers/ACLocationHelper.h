@@ -23,6 +23,7 @@ typedef enum {
 ACSINGLETON_H
 
 - (BOOL)authorize:(LHAuthType)authType;
+- (BOOL)isAuthorized;
 
 @property (readonly) CLAuthorizationStatus authorizationStatus;
 @property (readonly, nonatomic) CLLocationCoordinate2D currentCoordinate;

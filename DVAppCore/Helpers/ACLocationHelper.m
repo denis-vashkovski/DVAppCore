@@ -51,6 +51,11 @@ ACSINGLETON_M
     }
 }
 
+- (BOOL)isAuthorized {
+    return ((self.authorizationStatus == kCLAuthorizationStatusAuthorizedAlways)
+            || (self.authorizationStatus == kCLAuthorizationStatusAuthorizedWhenInUse));
+}
+
 #pragma mark - CLLocationManagerDelegate
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     NSLog(@"didFailWithError: %@", error);

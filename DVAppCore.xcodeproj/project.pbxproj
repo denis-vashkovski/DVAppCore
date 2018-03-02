@@ -52,6 +52,7 @@
 		41807FA51C984D8A00101829 /* ACAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41807FA41C984D8A00101829 /* ACAssets.xcassets */; };
 		41807FA81C98584E00101829 /* JsonObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 41807FA71C98584E00101829 /* JsonObjectTests.m */; };
 		41807FAB1C985A6A00101829 /* SingletonTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 41807FAA1C985A6A00101829 /* SingletonTest.m */; };
+		4183C41D1FBB24D900A2AFE3 /* NSCharacterSet+AppCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4183C41C1FBB24D900A2AFE3 /* NSCharacterSet+AppCore.m */; };
 		419265B31ECB27D400C7A876 /* UINavigationBar+AppCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 419265B21ECB27D400C7A876 /* UINavigationBar+AppCore.m */; };
 		41A3DDE61EA603A3005A7849 /* UIFont+AppCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A3DDE51EA603A3005A7849 /* UIFont+AppCore.m */; };
 		41AC959F1DE47ABD0006C776 /* ACImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 41AC959E1DE47ABD0006C776 /* ACImagePicker.m */; };
@@ -177,6 +178,8 @@
 		41807FA41C984D8A00101829 /* ACAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ACAssets.xcassets; sourceTree = "<group>"; };
 		41807FA71C98584E00101829 /* JsonObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonObjectTests.m; sourceTree = "<group>"; };
 		41807FAA1C985A6A00101829 /* SingletonTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingletonTest.m; sourceTree = "<group>"; };
+		4183C41B1FBB24D900A2AFE3 /* NSCharacterSet+AppCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSCharacterSet+AppCore.h"; sourceTree = "<group>"; };
+		4183C41C1FBB24D900A2AFE3 /* NSCharacterSet+AppCore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSCharacterSet+AppCore.m"; sourceTree = "<group>"; };
 		419265B11ECB27D400C7A876 /* UINavigationBar+AppCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+AppCore.h"; sourceTree = "<group>"; };
 		419265B21ECB27D400C7A876 /* UINavigationBar+AppCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+AppCore.m"; sourceTree = "<group>"; };
 		41A3DDE41EA603A3005A7849 /* UIFont+AppCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+AppCore.h"; sourceTree = "<group>"; };
@@ -427,6 +430,8 @@
 				414702891C6E17EA00F97990 /* NSArray+AppCore.m */,
 				414702971C6E1DAE00F97990 /* NSAttributedString+AppCore.h */,
 				414702981C6E1DAE00F97990 /* NSAttributedString+AppCore.m */,
+				4183C41B1FBB24D900A2AFE3 /* NSCharacterSet+AppCore.h */,
+				4183C41C1FBB24D900A2AFE3 /* NSCharacterSet+AppCore.m */,
 				414457B61C730AC000BF27FF /* NSData+AppCore.h */,
 				414457B71C730AC000BF27FF /* NSData+AppCore.m */,
 				414702911C6E1C7F00F97990 /* NSDate+AppCore.h */,
@@ -647,6 +652,7 @@
 		414702481C6E147500F97990 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = AC;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Denis Vashkovski";
 				TargetAttributes = {
@@ -734,6 +740,7 @@
 				414702AB1C6E223000F97990 /* UITabBar+AppCore.m in Sources */,
 				41AC959F1DE47ABD0006C776 /* ACImagePicker.m in Sources */,
 				41C662111CD878C300ED81CA /* ACTemplateCVC.m in Sources */,
+				4183C41D1FBB24D900A2AFE3 /* NSCharacterSet+AppCore.m in Sources */,
 				419265B31ECB27D400C7A876 /* UINavigationBar+AppCore.m in Sources */,
 				41D3D8231EB0A0090015206E /* TestCVC.m in Sources */,
 				413091F91C71F7080080725C /* ACTemplateTVC.m in Sources */,

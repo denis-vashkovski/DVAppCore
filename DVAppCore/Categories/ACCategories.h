@@ -9,6 +9,7 @@
 #pragma mark - Foundation
 #import "NSArray+AppCore.h"
 #import "NSAttributedString+AppCore.h"
+#import "NSCharacterSet+AppCore.h"
 #import "NSData+AppCore.h"
 #import "NSDate+AppCore.h"
 #import "NSDictionary+AppCore.h"

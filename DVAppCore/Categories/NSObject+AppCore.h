@@ -59,7 +59,6 @@
 #define AC_CATEGORY_PROPERTY_SET_UINT(property, setter) AC_CATEGORY_PROPERTY_SET_NSNUMBER_PRIMITIVE(unsigned int, property, setter, numberWithUnsignedInt)
 #define AC_CATEGORY_PROPERTY_GET_SET_UINT(property, setter) AC_CATEGORY_PROPERTY_GET_UINT(property) AC_CATEGORY_PROPERTY_SET_UINT(property, setter)
 
-
 #define AC_CATEGORY_PROPERTY_GET_BOOL(property) AC_CATEGORY_PROPERTY_GET_NSNUMBER_PRIMITIVE(BOOL, property, boolValue)
 #define AC_CATEGORY_PROPERTY_SET_BOOL(property, setter) AC_CATEGORY_PROPERTY_SET_NSNUMBER_PRIMITIVE(BOOL, property, setter, numberWithBool)
 #define AC_CATEGORY_PROPERTY_GET_SET_BOOL(property, setter) AC_CATEGORY_PROPERTY_GET_BOOL(property) AC_CATEGORY_PROPERTY_SET_BOOL(property, setter)
@@ -82,4 +81,11 @@
     dispatch_once(&once, ^{ \
         code \
     }); \
+}
+
+#define ACTypeFromString(type, arrayOfStrings, defaultValue) \
+type type ## FromString(NSString *string) { \
+    static NSArray<NSString *> *strings = nil; \
+    if (!strings) strings = arrayOfStrings; \
+    return [strings containsObject:string] ? (type)[strings indexOfObject:string] : defaultValue; \
 }
