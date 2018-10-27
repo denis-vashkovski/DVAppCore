@@ -20,7 +20,7 @@
     return [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:nil options:nil] lastObject];
 }
 
-AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_setBackgroundColor:) originalSelector:@selector(setBackgroundColor:)];
+AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_private_setBackgroundColor:) originalSelector:@selector(setBackgroundColor:)];
              [self ac_addSwizzlingSelector:@selector(acv_layoutSubviews) originalSelector:@selector(layoutSubviews)];)
 
 #define MASK_LAYER_NAME @"mask_layer_name"
@@ -103,8 +103,8 @@ AC_CATEGORY_PROPERTY_GET(UIColor *, ac_staticBackgroundColor)
 }
 
 #pragma mark - Setters
-- (void)ac_setBackgroundColor:(UIColor *)backgroundColor {
-    [self ac_setBackgroundColor:(self.ac_staticBackgroundColor ? self.ac_staticBackgroundColor : backgroundColor)];
+- (void)ac_private_setBackgroundColor:(UIColor *)backgroundColor {
+    [self ac_private_setBackgroundColor:(self.ac_staticBackgroundColor ? self.ac_staticBackgroundColor : backgroundColor)];
 }
 
 - (void)ac_setBackgroundClearColor {

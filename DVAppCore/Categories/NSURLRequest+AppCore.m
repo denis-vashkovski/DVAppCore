@@ -250,7 +250,7 @@ AC_EXTERN_STRING_M(APIServerURL);
             }
         }
         
-        [self ac_logResponse:response httpURLResponse:HTTPURLResponse startTime:currentTime jsonObj:jsonObj];
+        [self ac_logResponse:HTTPURLResponse startTime:currentTime jsonObj:jsonObj];
         
         if (handler) {
             handler(jsonObj, HTTPURLResponse);
@@ -302,7 +302,7 @@ AC_EXTERN_STRING_M(APIServerURL);
     
     id json = data ? data.ac_jsonToCollectionObject : nil;
     
-    [self ac_logResponse:urlResponse httpURLResponse:*response startTime:currentTime jsonObj:json];
+    [self ac_logResponse:*response startTime:currentTime jsonObj:json];
     
     return json;
 }
@@ -323,15 +323,15 @@ AC_EXTERN_STRING_M(APIServerURL);
           ACUnnilStr(body));
 }
 
-- (void)ac_logResponse:(NSURLResponse *)response httpURLResponse:(NSHTTPURLResponse *)HTTPURLResponse startTime:(NSDate *)startTime jsonObj:(id)jsonObj {
+- (void)ac_logResponse:(NSHTTPURLResponse *)httpURLResponse startTime:(NSDate *)startTime jsonObj:(id)jsonObj {
     NSMutableString *responseLog = [NSMutableString new];
     [responseLog appendString:@"\nType: Response"];
-    [responseLog appendFormat:@"\nURL: %@", response.URL.absoluteString.ac_decodeForUrl];
-    [responseLog appendFormat:@"\nStatusCode: %ld", (HTTPURLResponse ? (long)HTTPURLResponse.statusCode : 0)];
+    [responseLog appendFormat:@"\nURL: %@", httpURLResponse.URL.absoluteString.ac_decodeForUrl];
+    [responseLog appendFormat:@"\nStatusCode: %ld", (httpURLResponse ? (long)httpURLResponse.statusCode : 0)];
     
-    if (HTTPURLResponse && (HTTPURLResponse.statusCode != AC_STATUS_CODE_OK)) {
-        [responseLog appendFormat:@"\nHTTP header fields: %@", ((HTTPURLResponse && HTTPURLResponse.allHeaderFields)
-                                                                ? ACUnnilStr(HTTPURLResponse.allHeaderFields.description)
+    if (httpURLResponse && (httpURLResponse.statusCode != AC_STATUS_CODE_OK)) {
+        [responseLog appendFormat:@"\nHTTP header fields: %@", ((httpURLResponse && httpURLResponse.allHeaderFields)
+                                                                ? ACUnnilStr(httpURLResponse.allHeaderFields.description)
                                                                 : @"")];
     }
     
