@@ -84,8 +84,8 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Templates' do |templates|
-    templates 'Extended' do |extended|
-      extended = 'DVAppCore/Templates/Extended/*.{h,m}'
+    templates.subspec 'Extended' do |extended|
+      extended.ios.source_files = 'DVAppCore/Templates/Extended/*.{h,m}'
     end
     templates.ios.source_files = 'DVAppCore/Templates/*.{h,m}'
     templates.dependency 'DVAppCore/Helpers'
