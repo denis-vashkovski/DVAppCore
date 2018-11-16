@@ -63,9 +63,7 @@ Pod::Spec.new do |s|
       logging.ios.source_files = 'DVAppCore/Helpers/ACLog.{h,m}'
     end
     helpers.subspec 'Operation' do |operation|
-      operation.ios.source_files = 'DVAppCore/Helpers/ACPendingOperations.{h,m}'
-      operation.ios.source_files = 'DVAppCore/Helpers/ACAsynchronousOperation.{h,m}'
-      operation.ios.source_files = 'DVAppCore/Helpers/ACAsyncBlockOperation.{h,m}'
+      operation.ios.source_files = 'DVAppCore/Helpers/{ACPendingOperations, ACAsynchronousOperation, ACAsyncBlockOperation}.{h,m}'
     end
     helpers.subspec 'Router' do |router|
       router.ios.source_files = 'DVAppCore/Helpers/ACRouter.{h,m}'
