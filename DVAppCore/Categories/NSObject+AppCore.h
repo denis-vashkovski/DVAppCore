@@ -25,6 +25,9 @@
 - (BOOL)ac_removeAppDocumentByName:(NSString *)name;
 
 - (void)ac_executeInMainThread:(void (^)(void))handler;
+
+- (void)ac_checkObject:(NSObject *)object isKindOfClass:(Class)kindOfClass;
+- (void)ac_checkClass:(Class)class isConformsToProtocol:(Protocol *)protocol;
 @end
 
 #define ACValid(object)   [object isKindOfClass:[NSArray class]]        ? ACValidArray(object) : \
@@ -82,6 +85,10 @@
         code \
     }); \
 }
+
+#define ACTypeFromString_H(type) \
+type type ## FromString(NSString *string); \
+NSString *NSStringFrom ## type(type typeValue);
 
 #define ACTypeFromString(type, arrayOfStrings, defaultValue) \
 type type ## FromString(NSString *string) { \

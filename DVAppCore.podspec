@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "DVAppCore"
-  s.version      = "0.7.1"
+  s.version      = "0.8.1"
   s.summary      = "Set of useful categories and helpers."
   s.description  = <<-DESC
                     The DVAppCore for iOS provides:
@@ -29,6 +29,15 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Views' do |views|
+    views.subspec 'Models' do |models|
+      models.ios.source_files = 'DVAppCore/Views/Models/*.{h,m}'
+    end
+    views.subspec 'Protocols' do |protocols|
+      protocols.ios.source_files = 'DVAppCore/Views/Protocols/*.{h,m}'
+    end
+    views.subspec 'DesignableView' do |dv|
+      dv.ios.source_files = 'DVAppCore/Views/DesignableView/*.{h,m}'
+    end
     views.ios.source_files = 'DVAppCore/Views/*.{h,m}'
   end
 
@@ -55,6 +64,8 @@ Pod::Spec.new do |s|
     end
     helpers.subspec 'Operation' do |operation|
       operation.ios.source_files = 'DVAppCore/Helpers/ACPendingOperations.{h,m}'
+      operation.ios.source_files = 'DVAppCore/Helpers/ACAsynchronousOperation.{h,m}'
+      operation.ios.source_files = 'DVAppCore/Helpers/ACAsyncBlockOperation.{h,m}'
     end
     helpers.subspec 'Router' do |router|
       router.ios.source_files = 'DVAppCore/Helpers/ACRouter.{h,m}'
@@ -73,6 +84,9 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Templates' do |templates|
+    templates 'Extended' do |extended|
+      extended = 'DVAppCore/Templates/Extended/*.{h,m}'
+    end
     templates.ios.source_files = 'DVAppCore/Templates/*.{h,m}'
     templates.dependency 'DVAppCore/Helpers'
   end

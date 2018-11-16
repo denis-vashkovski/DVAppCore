@@ -48,6 +48,8 @@ AC_EXTERN_STRING_H(APIServerURL)
 
 - (void)ac_sendAsynchronousWithCompletionHandler:(ACURLCompletionHadler)handler;
 - (id)ac_sendSynchronousWithResponse:(NSHTTPURLResponse **)response;
+
+- (id)stubData;
 @end
 
 #pragma mark - HTTP method

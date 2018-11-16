@@ -53,6 +53,18 @@
 		41807FA81C98584E00101829 /* JsonObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 41807FA71C98584E00101829 /* JsonObjectTests.m */; };
 		41807FAB1C985A6A00101829 /* SingletonTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 41807FAA1C985A6A00101829 /* SingletonTest.m */; };
 		4183C41D1FBB24D900A2AFE3 /* NSCharacterSet+AppCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4183C41C1FBB24D900A2AFE3 /* NSCharacterSet+AppCore.m */; };
+		418DF2F2219EB75300C6E7FC /* UIWindow+AppCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 418DF2F1219EB75300C6E7FC /* UIWindow+AppCore.m */; };
+		418DF2F5219EB80000C6E7FC /* ACLayoutModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 418DF2F4219EB80000C6E7FC /* ACLayoutModel.m */; };
+		418DF2FB219EB87D00C6E7FC /* ACDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 418DF2FA219EB87D00C6E7FC /* ACDataModel.m */; };
+		418DF2FE219EB89B00C6E7FC /* ACViewDescriber.m in Sources */ = {isa = PBXBuildFile; fileRef = 418DF2FD219EB89B00C6E7FC /* ACViewDescriber.m */; };
+		418DF306219EBA1E00C6E7FC /* ACDesignableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 418DF305219EBA1E00C6E7FC /* ACDesignableView.m */; };
+		418DF30A219EBBB800C6E7FC /* UINib+AppCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 418DF309219EBBB800C6E7FC /* UINib+AppCore.m */; };
+		418DF30D219EBD1700C6E7FC /* UICollectionView+AppCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 418DF30C219EBD1700C6E7FC /* UICollectionView+AppCore.m */; };
+		418DF311219EBDCF00C6E7FC /* ACSectionDescriber.m in Sources */ = {isa = PBXBuildFile; fileRef = 418DF310219EBDCF00C6E7FC /* ACSectionDescriber.m */; };
+		418DF314219ED56300C6E7FC /* ACTemplateExtendedTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 418DF313219ED56300C6E7FC /* ACTemplateExtendedTVC.m */; };
+		418DF317219ED6CD00C6E7FC /* ACAsynchronousOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 418DF316219ED6CD00C6E7FC /* ACAsynchronousOperation.m */; };
+		418DF31A219ED7C700C6E7FC /* ACAsyncBlockOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 418DF319219ED7C700C6E7FC /* ACAsyncBlockOperation.m */; };
+		418DF31D219ED84700C6E7FC /* NSOperationQueue+AppCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 418DF31C219ED84700C6E7FC /* NSOperationQueue+AppCore.m */; };
 		419265B31ECB27D400C7A876 /* UINavigationBar+AppCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 419265B21ECB27D400C7A876 /* UINavigationBar+AppCore.m */; };
 		41A3DDE61EA603A3005A7849 /* UIFont+AppCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A3DDE51EA603A3005A7849 /* UIFont+AppCore.m */; };
 		41AC959F1DE47ABD0006C776 /* ACImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 41AC959E1DE47ABD0006C776 /* ACImagePicker.m */; };
@@ -180,6 +192,34 @@
 		41807FAA1C985A6A00101829 /* SingletonTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingletonTest.m; sourceTree = "<group>"; };
 		4183C41B1FBB24D900A2AFE3 /* NSCharacterSet+AppCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSCharacterSet+AppCore.h"; sourceTree = "<group>"; };
 		4183C41C1FBB24D900A2AFE3 /* NSCharacterSet+AppCore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSCharacterSet+AppCore.m"; sourceTree = "<group>"; };
+		418DF2F0219EB75300C6E7FC /* UIWindow+AppCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIWindow+AppCore.h"; sourceTree = "<group>"; };
+		418DF2F1219EB75300C6E7FC /* UIWindow+AppCore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+AppCore.m"; sourceTree = "<group>"; };
+		418DF2F3219EB80000C6E7FC /* ACLayoutModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACLayoutModel.h; sourceTree = "<group>"; };
+		418DF2F4219EB80000C6E7FC /* ACLayoutModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACLayoutModel.m; sourceTree = "<group>"; };
+		418DF2F9219EB87D00C6E7FC /* ACDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACDataModel.h; sourceTree = "<group>"; };
+		418DF2FA219EB87D00C6E7FC /* ACDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACDataModel.m; sourceTree = "<group>"; };
+		418DF2FC219EB89B00C6E7FC /* ACViewDescriber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACViewDescriber.h; sourceTree = "<group>"; };
+		418DF2FD219EB89B00C6E7FC /* ACViewDescriber.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACViewDescriber.m; sourceTree = "<group>"; };
+		418DF300219EB91200C6E7FC /* ACReusable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACReusable.h; sourceTree = "<group>"; };
+		418DF301219EB93100C6E7FC /* ACHeightable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACHeightable.h; sourceTree = "<group>"; };
+		418DF302219EB94C00C6E7FC /* ACDescribable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACDescribable.h; sourceTree = "<group>"; };
+		418DF304219EBA1E00C6E7FC /* ACDesignableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACDesignableView.h; sourceTree = "<group>"; };
+		418DF305219EBA1E00C6E7FC /* ACDesignableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACDesignableView.m; sourceTree = "<group>"; };
+		418DF307219EBA5D00C6E7FC /* ACDesignableView+Protected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ACDesignableView+Protected.h"; sourceTree = "<group>"; };
+		418DF308219EBBB800C6E7FC /* UINib+AppCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINib+AppCore.h"; sourceTree = "<group>"; };
+		418DF309219EBBB800C6E7FC /* UINib+AppCore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINib+AppCore.m"; sourceTree = "<group>"; };
+		418DF30B219EBD1700C6E7FC /* UICollectionView+AppCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+AppCore.h"; sourceTree = "<group>"; };
+		418DF30C219EBD1700C6E7FC /* UICollectionView+AppCore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+AppCore.m"; sourceTree = "<group>"; };
+		418DF30F219EBDCF00C6E7FC /* ACSectionDescriber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACSectionDescriber.h; sourceTree = "<group>"; };
+		418DF310219EBDCF00C6E7FC /* ACSectionDescriber.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACSectionDescriber.m; sourceTree = "<group>"; };
+		418DF312219ED56300C6E7FC /* ACTemplateExtendedTVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACTemplateExtendedTVC.h; sourceTree = "<group>"; };
+		418DF313219ED56300C6E7FC /* ACTemplateExtendedTVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACTemplateExtendedTVC.m; sourceTree = "<group>"; };
+		418DF315219ED6CD00C6E7FC /* ACAsynchronousOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACAsynchronousOperation.h; sourceTree = "<group>"; };
+		418DF316219ED6CD00C6E7FC /* ACAsynchronousOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACAsynchronousOperation.m; sourceTree = "<group>"; };
+		418DF318219ED7C700C6E7FC /* ACAsyncBlockOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACAsyncBlockOperation.h; sourceTree = "<group>"; };
+		418DF319219ED7C700C6E7FC /* ACAsyncBlockOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACAsyncBlockOperation.m; sourceTree = "<group>"; };
+		418DF31B219ED84700C6E7FC /* NSOperationQueue+AppCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSOperationQueue+AppCore.h"; sourceTree = "<group>"; };
+		418DF31C219ED84700C6E7FC /* NSOperationQueue+AppCore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSOperationQueue+AppCore.m"; sourceTree = "<group>"; };
 		419265B11ECB27D400C7A876 /* UINavigationBar+AppCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+AppCore.h"; sourceTree = "<group>"; };
 		419265B21ECB27D400C7A876 /* UINavigationBar+AppCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+AppCore.m"; sourceTree = "<group>"; };
 		41A3DDE41EA603A3005A7849 /* UIFont+AppCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+AppCore.h"; sourceTree = "<group>"; };
@@ -406,6 +446,7 @@
 		414702811C6E166C00F97990 /* Templates */ = {
 			isa = PBXGroup;
 			children = (
+				418DF30E219EBDBD00C6E7FC /* Extended */,
 				416BD96A1D46551B00A6AB37 /* ACUpdaterVCProtocol.h */,
 				413091F41C71E3850080725C /* ACTemplateAppDelegate.h */,
 				413091F51C71E3850080725C /* ACTemplateAppDelegate.m */,
@@ -454,6 +495,8 @@
 				41E228011DBE328B00E4334B /* NSNumber+AppCore.m */,
 				4147029A1C6E1ECF00F97990 /* NSObject+AppCore.h */,
 				4147029B1C6E1ECF00F97990 /* NSObject+AppCore.m */,
+				418DF31B219ED84700C6E7FC /* NSOperationQueue+AppCore.h */,
+				418DF31C219ED84700C6E7FC /* NSOperationQueue+AppCore.m */,
 				4147028B1C6E182300F97990 /* NSString+AppCore.h */,
 				4147028C1C6E182300F97990 /* NSString+AppCore.m */,
 				413092091C721DF80080725C /* NSURLRequest+AppCore.h */,
@@ -469,6 +512,8 @@
 				41B331231D58C70E00504F19 /* UIBarButtonItem+AppCore.m */,
 				41D91E2C1DE5709B0012E561 /* UIButton+AppCore.h */,
 				41D91E2D1DE5709B0012E561 /* UIButton+AppCore.m */,
+				418DF30B219EBD1700C6E7FC /* UICollectionView+AppCore.h */,
+				418DF30C219EBD1700C6E7FC /* UICollectionView+AppCore.m */,
 				41D3D81E1EB09E610015206E /* UICollectionViewController+AppCore.h */,
 				41D3D81F1EB09E610015206E /* UICollectionViewController+AppCore.m */,
 				4147029D1C6E1FB000F97990 /* UIColor+AppCore.h */,
@@ -487,6 +532,8 @@
 				419265B21ECB27D400C7A876 /* UINavigationBar+AppCore.m */,
 				414702A61C6E21F500F97990 /* UINavigationController+AppCore.h */,
 				414702A71C6E21F500F97990 /* UINavigationController+AppCore.m */,
+				418DF308219EBBB800C6E7FC /* UINib+AppCore.h */,
+				418DF309219EBBB800C6E7FC /* UINib+AppCore.m */,
 				414702A91C6E223000F97990 /* UITabBar+AppCore.h */,
 				414702AA1C6E223000F97990 /* UITabBar+AppCore.m */,
 				412F5EEB1CF8682E006539CC /* UITableView+AppCore.h */,
@@ -502,6 +549,8 @@
 				414702B31C6E263000F97990 /* UIViewController+AppCore.h */,
 				414702B41C6E263000F97990 /* UIViewController+AppCore.m */,
 				41D3D81A1EB09DAA0015206E /* ACRefreshProtocol.h */,
+				418DF2F0219EB75300C6E7FC /* UIWindow+AppCore.h */,
+				418DF2F1219EB75300C6E7FC /* UIWindow+AppCore.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -511,6 +560,10 @@
 			children = (
 				415FECF81C96E7630084F2CC /* ACPendingOperations.h */,
 				415FECF91C96E7630084F2CC /* ACPendingOperations.m */,
+				418DF315219ED6CD00C6E7FC /* ACAsynchronousOperation.h */,
+				418DF316219ED6CD00C6E7FC /* ACAsynchronousOperation.m */,
+				418DF318219ED7C700C6E7FC /* ACAsyncBlockOperation.h */,
+				418DF319219ED7C700C6E7FC /* ACAsyncBlockOperation.m */,
 			);
 			name = Operation;
 			sourceTree = "<group>";
@@ -554,6 +607,53 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		418DF2F8219EB86700C6E7FC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				418DF2FC219EB89B00C6E7FC /* ACViewDescriber.h */,
+				418DF2FD219EB89B00C6E7FC /* ACViewDescriber.m */,
+				418DF2F9219EB87D00C6E7FC /* ACDataModel.h */,
+				418DF2FA219EB87D00C6E7FC /* ACDataModel.m */,
+				418DF2F3219EB80000C6E7FC /* ACLayoutModel.h */,
+				418DF2F4219EB80000C6E7FC /* ACLayoutModel.m */,
+			);
+			name = Models;
+			path = Views/Models;
+			sourceTree = "<group>";
+		};
+		418DF2FF219EB8F900C6E7FC /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				418DF300219EB91200C6E7FC /* ACReusable.h */,
+				418DF301219EB93100C6E7FC /* ACHeightable.h */,
+				418DF302219EB94C00C6E7FC /* ACDescribable.h */,
+			);
+			name = Protocols;
+			path = Views/Protocols;
+			sourceTree = "<group>";
+		};
+		418DF303219EBA0700C6E7FC /* DesignableView */ = {
+			isa = PBXGroup;
+			children = (
+				418DF307219EBA5D00C6E7FC /* ACDesignableView+Protected.h */,
+				418DF304219EBA1E00C6E7FC /* ACDesignableView.h */,
+				418DF305219EBA1E00C6E7FC /* ACDesignableView.m */,
+			);
+			name = DesignableView;
+			path = Views/DesignableView;
+			sourceTree = "<group>";
+		};
+		418DF30E219EBDBD00C6E7FC /* Extended */ = {
+			isa = PBXGroup;
+			children = (
+				418DF30F219EBDCF00C6E7FC /* ACSectionDescriber.h */,
+				418DF310219EBDCF00C6E7FC /* ACSectionDescriber.m */,
+				418DF312219ED56300C6E7FC /* ACTemplateExtendedTVC.h */,
+				418DF313219ED56300C6E7FC /* ACTemplateExtendedTVC.m */,
+			);
+			path = Extended;
+			sourceTree = "<group>";
+		};
 		41AC95A01DE47AC00006C776 /* ImagePicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -566,6 +666,9 @@
 		41B052991CEB4A7E007D2F79 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				418DF2F8219EB86700C6E7FC /* Models */,
+				418DF2FF219EB8F900C6E7FC /* Protocols */,
+				418DF303219EBA0700C6E7FC /* DesignableView */,
 				41B052961CEB4A7B007D2F79 /* NSLayoutConstraintHairline.h */,
 				41B052971CEB4A7B007D2F79 /* NSLayoutConstraintHairline.m */,
 			);
@@ -659,6 +762,7 @@
 					4147024F1C6E147500F97990 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 6Q53JH268X;
+						ProvisioningStyle = Manual;
 					};
 					414702681C6E147500F97990 = {
 						CreatedOnToolsVersion = 7.2;
@@ -711,18 +815,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				41AF96621D506B9200B06D87 /* ACURLConnection.m in Sources */,
+				418DF31D219ED84700C6E7FC /* NSOperationQueue+AppCore.m in Sources */,
 				413092051C72136C0080725C /* ACLog.m in Sources */,
 				416BFEB11D4F945B00F635DB /* ACURLConnectionManager.m in Sources */,
 				41C58C001C7B2C6C008FEADD /* ACRouter.m in Sources */,
 				412F5EEA1CF8679D006539CC /* NSLayoutConstraint+AppCore.m in Sources */,
+				418DF2F2219EB75300C6E7FC /* UIWindow+AppCore.m in Sources */,
 				41D3D8201EB09E610015206E /* UICollectionViewController+AppCore.m in Sources */,
 				41216DD11C77329400543459 /* ACDesignHelper.m in Sources */,
 				4147029F1C6E1FB000F97990 /* UIColor+AppCore.m in Sources */,
 				4147029C1C6E1ECF00F97990 /* NSObject+AppCore.m in Sources */,
 				41E228021DBE328B00E4334B /* NSNumber+AppCore.m in Sources */,
+				418DF30D219EBD1700C6E7FC /* UICollectionView+AppCore.m in Sources */,
 				416BD9661D460DE700A6AB37 /* ACLocalizationHelper.m in Sources */,
 				41B052981CEB4A7B007D2F79 /* NSLayoutConstraintHairline.m in Sources */,
 				414702A81C6E21F500F97990 /* UINavigationController+AppCore.m in Sources */,
+				418DF30A219EBBB800C6E7FC /* UINib+AppCore.m in Sources */,
+				418DF311219EBDCF00C6E7FC /* ACSectionDescriber.m in Sources */,
 				41C177391DC32DA2001CE503 /* NSMutableArray+AppCore.m in Sources */,
 				41DED3991DA64A7E00ADB3C1 /* NSIndexPath+AppCore.m in Sources */,
 				41C58C041C7B4BC7008FEADD /* ACDataKeeper.m in Sources */,
@@ -730,6 +839,8 @@
 				41A3DDE61EA603A3005A7849 /* UIFont+AppCore.m in Sources */,
 				410FB3961CA2824B0079B2A2 /* ViewController.m in Sources */,
 				414702B21C6E24C100F97990 /* UIView+AppCore.m in Sources */,
+				418DF314219ED56300C6E7FC /* ACTemplateExtendedTVC.m in Sources */,
+				418DF2FE219EB89B00C6E7FC /* ACViewDescriber.m in Sources */,
 				414702A21C6E207200F97990 /* UIImage+AppCore.m in Sources */,
 				414457CA1C735D7800BF27FF /* ACJsonObject.m in Sources */,
 				410FB3901CA27C6F0079B2A2 /* TestTVC.m in Sources */,
@@ -739,6 +850,7 @@
 				414702901C6E1C2700F97990 /* NSHTTPURLResponse+AppCore.m in Sources */,
 				414702AB1C6E223000F97990 /* UITabBar+AppCore.m in Sources */,
 				41AC959F1DE47ABD0006C776 /* ACImagePicker.m in Sources */,
+				418DF2F5219EB80000C6E7FC /* ACLayoutModel.m in Sources */,
 				41C662111CD878C300ED81CA /* ACTemplateCVC.m in Sources */,
 				4183C41D1FBB24D900A2AFE3 /* NSCharacterSet+AppCore.m in Sources */,
 				419265B31ECB27D400C7A876 /* UINavigationBar+AppCore.m in Sources */,
@@ -755,6 +867,7 @@
 				415FECF71C96E3910084F2CC /* NSMutableURLRequest+AppCore.m in Sources */,
 				41B331241D58C70E00504F19 /* UIBarButtonItem+AppCore.m in Sources */,
 				414702991C6E1DAE00F97990 /* NSAttributedString+AppCore.m in Sources */,
+				418DF317219ED6CD00C6E7FC /* ACAsynchronousOperation.m in Sources */,
 				415FECFA1C96E7630084F2CC /* ACPendingOperations.m in Sources */,
 				41B1836D1CDB201000A9023B /* ACLocationHelper.m in Sources */,
 				414702AE1C6E232A00F97990 /* UITableViewCell+AppCore.m in Sources */,
@@ -762,13 +875,16 @@
 				414702A51C6E219900F97990 /* UIImageView+AppCore.m in Sources */,
 				413091F61C71E3850080725C /* ACTemplateAppDelegate.m in Sources */,
 				414702961C6E1D7100F97990 /* NSDictionary+AppCore.m in Sources */,
+				418DF31A219ED7C700C6E7FC /* ACAsyncBlockOperation.m in Sources */,
 				41DCF4211DDC76E90076809C /* ACWebViewController.m in Sources */,
 				414457BE1C73456C00BF27FF /* ACContactsHelper.m in Sources */,
 				414702B51C6E263000F97990 /* UIViewController+AppCore.m in Sources */,
+				418DF306219EBA1E00C6E7FC /* ACDesignableView.m in Sources */,
 				41C662141CD8804300ED81CA /* ACTemplatePVC.m in Sources */,
 				414702581C6E147500F97990 /* AppDelegate.m in Sources */,
 				414457C11C734C0900BF27FF /* UITextView+AppCore.m in Sources */,
 				414702551C6E147500F97990 /* main.m in Sources */,
+				418DF2FB219EB87D00C6E7FC /* ACDataModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -911,12 +1027,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 6Q53JH268X;
 				INFOPLIST_FILE = DVAppCore_Example/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vandv.DVAppCore;
 				PRODUCT_NAME = DVAppCore;
+				PROVISIONING_PROFILE_SPECIFIER = "DV iOS Development";
 			};
 			name = Debug;
 		};
@@ -925,12 +1043,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 6Q53JH268X;
 				INFOPLIST_FILE = DVAppCore_Example/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vandv.DVAppCore;
 				PRODUCT_NAME = DVAppCore;
+				PROVISIONING_PROFILE_SPECIFIER = "DV iOS Development";
 			};
 			name = Release;
 		};

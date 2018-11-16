@@ -8,12 +8,39 @@
 
 #import "UITableView+AppCore.h"
 
+#import "ACReusable.h"
+
 #import "NSArray+AppCore.h"
 #import "NSIndexPath+AppCore.h"
+#import "UINib+AppCore.h"
+#import "NSObject+AppCore.h"
 
 #import "ACConstants.h"
 
 @implementation UITableView(AppCore)
+
+- (void)ac_registerHeaderFooterViewClass:(Class)headerFooterViewClass {
+    [self ac_checkClass:headerFooterViewClass isConformsToProtocol:@protocol(ACReusable)];
+    
+    UINib *nib = [UINib ac_nibWithNibClass:headerFooterViewClass];
+    if (nib) {
+        [self registerNib:nib forHeaderFooterViewReuseIdentifier:[headerFooterViewClass reusableIdentifier]];
+    } else {
+        [self registerClass:headerFooterViewClass forHeaderFooterViewReuseIdentifier:[headerFooterViewClass reusableIdentifier]];
+    }
+}
+
+- (void)ac_registerCellClass:(Class)cellClass {
+    [self ac_checkClass:cellClass isConformsToProtocol:@protocol(ACReusable)];
+    
+    UINib *nib = [UINib ac_nibWithNibClass:cellClass];
+    if (nib) {
+        [self registerNib:nib forCellReuseIdentifier:[cellClass reusableIdentifier]];
+    } else {
+        [self registerClass:cellClass forCellReuseIdentifier:[cellClass reusableIdentifier]];
+    }
+}
+
 - (void)ac_setTopColor:(UIColor *)topColor bottomColor:(UIColor *)bottomColor {
     if ([topColor isEqual:bottomColor]) {
         [self setBackgroundColor:topColor];

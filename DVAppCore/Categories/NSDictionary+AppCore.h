@@ -25,6 +25,7 @@
 - (BOOL)ac_boolForKey:(NSString *)key;
 - (int)ac_intForKey:(NSString *)key;
 - (float)ac_floatForKey:(NSString *)key;
+- (NSDate *)ac_dateForKey:(NSString *)key withDateFormat:(NSString *)dateFormat;
 
 - (NSData *)ac_jsonData;
 - (NSString *)ac_jsonString;

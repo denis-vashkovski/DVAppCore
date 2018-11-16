@@ -307,6 +307,40 @@ AC_EXTERN_STRING_M(APIServerURL);
     return json;
 }
 
+#pragma mark - Stub
+- (id)stubData {
+    NSURLComponents *urlComponents = [[NSURLComponents alloc] initWithURL:self.URL resolvingAgainstBaseURL:NO];
+    urlComponents.query = nil;
+    
+    NSString *urlWithoutQuery = urlComponents.string;
+    NSString *apiMethodHref = [urlWithoutQuery stringByReplacingOccurrencesOfString:[self.class getApiServerUrl]
+                                                                         withString:@""];
+    NSString *stubFileName = [apiMethodHref stringByReplacingOccurrencesOfString:@"/" withString:@"_"];
+    
+    if (!ACValidStr(stubFileName)) return nil;
+    
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:stubFileName ofType:@"plist"];
+    NSAssert(ACValidStr(plistPath), @"There isn't stub data file for '%@' request", stubFileName);
+    
+    NSData *plistData = [NSData dataWithContentsOfFile:plistPath];
+    if (!plistData) {
+        NSLog(@"Error reading from file: %@", plistPath);
+    }
+    
+    NSPropertyListFormat format;
+    NSError *error = nil;
+    id stubData = [NSPropertyListSerialization propertyListWithData:plistData
+                                                            options:NSPropertyListImmutable
+                                                             format:&format
+                                                              error:&error];
+    
+    if (error) {
+        NSLog(@"Error reading from plist: %@", error.localizedDescription);
+    }
+    
+    return stubData;
+}
+
 #define MAX_PARAMETER_LENGTH 1000
 - (void)ac_logRequest {
     NSURLRequest *requestCopy = [self copy];
@@ -342,8 +376,12 @@ AC_EXTERN_STRING_M(APIServerURL);
 }
 
 #pragma mark - Utils
++ (NSString *)getApiServerUrl {
+    return AC_USER_DEFINED_BY_KEY(APIServerURL);
+}
+
 + (NSString *)getApiFullUrlForHref:(NSString *)href {
-    return [NSString stringWithFormat:@"%@%@", ACUnnilStr(AC_USER_DEFINED_BY_KEY(APIServerURL)), href];
+    return [NSString stringWithFormat:@"%@%@", ACUnnilStr([self getApiServerUrl]), href];
 }
 
 + (NSString *)prepareParameterWithKey:(NSString *)key value:(id)value {

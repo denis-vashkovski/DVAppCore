@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface UITableView(AppCore)
+- (void)ac_registerHeaderFooterViewClass:(Class)headerFooterViewClass;
+- (void)ac_registerCellClass:(Class)cellClass;
+
 - (void)ac_setTopColor:(UIColor *)topColor bottomColor:(UIColor *)bottomColor;
 
 - (void)ac_insertRowsAtSection:(NSUInteger)section rangeRows:(NSRange)rangeRows withRowAnimation:(UITableViewRowAnimation)animation;

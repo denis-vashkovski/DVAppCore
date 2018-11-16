@@ -172,4 +172,18 @@
     });
 }
 
+- (void)ac_checkObject:(NSObject *)object isKindOfClass:(Class)kindOfClass {
+    NSAssert([object isKindOfClass:kindOfClass],
+             @"'%@' must be '%@'",
+             NSStringFromClass(object.class),
+             NSStringFromClass(kindOfClass));
+}
+
+- (void)ac_checkClass:(Class)class isConformsToProtocol:(Protocol *)protocol {
+    NSAssert([class conformsToProtocol:protocol],
+             @"'%@' doesn't conform to '%@'",
+             NSStringFromClass(class),
+             NSStringFromProtocol(protocol));
+}
+
 @end

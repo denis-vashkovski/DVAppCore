@@ -21,12 +21,14 @@
 #import "NSNotificationCenter+AppCore.h"
 #import "NSNumber+AppCore.h"
 #import "NSObject+AppCore.h"
+#import "NSOperationQueue+AppCore.h"
 #import "NSString+AppCore.h"
 #import "NSURLRequest+AppCore.h"
 
 #pragma mark - UIKit
 #import "UIBarButtonItem+AppCore.h"
 #import "UIButton+AppCore.h"
+#import "UICollectionView+AppCore.h"
 #import "UICollectionViewController+AppCore.h"
 #import "UIColor+AppCore.h"
 #import "UIDevice+AppCore.h"
@@ -36,6 +38,7 @@
 #import "UILabel+AppCore.h"
 #import "UINavigationBar+AppCore.h"
 #import "UINavigationController+AppCore.h"
+#import "UINib+AppCore.h"
 #import "UITabBar+AppCore.h"
 #import "UITableView+AppCore.h"
 #import "UITableViewCell+AppCore.h"
@@ -43,3 +46,4 @@
 #import "UITextView+AppCore.h"
 #import "UIView+AppCore.h"
 #import "UIViewController+AppCore.h"
+#import "UIWindow+AppCore.h"

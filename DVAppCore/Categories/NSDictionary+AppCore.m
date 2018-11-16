@@ -9,6 +9,7 @@
 #import "NSDictionary+AppCore.h"
 
 #import "NSString+AppCore.h"
+#import "NSDate+AppCore.h"
 
 @implementation NSDictionary(AppCore)
 
@@ -60,6 +61,11 @@
 
 - (float)ac_floatForKey:(NSString *)key {
     return [[self ac_numberForKey:key] floatValue];
+}
+
+- (NSDate *)ac_dateForKey:(NSString *)key withDateFormat:(NSString *)dateFormat {
+    NSString *dateData = [self ac_stringForKey:key];
+    return ACValidStr(dateData) ? [NSDate ac_date:dateData dateFormat:dateFormat] : nil;
 }
 
 - (NSData *)ac_jsonData {
