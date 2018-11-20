@@ -220,6 +220,7 @@
 		418DF319219ED7C700C6E7FC /* ACAsyncBlockOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACAsyncBlockOperation.m; sourceTree = "<group>"; };
 		418DF31B219ED84700C6E7FC /* NSOperationQueue+AppCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSOperationQueue+AppCore.h"; sourceTree = "<group>"; };
 		418DF31C219ED84700C6E7FC /* NSOperationQueue+AppCore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSOperationQueue+AppCore.m"; sourceTree = "<group>"; };
+		41902D9921A3E75000846DFB /* ACViewDescriberAssembly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACViewDescriberAssembly.h; sourceTree = "<group>"; };
 		419265B11ECB27D400C7A876 /* UINavigationBar+AppCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+AppCore.h"; sourceTree = "<group>"; };
 		419265B21ECB27D400C7A876 /* UINavigationBar+AppCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+AppCore.m"; sourceTree = "<group>"; };
 		41A3DDE41EA603A3005A7849 /* UIFont+AppCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+AppCore.h"; sourceTree = "<group>"; };
@@ -610,6 +611,7 @@
 		418DF2F8219EB86700C6E7FC /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				41902D9921A3E75000846DFB /* ACViewDescriberAssembly.h */,
 				418DF2FC219EB89B00C6E7FC /* ACViewDescriber.h */,
 				418DF2FD219EB89B00C6E7FC /* ACViewDescriber.m */,
 				418DF2F9219EB87D00C6E7FC /* ACDataModel.h */,
