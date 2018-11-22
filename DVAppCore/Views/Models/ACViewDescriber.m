@@ -32,9 +32,9 @@
 }
 
 - (void)recalculateHeight {
-    if (![viewClass conformsToProtocol:@protocol(ACHeightable)]) return;
+    if (![self.viewClass conformsToProtocol:@protocol(ACHeightable)]) return;
     
-    _height = [viewClass heightWithViewDescriber:self];
+    _height = [self.viewClass heightWithViewDescriber:self];
 }
 
 @end
