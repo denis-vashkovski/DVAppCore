@@ -21,4 +21,5 @@
 @property (nonatomic, strong, readonly) Class viewClass;
 
 @property (nonatomic, readonly) CGFloat height;
+- (void)recalculateHeight;
 @end

@@ -26,11 +26,15 @@
         _layoutModel = layoutModel;
         _viewClass = viewClass;
         
-        if ([viewClass conformsToProtocol:@protocol(ACHeightable)]) {
-            _height = [viewClass heightWithViewDescriber:self];
-        }
+        [self recalculateHeight];
     }
     return self;
+}
+
+- (void)recalculateHeight {
+    if (![viewClass conformsToProtocol:@protocol(ACHeightable)]) return;
+    
+    _height = [viewClass heightWithViewDescriber:self];
 }
 
 @end
