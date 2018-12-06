@@ -66,6 +66,7 @@
 		418DF31A219ED7C700C6E7FC /* ACAsyncBlockOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 418DF319219ED7C700C6E7FC /* ACAsyncBlockOperation.m */; };
 		418DF31D219ED84700C6E7FC /* NSOperationQueue+AppCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 418DF31C219ED84700C6E7FC /* NSOperationQueue+AppCore.m */; };
 		419265B31ECB27D400C7A876 /* UINavigationBar+AppCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 419265B21ECB27D400C7A876 /* UINavigationBar+AppCore.m */; };
+		4195D54821B9053C00D44C9B /* ACTemplateRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4195D54721B9053C00D44C9B /* ACTemplateRouter.m */; };
 		41A3DDE61EA603A3005A7849 /* UIFont+AppCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A3DDE51EA603A3005A7849 /* UIFont+AppCore.m */; };
 		41AC959F1DE47ABD0006C776 /* ACImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 41AC959E1DE47ABD0006C776 /* ACImagePicker.m */; };
 		41AF96621D506B9200B06D87 /* ACURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 41AF96611D506B9200B06D87 /* ACURLConnection.m */; };
@@ -223,6 +224,9 @@
 		41902D9921A3E75000846DFB /* ACViewDescriberAssembly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACViewDescriberAssembly.h; sourceTree = "<group>"; };
 		419265B11ECB27D400C7A876 /* UINavigationBar+AppCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+AppCore.h"; sourceTree = "<group>"; };
 		419265B21ECB27D400C7A876 /* UINavigationBar+AppCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+AppCore.m"; sourceTree = "<group>"; };
+		4195D54621B9053C00D44C9B /* ACTemplateRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACTemplateRouter.h; sourceTree = "<group>"; };
+		4195D54721B9053C00D44C9B /* ACTemplateRouter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACTemplateRouter.m; sourceTree = "<group>"; };
+		4195D54A21B9059800D44C9B /* ACTemplateRouter+Protected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ACTemplateRouter+Protected.h"; sourceTree = "<group>"; };
 		41A3DDE41EA603A3005A7849 /* UIFont+AppCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+AppCore.h"; sourceTree = "<group>"; };
 		41A3DDE51EA603A3005A7849 /* UIFont+AppCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+AppCore.m"; sourceTree = "<group>"; };
 		41AC959D1DE47ABD0006C776 /* ACImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACImagePicker.h; sourceTree = "<group>"; };
@@ -447,6 +451,7 @@
 		414702811C6E166C00F97990 /* Templates */ = {
 			isa = PBXGroup;
 			children = (
+				4195D54921B9053F00D44C9B /* Router */,
 				418DF30E219EBDBD00C6E7FC /* Extended */,
 				416BD96A1D46551B00A6AB37 /* ACUpdaterVCProtocol.h */,
 				413091F41C71E3850080725C /* ACTemplateAppDelegate.h */,
@@ -654,6 +659,16 @@
 				418DF313219ED56300C6E7FC /* ACTemplateExtendedTVC.m */,
 			);
 			path = Extended;
+			sourceTree = "<group>";
+		};
+		4195D54921B9053F00D44C9B /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				4195D54A21B9059800D44C9B /* ACTemplateRouter+Protected.h */,
+				4195D54621B9053C00D44C9B /* ACTemplateRouter.h */,
+				4195D54721B9053C00D44C9B /* ACTemplateRouter.m */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		41AC95A01DE47AC00006C776 /* ImagePicker */ = {
@@ -886,6 +901,7 @@
 				414702581C6E147500F97990 /* AppDelegate.m in Sources */,
 				414457C11C734C0900BF27FF /* UITextView+AppCore.m in Sources */,
 				414702551C6E147500F97990 /* main.m in Sources */,
+				4195D54821B9053C00D44C9B /* ACTemplateRouter.m in Sources */,
 				418DF2FB219EB87D00C6E7FC /* ACDataModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

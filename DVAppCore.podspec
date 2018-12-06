@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "DVAppCore"
-  s.version      = "0.8.4"
+  s.version      = "0.8.5"
   s.summary      = "Set of useful categories and helpers."
   s.description  = <<-DESC
                     The DVAppCore for iOS provides:
@@ -82,6 +82,9 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Templates' do |templates|
+    templates.subspec 'Router' do |router|
+      router.ios.source_files = 'DVAppCore/Templates/Router/*.{h,m}'
+    end
     templates.subspec 'Extended' do |extended|
       extended.ios.source_files = 'DVAppCore/Templates/Extended/*.{h,m}'
     end

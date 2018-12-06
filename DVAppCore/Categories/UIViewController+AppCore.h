@@ -33,3 +33,5 @@
 
 - (UINavigationController *)ac_embedInNavigationController;
 @end
+
+Class ACVCClassFromParentVCClass(Class parentVCClass);

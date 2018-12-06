@@ -17,6 +17,7 @@
 #import "ACConstants.h"
 #import "ACTemplateAppDelegate.h"
 #import "ACDesignHelper.h"
+#import "ACRouter.h"
 
 @interface UIViewController(AppCore_Private)
 @property (nonatomic) BOOL visible;
@@ -230,3 +231,23 @@ AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_viewDidLoad) originalSel
 }
 
 @end
+
+Class ACVCClassFromParentVCClass(Class parentVCClass) {
+    NSString *viewControllerClassName = NSStringFromClass(parentVCClass);
+    NSString *suffix = nil;
+    switch ([UIDevice currentDevice].userInterfaceIdiom) {
+        case UIUserInterfaceIdiomPhone:
+            suffix = ACRouterStoryboardIPhoneSufix;
+            break;
+        case UIUserInterfaceIdiomPad:
+            suffix = ACRouterStoryboardIPadSufix;
+            break;
+        default: break;
+    }
+    
+    if (ACValidStr(suffix)) {
+        viewControllerClassName = [NSString stringWithFormat:@"%@_%@", viewControllerClassName, suffix];
+    }
+    
+    return NSClassFromString(viewControllerClassName);
+}

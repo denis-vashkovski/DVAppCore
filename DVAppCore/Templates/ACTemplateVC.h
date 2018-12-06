@@ -10,6 +10,13 @@
 
 #import "ACUpdaterVCProtocol.h"
 
-@interface ACTemplateVC : UIViewController<ACUpdaterVCProtocol>
+@protocol ACTemplateVCKeyboardDelegate <NSObject>
+@optional
+- (void)keyboardWillShownWithSize:(CGSize)size;
+- (void)keyboardWillBeHidden;
+- (void)keyboardDidBeHidden;
+@end
+
+@interface ACTemplateVC : UIViewController<ACUpdaterVCProtocol, ACTemplateVCKeyboardDelegate>
 
 @end
