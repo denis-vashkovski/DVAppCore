@@ -95,4 +95,7 @@ type type ## FromString(NSString *string) { \
     static NSArray<NSString *> *strings = nil; \
     if (!strings) strings = arrayOfStrings; \
     return [strings containsObject:string] ? (type)[strings indexOfObject:string] : defaultValue; \
+} \
+NSString *NSStringFrom ## type(type typeValue) { \
+    return [arrayOfStrings objectAtIndex:(int)typeValue]; \
 }
