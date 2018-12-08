@@ -110,20 +110,34 @@ AC_EXTERN_STRING_M(APIServerURL);
                             parameters:(NSDictionary *)parameters
                           headerFields:(NSDictionary *)headerFields
                                   data:(NSArray<ACHTTPBodyData *> *)data {
-    NSMutableString *varsStr = [NSMutableString string];
-    if (parameters && parameters.count > 0) {
-        BOOL first = YES;
-        for (NSString *key in parameters) {
-            if (!first) {
-                [varsStr appendString:@"&"];
+    NSData *body = nil;
+    
+    if (ACValidDictionary(parameters)) {
+        NSString *contentType = (ACValidDictionary(headerFields)
+                                 ? headerFields[AC_HTTP_HEADER_KEY_CONTENT_TYPE]
+                                 : nil);
+        
+        if ([contentType isEqualToString:AC_CONTENT_TYPE_APPLICATION_JSON]) {
+            body = [parameters ac_jsonData];
+        } else {
+            NSMutableString *varsStr = [NSMutableString string];
+            if (parameters && parameters.count > 0) {
+                BOOL first = YES;
+                for (NSString *key in parameters) {
+                    if (!first) {
+                        [varsStr appendString:@"&"];
+                    }
+                    first = NO;
+                    
+                    [varsStr appendString:[self prepareParameterWithKey:key value:parameters[key]]];
+                }
             }
-            first = NO;
             
-            [varsStr appendString:[self prepareParameterWithKey:key value:parameters[key]]];
+            body = [varsStr dataUsingEncoding:NSUTF8StringEncoding];
         }
     }
     
-    return [self ac_requestPostByLink:link body:[varsStr dataUsingEncoding:NSUTF8StringEncoding] headerFields:headerFields data:data];
+    return [self ac_requestPostByLink:link body:body headerFields:headerFields data:data];
 }
 
 + (NSURLRequest *)ac_requestPostForRootLinkByHref:(NSString *)href
