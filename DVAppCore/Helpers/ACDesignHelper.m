@@ -46,9 +46,13 @@ ACSINGLETON_M_INIT(initInstanceWith)
 + (id)valueByKey:(NSString *)key {
     id value = nil;
     if (ACValidStr(key)) {
-        value = [[[self getInstance] designDictionary] objectForKey:key];
-        if (!value && [[self getInstance] currentDesign]) {
-            value = [[[self getInstance] currentDesign] objectForKey:key];
+        ACDesignHelper *designHelper = [self getInstance];
+        
+        if (designHelper.currentDesign) {
+            value = [designHelper.currentDesign objectForKey:key];
+        }
+        if (!value) {
+            value = [designHelper.designDictionary objectForKey:key];
         }
     }
     return value;
@@ -56,12 +60,20 @@ ACSINGLETON_M_INIT(initInstanceWith)
 
 + (BOOL)setValue:(id)value byKey:(NSString *)key {
     if (ACValidStr(key) && value) {
-        [[[self getInstance] designDictionary] setObject:value forKey:key];
-        [[self getInstance] applyValue:value byKey:key];
+        ACDesignHelper *designHelper = [self getInstance];
+        
+        [designHelper.designDictionary setObject:value forKey:key];
+        [designHelper applyValue:value byKey:key];
         
         return YES;
     }
     return NO;
+}
+
++ (void)removeValueByKey:(NSString *)key {
+    if (!ACValidStr(key)) return;
+    
+    [[[self getInstance] designDictionary] removeObjectForKey:key];
 }
 
 + (void)setDesignClass:(Class)designClass {

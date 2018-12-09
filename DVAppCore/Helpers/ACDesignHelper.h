@@ -55,6 +55,7 @@ AC_EXTERN_STRING_H(ACUpdateDesign)
 @interface ACDesignHelper : NSObject
 + (id)valueByKey:(NSString *)key;
 + (BOOL)setValue:(id)value byKey:(NSString *)key;
++ (void)removeValueByKey:(NSString *)key;
 
 /*!
  @abstrac
