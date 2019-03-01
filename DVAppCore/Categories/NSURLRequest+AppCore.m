@@ -8,6 +8,8 @@
 
 #import "NSURLRequest+AppCore.h"
 
+#import "NSURLRequest+AppCore+Protected.h"
+
 #import "NSData+AppCore.h"
 #import "NSMutableURLRequest+AppCore.h"
 #import "NSString+AppCore.h"
@@ -275,7 +277,9 @@ AC_EXTERN_STRING_M(APIServerURL);
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     }];
     
-    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
+                                                          delegate:self
+                                                     delegateQueue:nil];
     [[session dataTaskWithRequest:self
                 completionHandler:
       ^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -297,7 +301,10 @@ AC_EXTERN_STRING_M(APIServerURL);
     NSDate *currentTime = [NSDate date];
     
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-    [[[NSURLSession sharedSession] dataTaskWithRequest:self completionHandler:
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
+                                                          delegate:self
+                                                     delegateQueue:nil];
+    [[session dataTaskWithRequest:self completionHandler:
       ^(NSData *taskData, NSURLResponse *taskResponse, NSError *taskError) {
           data = taskData;
           urlResponse = taskResponse;

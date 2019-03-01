@@ -58,7 +58,7 @@ AC_EXTERN_STRING_H(ACUpdateDesign)
 + (void)removeValueByKey:(NSString *)key;
 
 /*!
- @abstrac
+ @abstract
  @param designClass the sub class of @b ACDesign class
  */
 + (void)setDesignClass:(Class)designClass;
