@@ -174,6 +174,7 @@
         cell = [tableView dequeueReusableCellWithIdentifier:reusableIdentifier forIndexPath:indexPath];
     }
     
+    [self ac_checkClass:cell.class isConformsToProtocol:@protocol(ACDescribable)];
     [(id<ACDescribable>)cell configureWithViewDescriber:cellDescriber];
     
     return cell;
@@ -199,7 +200,8 @@
         headerFooterView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:reusableIdentifier];
     }
     
-    [(id<ACDescribable>)headerFooterDescriber configureWithViewDescriber:headerFooterDescriber];
+    [self ac_checkClass:headerFooterView.class isConformsToProtocol:@protocol(ACDescribable)];
+    [(id<ACDescribable>)headerFooterView configureWithViewDescriber:headerFooterDescriber];
     
     return headerFooterView;
 }
