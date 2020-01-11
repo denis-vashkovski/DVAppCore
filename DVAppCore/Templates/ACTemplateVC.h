@@ -18,5 +18,6 @@
 @end
 
 @interface ACTemplateVC : UIViewController<ACUpdaterVCProtocol, ACTemplateVCKeyboardDelegate>
-
+@property (nonatomic, readonly, getter=isVisible) BOOL visible;
+@property (nonatomic, readonly, getter=isViewAppearNotFirstTime) BOOL viewAppearNotFirstTime;
 @end

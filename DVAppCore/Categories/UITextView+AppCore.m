@@ -16,8 +16,6 @@
 
 @implementation UITextView(AppCore)
 
-AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_setContentSize:) originalSelector:@selector(setContentSize:)];)
-
 AC_CATEGORY_PROPERTY_GET_NSNUMBER_PRIMITIVE(ACContentVerticalAlignment, ac_contentVerticalAlignment, intValue);
 - (void)setAc_contentVerticalAlignment:(ACContentVerticalAlignment)ac_contentVerticalAlignment {
     objc_setAssociatedObject(self,
@@ -79,13 +77,6 @@ AC_CATEGORY_PROPERTY_GET(NSAttributedString *, ac_placeholder)
     }
     
     [self setTextContainerInset:UIEdgeInsetsMake(MAX(ceilf(topCorrect), .0), .0, .0, .0)];
-}
-
-- (void)ac_setContentSize:(CGSize)contentSize {
-    [self ac_setContentSize:contentSize];
-    
-// TODO fail test without comment
-//    [self updateContentPosition];
 }
 
 - (void)ac_setText:(NSString *)text animationDuration:(NSTimeInterval)duration {

@@ -11,4 +11,7 @@
 
 @interface ACTemplateExtendedTVC : ACTemplateTVC
 @property (nonatomic, copy) NSArray<ACSectionDescriber *> *sectionDescribers;
+
+@property (nonatomic, strong) ACViewDescriber *tableHeaderViewDesctiber;
+@property (nonatomic, strong) ACViewDescriber *tableFooterViewDesctiber;
 @end

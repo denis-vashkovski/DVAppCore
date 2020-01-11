@@ -64,16 +64,7 @@
 #pragma mark - Encode / Decode
 #define CHARACTERS_TO_BE_ESCAPED @"!*'();:@&=+$,/?%#[]"
 - (NSString *)ac_stringByAddingPercentEscapes {
-    if (AC_SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
-        return [self stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-    } else {
-        return (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
-                                                                                     NULL,
-                                                                                     (CFStringRef)self,
-                                                                                     NULL,
-                                                                                     (CFStringRef)CHARACTERS_TO_BE_ESCAPED,
-                                                                                     kCFStringEncodingUTF8));
-    }
+    return [self stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 }
 
 - (NSString *)ac_trim {
@@ -106,7 +97,7 @@
 }
 
 - (NSString *)ac_decodeForUrl {
-    return [self stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    return [self stringByRemovingPercentEncoding];
 }
 
 - (NSString *)ac_removeAllWhitespaceAndNewlineAndTab {

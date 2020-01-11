@@ -6,7 +6,6 @@
 //  Copyright © 2016 Denis Vashkovski. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
 typedef enum {
@@ -53,4 +52,6 @@ typedef enum {
 
 - (void)ac_setViewControllers:(NSArray<UIViewController *> *)viewControllers
                 animationType:(ACAnimationTransition)animationType;
+
+- (void)ac_updateInteractivePopGestureRecognizerDelegateIfNeeded;
 @end

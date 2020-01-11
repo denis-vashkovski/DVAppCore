@@ -6,7 +6,6 @@
 //  Copyright © 2016 Denis Vashkovski. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
 @interface UIViewController(AppCore)
@@ -17,8 +16,6 @@
 
 - (void)ac_initBackButtonIfNeeded;
 
-- (BOOL)ac_isVisible;
-- (BOOL)ac_isViewAppearNotFirstTime;
 - (CGRect)ac_visibleFrame;
 
 - (UIBarButtonItem *)ac_backButton;
@@ -32,6 +29,12 @@
 - (void)ac_hideKeyboard;
 
 - (UINavigationController *)ac_embedInNavigationController;
+
+// Add Child View Controller
+- (void)ac_addChildViewController:(UIViewController *)childViewController
+                intoViewContainer:(UIView *)viewContainer;
+- (void)ac_addChildViewController:(UIViewController *)childViewController;
+- (void)ac_removeChildViewController:(UIViewController *)childViewController;
 @end
 
 Class ACVCClassFromParentVCClass(Class parentVCClass);

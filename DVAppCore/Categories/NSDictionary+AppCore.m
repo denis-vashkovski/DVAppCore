@@ -63,9 +63,37 @@
     return [[self ac_numberForKey:key] floatValue];
 }
 
-- (NSDate *)ac_dateForKey:(NSString *)key withDateFormat:(NSString *)dateFormat {
+- (NSDate *)ac_dateForKey:(NSString *)key {
+    id result = [self objectForKey:key];
+    return (result && [result isKindOfClass:[NSDate class]]) ? result : nil;
+}
+
+- (NSDate *)ac_dateForKey:(NSString *)key
+           withDateFormat:(NSString *)dateFormat
+         localeIdentifier:(NSString *)localeIdentifier {
+    
     NSString *dateData = [self ac_stringForKey:key];
-    return ACValidStr(dateData) ? [NSDate ac_date:dateData dateFormat:dateFormat] : nil;
+    if (!ACValidStr(dateData)) {
+        return nil;
+    }
+
+    NSDateFormatter *df = [NSDateFormatter new];
+    df.dateFormat = dateFormat;
+    
+    if (ACValidStr(localeIdentifier)) {
+        df.locale = [NSLocale localeWithLocaleIdentifier:localeIdentifier];
+    }
+
+    return [df dateFromString:dateData];
+}
+
+- (NSDate *)ac_dateForKey:(NSString *)key withDateFormat:(NSString *)dateFormat {
+    return [self ac_dateForKey:key withDateFormat:dateFormat localeIdentifier:nil];
+}
+
+- (NSURL *)ac_urlForKey:(NSString *)key {
+    NSString *urlData = [self ac_stringForKey:key];
+    return ACValidStr(urlData) ? [NSURL URLWithString:urlData] : nil;
 }
 
 - (NSData *)ac_jsonData {

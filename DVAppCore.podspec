@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "DVAppCore"
-  s.version      = "0.8.7"
+  s.version      = "0.9.1"
   s.summary      = "Set of useful categories and helpers."
   s.description  = <<-DESC
                     The DVAppCore for iOS provides:
@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   s.homepage            = 'https://github.com/denis-vashkovski/DVAppCore'
   s.license             = { :type => 'MIT', :file => 'LICENSE' }
   s.authors             = { 'Denis Vashkovski' => 'denis.vashkovski.vv@gmail.com' }
-  s.platform     = :ios, "9.0"
+  s.platform     = :ios, "11.0"
   s.source       = { :git => 'https://github.com/denis-vashkovski/DVAppCore.git', :tag => s.version.to_s }
   s.requires_arc = true
 
@@ -29,14 +29,19 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Views' do |views|
-    views.subspec 'Models' do |models|
-      models.ios.source_files = 'DVAppCore/Views/Models/*.{h,m}'
+    views.subspec 'Describable' do |describable|
+      describable.subspec 'Models' do |models|
+        models.ios.source_files = 'DVAppCore/Views/Describable/Models/*.{h,m}'
+      end
+      describable.subspec 'Protocols' do |protocols|
+        protocols.ios.source_files = 'DVAppCore/Views/Describable/Protocols/*.{h,m}'
+      end
+      describable.subspec 'DesignableView' do |dv|
+        dv.ios.source_files = 'DVAppCore/Views/Describable/DesignableView/*.{h,m}'
+      end
     end
-    views.subspec 'Protocols' do |protocols|
-      protocols.ios.source_files = 'DVAppCore/Views/Protocols/*.{h,m}'
-    end
-    views.subspec 'DesignableView' do |dv|
-      dv.ios.source_files = 'DVAppCore/Views/DesignableView/*.{h,m}'
+    views.subspec 'LayoutConstraintHairline' do |layoutConstraintHairline|
+      layoutConstraintHairline.ios.source_files = 'DVAppCore/Views/LayoutConstraintHairline/*.{h,m}'
     end
     views.ios.source_files = 'DVAppCore/Views/*.{h,m}'
   end
@@ -74,11 +79,12 @@ Pod::Spec.new do |s|
     helpers.subspec 'Localization' do |localization|
       localization.ios.source_files = 'DVAppCore/Helpers/ACLocalizationHelper.{h,m}'
     end
-    helpers.subspec 'URLConnection' do |urlConnection|
-      urlConnection.ios.source_files = 'DVAppCore/Helpers/{ACURLConnection}*.{h,m}'
+    helpers.subspec 'KeyboardListener' do |keyboardListener|
+      keyboardListener.ios.source_files = 'DVAppCore/Helpers/ACKeyboardListener.{h,m}'
     end
     helpers.ios.source_files = 'DVAppCore/Helpers/ACConstants.h'
     helpers.dependency 'DVAppCore/Models'
+    helpers.dependency 'DVAppCore/Views'
   end
 
   s.subspec 'Templates' do |templates|

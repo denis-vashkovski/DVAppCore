@@ -13,9 +13,120 @@
 #import "ACReusable.h"
 #import "ACDescribable.h"
 
+#import "ACDesignableView+Protected.h"
+
+#import "NSObject+AppCore.h"
+
 #import "UITableView+AppCore.h"
+#import "UIView+AppCore.h"
+
+@interface ACTableViewCellDescribable : UITableViewCell<ACDescribable>
+@property (nonatomic, strong) UIView<ACDescribable> *describableView;
+@end
+
+@implementation ACTableViewCellDescribable
+
+- (void)setDescribableView:(UIView<ACDescribable> *)describableView {
+    if (self.describableView) {
+        [self.describableView removeFromSuperview];
+    }
+    
+    [self ac_checkClass:describableView.class isConformsToProtocol:@protocol(ACDescribable)];
+    
+    _describableView = describableView;
+    
+    if (self.describableView) {
+        [self.contentView addSubview:self.describableView];
+        [self.describableView ac_addConstraintsEqualSuperview];
+    }
+}
+
+- (void)configureWithViewDescriber:(ACViewDescriber *)viewDescriber {
+    if (!viewDescriber) {
+        return;
+    }
+    
+    if (!self.describableView) {
+        ACDesignableView<ACDescribable> *view = [viewDescriber.viewClass new];
+        [view setup];
+        
+        self.describableView = view;
+    }
+    
+    [self.describableView configureWithViewDescriber:viewDescriber];
+}
+
+@end
+
+@interface ACTableViewHeaderFooterViewDescribable : UITableViewHeaderFooterView<ACDescribable>
+@property (nonatomic, strong) UIView<ACDescribable> *describableView;
+@end
+
+@implementation ACTableViewHeaderFooterViewDescribable
+
+- (void)setDescribableView:(UIView<ACDescribable> *)describableView {
+    if (self.describableView) {
+        [self.describableView removeFromSuperview];
+    }
+    
+    [self ac_checkClass:describableView.class isConformsToProtocol:@protocol(ACDescribable)];
+    
+    _describableView = describableView;
+    
+    if (self.describableView) {
+        [self.contentView addSubview:self.describableView];
+        [self.describableView ac_addConstraintsEqualSuperview];
+    }
+}
+
+- (void)configureWithViewDescriber:(ACViewDescriber *)viewDescriber {
+    if (!viewDescriber) {
+        return;
+    }
+    
+    if (!self.describableView) {
+        ACDesignableView<ACDescribable> *view = [viewDescriber.viewClass new];
+        [view setup];
+        
+        self.describableView = view;
+    }
+    
+    [self.describableView configureWithViewDescriber:viewDescriber];
+}
+
+@end
 
 @implementation ACTemplateExtendedTVC
+
+- (void)setTableHeaderViewDesctiber:(ACViewDescriber *)tableHeaderViewDesctiber {
+    _tableHeaderViewDesctiber = tableHeaderViewDesctiber;
+    
+    UIView<ACDescribable> *tableHeaderView = nil;
+    if (tableHeaderViewDesctiber) {
+        tableHeaderView = [tableHeaderViewDesctiber.viewClass ac_newInstanceFromNib];
+    }
+    
+    self.tableView.tableHeaderView = tableHeaderView;
+    
+    if (tableHeaderView && [tableHeaderView conformsToProtocol:@protocol(ACDescribable)]) {
+        [tableHeaderView configureWithViewDescriber:tableHeaderViewDesctiber];
+    }
+}
+
+- (void)setTableFooterViewDesctiber:(ACViewDescriber *)tableFooterViewDesctiber {
+    _tableFooterViewDesctiber = tableFooterViewDesctiber;
+    
+    UIView<ACDescribable> *tableFooterView = nil;
+    if (tableFooterViewDesctiber) {
+        tableFooterView = [tableFooterViewDesctiber.viewClass ac_newInstanceFromNib];
+    }
+    
+    self.tableView.tableFooterView = tableFooterView;
+    
+    if (tableFooterView && [tableFooterView conformsToProtocol:@protocol(ACDescribable)]) {
+        [tableFooterView configureWithViewDescriber:tableFooterViewDesctiber];
+    }
+}
 
 #pragma mark - UITableViewDelegate, UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -31,21 +142,7 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    ACViewDescriber *headerDescriber = self.sectionDescribers[section].header;
-    if (!headerDescriber) return nil;
-    
-    [self checkIfReusableProtocolWasImplementedIn:headerDescriber.viewClass];
-    NSString *reusableIdentifier = [headerDescriber.viewClass reusableIdentifier];
-    
-    UITableViewHeaderFooterView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:reusableIdentifier];
-    if (!headerView) {
-        [tableView ac_registerHeaderFooterViewClass:headerDescriber.viewClass];
-        headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:reusableIdentifier];
-    }
-    
-    [(id<ACDescribable>)headerView configureWithViewDescriber:headerDescriber];
-    
-    return headerView;
+    return [self tableView:tableView viewForHeaderFooterWithDescriber:self.sectionDescribers[section].header];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
@@ -53,21 +150,7 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    ACViewDescriber *footerDescriber = self.sectionDescribers[section].footer;
-    if (!footerDescriber) return nil;
-    
-    [self checkIfReusableProtocolWasImplementedIn:footerDescriber.viewClass];
-    NSString *reusableIdentifier = [footerDescriber.viewClass reusableIdentifier];
-    
-    UITableViewHeaderFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:reusableIdentifier];
-    if (!footerView) {
-        [tableView ac_registerHeaderFooterViewClass:footerDescriber.viewClass];
-        footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:reusableIdentifier];
-    }
-    
-    [(id<ACDescribable>)footerView configureWithViewDescriber:footerDescriber];
-    
-    return footerView;
+    return [self tableView:tableView viewForHeaderFooterWithDescriber:self.sectionDescribers[section].footer];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -77,18 +160,48 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ACViewDescriber *cellDescriber = [self.sectionDescribers[indexPath.section] cellDescriberForIndex:indexPath.row];
     
-    [self checkIfReusableProtocolWasImplementedIn:cellDescriber.viewClass];
+    [self ac_checkClass:cellDescriber.viewClass isConformsToProtocol:@protocol(ACReusable)];
     NSString *reusableIdentifier = [cellDescriber.viewClass reusableIdentifier];
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reusableIdentifier];
     if (!cell) {
-        [tableView ac_registerCellClass:cellDescriber.viewClass];
+        if ([cellDescriber.viewClass isSubclassOfClass:UITableViewCell.class]) {
+            [tableView ac_registerCellClass:cellDescriber.viewClass];
+        } else {
+            [tableView registerClass:ACTableViewCellDescribable.class forCellReuseIdentifier:reusableIdentifier];
+        }
+        
         cell = [tableView dequeueReusableCellWithIdentifier:reusableIdentifier forIndexPath:indexPath];
     }
     
     [(id<ACDescribable>)cell configureWithViewDescriber:cellDescriber];
     
     return cell;
+}
+
+#pragma mark - Private
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderFooterWithDescriber:(ACViewDescriber *)headerFooterDescriber {
+    if (!headerFooterDescriber) {
+        return nil;
+    }
+    
+    [self ac_checkClass:headerFooterDescriber.viewClass isConformsToProtocol:@protocol(ACReusable)];
+    NSString *reusableIdentifier = [headerFooterDescriber.viewClass reusableIdentifier];
+    
+    UITableViewHeaderFooterView *headerFooterView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:reusableIdentifier];
+    if (!headerFooterView) {
+        if ([headerFooterDescriber.viewClass isSubclassOfClass:UITableViewHeaderFooterView.class]) {
+            [tableView ac_registerHeaderFooterViewClass:headerFooterDescriber.viewClass];
+        } else {
+            [tableView registerClass:ACTableViewHeaderFooterViewDescribable.class forHeaderFooterViewReuseIdentifier:reusableIdentifier];
+        }
+        
+        headerFooterView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:reusableIdentifier];
+    }
+    
+    [(id<ACDescribable>)headerFooterDescriber configureWithViewDescriber:headerFooterDescriber];
+    
+    return headerFooterView;
 }
 
 #pragma mark - Utils

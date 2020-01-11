@@ -14,6 +14,7 @@
 #import "UINavigationController+AppCore.h"
 
 #import "ACRouter.h"
+#import "ACTableViewCell.h"
 
 #import "TestCVC.h"
 
@@ -43,11 +44,11 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Empty Cell ID"];
+    ACTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Empty Cell ID"];
     
-    [cell.ac_separatorBottom setHidden:NO];
-    [cell.ac_separatorBottom setHeight:2.];
-    [cell.ac_separatorBottom setInsets:ACLRInsetsMake(16., 64.)];
+    [cell.separatorBottom setHidden:NO];
+    [cell.separatorBottom setHeight:2.];
+    [cell.separatorBottom setInsets:ACLRInsetsMake(16., 64.)];
     [cell setBackgroundColor:[UIColor darkGrayColor]];
     
     return cell;

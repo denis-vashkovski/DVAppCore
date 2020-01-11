@@ -15,18 +15,6 @@
 
 @implementation UITableViewController(AppCore)
 
-AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_tvc_viewDidLoad) originalSelector:@selector(viewDidLoad)];
-             [self ac_addSwizzlingSelector:@selector(ac_tvc_viewWillDisappear:) originalSelector:@selector(viewWillDisappear:)];)
-
-#pragma mark - Swizzling methods
-- (void)ac_tvc_viewDidLoad {
-    [self ac_tvc_viewDidLoad];
-}
-
-- (void)ac_tvc_viewWillDisappear:(BOOL)animated {
-    [self ac_tvc_viewWillDisappear:animated];
-}
-
 #pragma mark - ACRefreshProtocol
 - (void)ac_initRefreshView {
     self.refreshControl = [UIRefreshControl new];
@@ -70,11 +58,6 @@ AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_tvc_viewDidLoad) origina
 #pragma mark - ACTableViewDataSource
 - (UIView *)ac_viewForEmptyTableView:(UITableView *)tableView {
     return nil;
-}
-
-#pragma mark - Observer
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
-    
 }
 
 @end

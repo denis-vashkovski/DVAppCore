@@ -19,22 +19,7 @@
 #import "ACDesignHelper.h"
 #import "ACRouter.h"
 
-@interface UIViewController(AppCore_Private)
-@property (nonatomic) BOOL visible;
-@property (nonatomic) BOOL viewAppearNotFirstTime;
-@end
-@implementation UIViewController(AppCore_Private)
-AC_CATEGORY_PROPERTY_GET_SET_BOOL(visible, setVisible:);
-AC_CATEGORY_PROPERTY_GET_SET_BOOL(viewAppearNotFirstTime, setViewAppearNotFirstTime:);
-@end
-
-@interface UIViewController()<UIGestureRecognizerDelegate>
-@end
 @implementation UIViewController(AppCore)
-
-AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_viewDidLoad) originalSelector:@selector(viewDidLoad)];
-             [self ac_addSwizzlingSelector:@selector(ac_viewWillAppear:) originalSelector:@selector(viewWillAppear:)];
-             [self ac_addSwizzlingSelector:@selector(ac_viewWillDisappear:) originalSelector:@selector(viewWillDisappear:)];)
 
 + (UIViewController *)ac_findBestViewController:(UIViewController *)vc {
     if (vc.presentedViewController) {
@@ -80,27 +65,6 @@ AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_viewDidLoad) originalSel
     return [self new];
 }
 
-#pragma mark - Swizzling methods
-- (void)ac_viewDidLoad {
-    [self ac_viewDidLoad];
-    
-    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ac_hideKeyboard)];
-    gestureRecognizer.cancelsTouchesInView = NO;
-    [gestureRecognizer setDelegate:self];
-    [self.view addGestureRecognizer:gestureRecognizer];
-}
-
-- (void)ac_viewWillAppear:(BOOL)animated {
-    [self ac_viewWillAppear:animated];
-    [self setVisible:YES];
-    [self setViewAppearNotFirstTime:YES];
-}
-
-- (void)ac_viewWillDisappear:(BOOL)animated {
-    [self ac_viewWillDisappear:animated];
-    [self setVisible:NO];
-}
-
 - (void)ac_initBackButtonIfNeeded {
     if (!self.navigationController) return;
     
@@ -112,14 +76,6 @@ AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_viewDidLoad) originalSel
     } else {
         [self ac_removeBackButton];
     }
-}
-
-- (BOOL)ac_isVisible {
-    return self.visible;
-}
-
-- (BOOL)ac_isViewAppearNotFirstTime {
-    return self.viewAppearNotFirstTime;
 }
 
 - (UIBarButtonItem *)ac_backButton {
@@ -225,9 +181,31 @@ AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_viewDidLoad) originalSel
     return [[UINavigationController alloc] initWithRootViewController:self];
 }
 
-#pragma mark - UIGestureRecognizerDelegate
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
-    return ![touch.view isKindOfClass:[UIControl class]];
+#pragma mark - Add Child View Controller
+- (void)ac_addChildViewController:(UIViewController *)childViewController
+                intoViewContainer:(UIView *)viewContainer {
+    if (!childViewController || !viewContainer) return;
+    
+    [self addChildViewController:childViewController];
+    
+    UIView *childView = childViewController.view;
+    childView.frame = viewContainer.bounds;
+    [viewContainer addSubview:childView];
+    [childView ac_sendToBack];
+    
+    [childViewController didMoveToParentViewController:self];
+}
+
+- (void)ac_addChildViewController:(UIViewController *)childViewController {
+    [self ac_addChildViewController:childViewController intoViewContainer:self.view];
+}
+
+- (void)ac_removeChildViewController:(UIViewController *)childViewController {
+    if (!childViewController || ![self.childViewControllers containsObject:childViewController]) return;
+    
+    [childViewController willMoveToParentViewController:nil];
+    [childViewController.view removeFromSuperview];
+    [childViewController removeFromParentViewController];
 }
 
 @end

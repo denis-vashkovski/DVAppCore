@@ -12,8 +12,10 @@
 
 #import "UIView+AppCore.h"
 
-@interface ACWebViewController ()<UIWebViewDelegate>
-@property (nonatomic, strong) UIWebView *webView;
+#import <WebKit/WebKit.h>
+
+@interface ACWebViewController () <WKNavigationDelegate>
+@property (nonatomic, strong) WKWebView *webView;
 @end
 
 @implementation ACWebViewController
@@ -25,7 +27,9 @@
     [webViewController setUrl:url];
     [webViewController ac_embedInNavigationController];
     
-    [presentingVC presentViewController:webViewController.navigationController animated:YES completion:nil];
+    [presentingVC presentViewController:webViewController.navigationController
+                               animated:YES
+                             completion:nil];
     
     return webViewController;
 }
@@ -48,33 +52,44 @@
         [self.navigationItem setLeftBarButtonItem:[self ac_backButton]];
     }
     
-    self.webView = [UIWebView new];
+    NSString *jScript = @" \
+    var meta = document.createElement('meta'); \
+    meta.setAttribute('name', 'viewport'); \
+    meta.setAttribute('content', 'width=device-width'); \
+    document.getElementsByTagName('head')[0].appendChild(meta); \
+    ";
+
+    WKUserScript *wkUScript = [[WKUserScript alloc] initWithSource:jScript
+                                                     injectionTime:WKUserScriptInjectionTimeAtDocumentEnd
+                                                  forMainFrameOnly:YES];
+    WKUserContentController *wkUController = [WKUserContentController new];
+    [wkUController addUserScript:wkUScript];
+
+    WKWebViewConfiguration *wkWebConfig = [WKWebViewConfiguration new];
+    wkWebConfig.userContentController = wkUController;
+    
+    self.webView = [[WKWebView alloc] initWithFrame:self.view.bounds configuration:wkWebConfig];
+    self.webView.navigationDelegate = self;
     [self.view addSubview:self.webView];
     [self.webView ac_addConstraintsEqualSuperview];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:self.url];
     [self.webView loadRequest:request];
-    [self.webView setScalesPageToFit:YES];
-    [self.webView setDelegate:self];
-}
-
-#pragma mark - UIWebViewDelegate
-- (void)webViewDidStartLoad:(UIWebView *)webView {
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    [self ac_startLoadingProcess];
-    NSLog(@"ACWebViewController start load %@", webView.request.URL.absoluteString);
-}
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    [self ac_stopLoadingProcess];
-    NSLog(@"ACWebViewController end load %@", webView.request.URL.absoluteString);
     
-    self.title = [self.webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    [self ac_startLoadingProcess];
+    NSLog(@"ACWebViewController start load %@", self.webView.URL.absoluteString);
 }
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+#pragma mark - WKNavigationDelegate
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    [self ac_stopLoadingProcess];
+    NSLog(@"ACWebViewController end load %@", webView.URL.absoluteString);
+    
+    self.title = webView.title;
+}
+
+- (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
+    
     [self ac_stopLoadingProcess];
     NSLog(@"ACWebViewController catch error: %@", error);
 }

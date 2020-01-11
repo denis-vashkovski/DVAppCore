@@ -17,4 +17,6 @@
  @abstract Return NSArray or NSDictionary
  */
 - (id)ac_jsonToCollectionObject;
+
+- (NSString *)ac_base64;
 @end

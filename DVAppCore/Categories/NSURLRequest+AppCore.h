@@ -10,7 +10,8 @@
 
 #import "NSObject+AppCore.h"
 #import "NSMutableURLRequest+AppCore.h"
-#import "ACURLConnectionManager.h"
+
+typedef void (^ACURLCompletionHadler)(id data, NSHTTPURLResponse *response);
 
 AC_EXTERN_STRING_H(APIServerURL)
 

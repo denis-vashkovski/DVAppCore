@@ -11,11 +11,37 @@
 #import "ACConstants.h"
 
 #import "NSArray+AppCore.h"
+#import "NSObject+AppCore.h"
+
+#import "UINavigationItem+AppCore.h"
+
+@interface ACInteractivePopGestureRecognizerHandler : NSObject<UIGestureRecognizerDelegate>
+@property (nonatomic, weak) UINavigationController *navigationVC;
+@end
+@implementation ACInteractivePopGestureRecognizerHandler
+
+- (instancetype)initWithNavigationViewController:(UINavigationController *)navigationVC {
+    if (self = [super init]) {
+        self.navigationVC = navigationVC;
+    }
+    return self;
+}
+
+#pragma mark - UIGestureRecognizerDelegate
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    return self.navigationVC.viewControllers.count > 1;
+}
+
+@end
 
 typedef enum {
     ACTransitionTypePushOrPop,
     ACTransitionTypeSet
 } ACTransitionType;
+
+@interface UINavigationController(AppCore_Private)
+@property (nonatomic, strong) ACInteractivePopGestureRecognizerHandler *interactivePopGestureRecognizerHandler;
+@end
 
 @implementation UINavigationController(AppCore)
 
@@ -90,6 +116,24 @@ typedef enum {
                   animationType:animationType
               animationDuration:AC_ANIMATION_DURATION_DEFAULT
               completionHandler:nil];
+}
+
+AC_CATEGORY_PROPERTY_GET_SET(ACInteractivePopGestureRecognizerHandler *,
+                             interactivePopGestureRecognizerHandler,
+                             setInteractivePopGestureRecognizerHandler:)
+- (void)ac_updateInteractivePopGestureRecognizerDelegateIfNeeded {
+    
+    if ((self.viewControllers.count <= 1)
+        || !self.topViewController.navigationItem.ac_isCustomBackButton
+        || ([self.interactivePopGestureRecognizer.delegate isKindOfClass:ACInteractivePopGestureRecognizerHandler.class])) {
+        
+        return;
+    }
+    
+    self.interactivePopGestureRecognizerHandler =
+    [[ACInteractivePopGestureRecognizerHandler alloc] initWithNavigationViewController:self];
+    
+    self.interactivePopGestureRecognizer.delegate = self.interactivePopGestureRecognizerHandler;
 }
 
 #pragma mark - Private

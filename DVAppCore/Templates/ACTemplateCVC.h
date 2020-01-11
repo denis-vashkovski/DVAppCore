@@ -11,5 +11,6 @@
 #import "ACUpdaterVCProtocol.h"
 
 @interface ACTemplateCVC : UICollectionViewController<ACUpdaterVCProtocol>
-
+@property (nonatomic, readonly, getter=isVisible) BOOL visible;
+@property (nonatomic, readonly, getter=isViewAppearNotFirstTime) BOOL viewAppearNotFirstTime;
 @end

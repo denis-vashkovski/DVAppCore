@@ -19,47 +19,23 @@ AC_CATEGORY_PROPERTY_SET(UIRefreshControl *, ac_refreshControl, setACRefreshCont
 
 #pragma mark - ACRefreshProtocol
 - (void)ac_initRefreshView {
-    if (AC_SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"10")) {
-        self.collectionView.refreshControl = [UIRefreshControl new];
-        [self.collectionView.refreshControl setTintColor:ACDesign(ACDesignColorRefreshControlTVC)];
-        [self.collectionView.refreshControl addTarget:self action:@selector(ac_refreshView) forControlEvents:UIControlEventValueChanged];
-        self.collectionView.refreshControl.layer.zPosition = self.collectionView.backgroundView.layer.zPosition + 1;
-    } else {
-        if (self.ac_refreshControl) {
-            [self.ac_refreshControl removeFromSuperview];
-        }
-        
-        [self setACRefreshControl:[UIRefreshControl new]];
-        self.ac_refreshControl.tintColor = ACDesign(ACDesignColorRefreshControlTVC);
-        [self.ac_refreshControl addTarget:self action:@selector(ac_refreshView) forControlEvents:UIControlEventValueChanged];
-        [self.collectionView addSubview:self.ac_refreshControl];
-    }
+    self.collectionView.refreshControl = [UIRefreshControl new];
+    [self.collectionView.refreshControl setTintColor:ACDesign(ACDesignColorRefreshControlTVC)];
+    [self.collectionView.refreshControl addTarget:self action:@selector(ac_refreshView) forControlEvents:UIControlEventValueChanged];
+    self.collectionView.refreshControl.layer.zPosition = self.collectionView.backgroundView.layer.zPosition + 1;
 }
 
 - (void)ac_startRefreshing {
-    if (AC_SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"10")) {
-        if (!self.collectionView.refreshControl || (self.collectionView.contentOffset.y > .0)) return;
-        
-        [self.collectionView setContentOffset:CGPointMake(.0, (self.collectionView.contentOffset.y - CGRectGetHeight(self.collectionView.refreshControl.frame)))
-                                     animated:YES];
-        [self.collectionView.refreshControl beginRefreshing];
-    } else {
-        if (!self.ac_refreshControl || (self.collectionView.contentOffset.y > .0)) return;
-        
-        [self.collectionView setContentOffset:CGPointMake(.0, (self.collectionView.contentOffset.y - CGRectGetHeight(self.ac_refreshControl.frame)))
-                                     animated:YES];
-        [self.ac_refreshControl beginRefreshing];
-    }
+    if (!self.collectionView.refreshControl || (self.collectionView.contentOffset.y > .0)) return;
+    
+    [self.collectionView setContentOffset:CGPointMake(.0, (self.collectionView.contentOffset.y - CGRectGetHeight(self.collectionView.refreshControl.frame)))
+                                 animated:YES];
+    [self.collectionView.refreshControl beginRefreshing];
 }
 
 - (void)ac_endRefreshing {
-    if (AC_SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"10")) {
-        if (!self.collectionView.refreshControl) return;
-        [self.collectionView.refreshControl endRefreshing];
-    } else {
-        if (!self.ac_refreshControl) return;
-        [self.ac_refreshControl endRefreshing];
-    }
+    if (!self.collectionView.refreshControl) return;
+    [self.collectionView.refreshControl endRefreshing];
 }
 
 - (void)ac_refreshView {

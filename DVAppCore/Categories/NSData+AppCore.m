@@ -48,6 +48,10 @@
                 || [jsonObj isKindOfClass:[NSDictionary class]])) ? jsonObj : nil;
 }
 
+- (NSString *)ac_base64 {
+    return [self base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+}
+
 #pragma mark - Utils
 + (NSString *)stringByChars:(unsigned char *)chars {
     NSMutableString *output = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];

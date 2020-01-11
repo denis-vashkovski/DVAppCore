@@ -6,7 +6,6 @@
 //  Copyright © 2016 Denis Vashkovski. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
 @interface UIColor(AppCore)

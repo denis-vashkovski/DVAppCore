@@ -38,6 +38,7 @@
 #import "UILabel+AppCore.h"
 #import "UINavigationBar+AppCore.h"
 #import "UINavigationController+AppCore.h"
+#import "UINavigationItem+AppCore.h"
 #import "UINib+AppCore.h"
 #import "UITabBar+AppCore.h"
 #import "UITableView+AppCore.h"

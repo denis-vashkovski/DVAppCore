@@ -6,8 +6,9 @@
 //  Copyright © 2016 Denis Vashkovski. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+
+@class WKWebView;
 
 IB_DESIGNABLE
 
@@ -31,11 +32,12 @@ typedef enum {
 - (void)ac_setShadowColor:(UIColor *)color opacity:(CGFloat)opacity radius:(CGFloat)radius offset:(CGSize)offset;
 - (void)ac_setBackgroundImageByName:(NSString *)imageName;
 - (void)ac_setBackgroundImage:(UIImage *)image;
-- (void)ac_setHidden:(BOOL)hidden animate:(BOOL)animate;
+- (void)ac_setHidden:(BOOL)hidden animate:(BOOL)animate completion:(void (^)(void))completion;
 
 - (CALayer *)ac_layerWithName:(NSString *)name;
 - (CALayer *)ac_addMaskWithColor:(UIColor *)color;
 - (CAGradientLayer *)ac_addGradientWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint colors:(NSArray<UIColor *> *)colors;
+- (void)ac_update;
 
 - (void)ac_rotateWithDuration:(NSTimeInterval)duration angle:(CGFloat)angle;
 - (void)ac_addFadeAnimationWithDuration:(NSTimeInterval)duration;
@@ -56,7 +58,7 @@ typedef enum {
 - (UITextView *)ac_textViewWithTag:(NSInteger)tag;
 - (UITextField *)ac_textFieldWithTag:(NSInteger)tag;
 - (UISwitch *)ac_switchWithTag:(NSInteger)tag;
-- (UIWebView *)ac_webViewWithTag:(NSInteger)tag;
+- (WKWebView *)ac_webViewWithTag:(NSInteger)tag;
 - (UISlider *)ac_sliderWithTag:(NSInteger)tag;
 - (UISegmentedControl *)ac_segmentedControlWithTag:(NSInteger)tag;
 - (UIActivityIndicatorView *)ac_activityIndicatorViewWithTag:(NSInteger)tag;

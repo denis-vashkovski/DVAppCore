@@ -10,18 +10,29 @@
 
 #import "NSNotificationCenter+AppCore.h"
 
+#import "UINavigationController+AppCore.h"
+
 #import "ACDesignHelper.h"
 #import "ACLocalizationHelper.h"
+#import "ACKeyboardListener.h"
+
+@interface ACTemplateVC()<UIGestureRecognizerDelegate>
+
+@end
 
 @implementation ACTemplateVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self ac_initBackButtonIfNeeded];
-    
     [[NSNotificationCenter defaultCenter] ac_addObserver:self selector:@selector(ac_didUpdatedDesign) name:ACUpdateDesign];
     [[NSNotificationCenter defaultCenter] ac_addObserver:self selector:@selector(ac_didUpdatedLocalization) name:ACUpdateLocalization];
+    
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                        action:@selector(ac_hideKeyboard)];
+    gestureRecognizer.cancelsTouchesInView = NO;
+    [gestureRecognizer setDelegate:self];
+    [self.view addGestureRecognizer:gestureRecognizer];
 }
 
 - (void)dealloc {
@@ -39,6 +50,15 @@
     [[NSNotificationCenter defaultCenter] ac_addObserver:self
                                                 selector:@selector(ac_private_keyboardWillBeHidden:)
                                                     name:UIKeyboardWillHideNotification];
+    
+    _visible = YES;
+    _viewAppearNotFirstTime = YES;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [self.navigationController ac_updateInteractivePopGestureRecognizerDelegateIfNeeded];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -51,6 +71,8 @@
     
     [[NSNotificationCenter defaultCenter] ac_removeObserver:self
                                                        name:UIKeyboardWillHideNotification];
+    
+    _visible = NO;
 }
 
 #pragma mark - Keyboard delegate
@@ -89,6 +111,10 @@
     }];
 }
 
+#pragma mark - UIGestureRecognizerDelegate
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    return (![ACKeyboardListener sharedKeyboardListener].isVisible || ![touch.view isKindOfClass:[UIControl class]]);
+}
 
 #pragma mark - ACUpdaterVCProtocol
 - (void)ac_didUpdatedDesign {

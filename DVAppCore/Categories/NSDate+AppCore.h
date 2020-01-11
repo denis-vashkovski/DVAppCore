@@ -27,12 +27,21 @@
 + (instancetype)ac_dateWithYear:(NSUInteger)year month:(NSUInteger)month day:(NSUInteger)day hour:(NSUInteger)hour minute:(NSUInteger)minute;
 + (instancetype)ac_dateWithYear:(NSUInteger)year month:(NSUInteger)month day:(NSUInteger)day;
 
-+ (instancetype)ac_date:(NSString *)dateString dateFormat:(NSString *)dateFormat timeZoneAbbreviation:(NSString *)timeZoneAbbreviation;
++ (instancetype)ac_date:(NSString *)dateString
+             dateFormat:(NSString *)dateFormat
+   timeZoneAbbreviation:(NSString *)timeZoneAbbreviation;
+
 + (instancetype)ac_date:(NSString *)dateString dateFormat:(NSString *)dateFormat;
 + (instancetype)ac_dateUTC:(NSString *)dateString dateFormat:(NSString *)dateFormat;
 + (instancetype)ac_dateWithTimestamp:(NSTimeInterval)timestamp;
 
-- (NSString *)ac_stringWithFormat:(NSString *)format timeZoneAbbreviation:(NSString *)timeZoneAbbreviation;
+- (NSString *)ac_stringWithFormat:(NSString *)format
+             timeZoneAbbreviation:(NSString *)timeZoneAbbreviation
+                           locale:(NSLocale *)locale;
+
+- (NSString *)ac_stringWithFormat:(NSString *)format
+             timeZoneAbbreviation:(NSString *)timeZoneAbbreviation;
+
 - (NSString *)ac_stringWithFormat:(NSString *)format;
 - (NSString *)ac_stringUTCWithFormat:(NSString *)format;
 

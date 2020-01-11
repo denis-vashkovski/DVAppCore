@@ -14,20 +14,17 @@
 
 #import "ACConstants.h"
 
+#import <WebKit/WebKit.h>
+
 @implementation UIView(AppCore)
 
 + (instancetype)ac_newInstanceFromNib {
     return [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:nil options:nil] lastObject];
 }
 
-AC_LOAD_ONCE([self ac_addSwizzlingSelector:@selector(ac_private_setBackgroundColor:) originalSelector:@selector(setBackgroundColor:)];
-             [self ac_addSwizzlingSelector:@selector(acv_layoutSubviews) originalSelector:@selector(layoutSubviews)];)
-
 #define MASK_LAYER_NAME @"mask_layer_name"
 #define GRADIENT_LAYER_NAME @"gradient_layer_name"
-- (void)acv_layoutSubviews {
-    [self acv_layoutSubviews];
-    
+- (void)ac_update {
     if (self.ac_shapeType != ACShapeTypeDefault) {
         [self setAc_shapeType:self.ac_shapeType];
     }
@@ -103,10 +100,6 @@ AC_CATEGORY_PROPERTY_GET(UIColor *, ac_staticBackgroundColor)
 }
 
 #pragma mark - Setters
-- (void)ac_private_setBackgroundColor:(UIColor *)backgroundColor {
-    [self ac_private_setBackgroundColor:(self.ac_staticBackgroundColor ? self.ac_staticBackgroundColor : backgroundColor)];
-}
-
 - (void)ac_setBackgroundClearColor {
     [self setBackgroundColor:[UIColor clearColor]];
 }
@@ -143,7 +136,10 @@ AC_CATEGORY_PROPERTY_GET(UIColor *, ac_staticBackgroundColor)
     [self.layer setContents:(id)image.CGImage];
 }
 
-- (void)ac_setHidden:(BOOL)hidden animate:(BOOL)animate {
+- (void)ac_setHidden:(BOOL)hidden
+             animate:(BOOL)animate
+          completion:(void (^)(void))completion {
+    
     if (animate) {
         [self setAlpha:(hidden ? 1. : .0)];
         
@@ -159,9 +155,17 @@ AC_CATEGORY_PROPERTY_GET(UIColor *, ac_staticBackgroundColor)
                                  [self setHidden:hidden];
                                  [self setAlpha:1.];
                              }
+                             
+                             if (completion) {
+                                 completion();
+                             }
                          }];
     } else {
         [self setHidden:hidden];
+
+        if (completion) {
+            completion();
+        }
     }
 }
 
@@ -303,7 +307,7 @@ VIEW_WITH_TAG(UIButton, ac_buttonWithTag)
 VIEW_WITH_TAG(UITextView, ac_textViewWithTag)
 VIEW_WITH_TAG(UITextField, ac_textFieldWithTag)
 VIEW_WITH_TAG(UISwitch, ac_switchWithTag)
-VIEW_WITH_TAG(UIWebView, ac_webViewWithTag)
+VIEW_WITH_TAG(WKWebView, ac_webViewWithTag)
 VIEW_WITH_TAG(UISlider, ac_sliderWithTag)
 VIEW_WITH_TAG(UISegmentedControl, ac_segmentedControlWithTag)
 VIEW_WITH_TAG(UIActivityIndicatorView, ac_activityIndicatorViewWithTag)

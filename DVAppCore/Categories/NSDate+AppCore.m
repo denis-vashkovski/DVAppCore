@@ -78,20 +78,30 @@ static const unsigned componentUnits = (NSCalendarUnitYear
     return [NSDate dateWithTimeIntervalSince1970:(timestamp / AC_SECOND_IN_MILLISECONDS)];
 }
 
-- (NSString *)ac_stringWithFormat:(NSString *)format timeZoneAbbreviation:(NSString *)timeZoneAbbreviation {
+- (NSString *)ac_stringWithFormat:(NSString *)format
+             timeZoneAbbreviation:(NSString *)timeZoneAbbreviation
+                           locale:(NSLocale *)locale {
+    
     if (!format || format.ac_isEmpty) {
         return nil;
     }
     
     NSDateFormatter *df = [NSDateFormatter new];
     [df setDateFormat:format];
-    [df setLocale:[[NSLocale alloc] initWithLocaleIdentifier:AC_EN_US_POSIX_LOCALE_IDENTIFIER]];
+    [df setLocale:locale];
     
     if (timeZoneAbbreviation && !timeZoneAbbreviation.ac_isEmpty) {
         [df setTimeZone:[NSTimeZone timeZoneWithAbbreviation:timeZoneAbbreviation]];
     }
     
     return [df stringFromDate:self];
+}
+
+- (NSString *)ac_stringWithFormat:(NSString *)format timeZoneAbbreviation:(NSString *)timeZoneAbbreviation {
+    
+    return [self ac_stringWithFormat:format
+                timeZoneAbbreviation:timeZoneAbbreviation
+                              locale:[NSLocale currentLocale]];
 }
 
 - (NSString *)ac_stringWithFormat:(NSString *)format {
