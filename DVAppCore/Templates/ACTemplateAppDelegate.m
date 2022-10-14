@@ -71,7 +71,6 @@
 
 #pragma mark - UIViewController(ACOrientation)
 @implementation UIViewController(orientationFix)
-
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     NSNumber *interfaceOrientationsData = [self ac_interfaceOrientationsData];
     if (interfaceOrientationsData) {
@@ -104,6 +103,7 @@
     if (![[self ac_appDelegate] respondsToSelector:@selector(ac_interfaceOrientations)]) {
         return nil;
     }
+    
     NSNumber *interfaceOrientationsData = [self ac_appDelegate].ac_interfaceOrientations[NSStringFromClass([self class])];
 
     if (!interfaceOrientationsData) {
@@ -112,6 +112,7 @@
             interfaceOrientationsData = [self ac_appDelegate].ac_interfaceOrientations[NSStringFromClass([visibleVC class])];
         }
     }
+
     return interfaceOrientationsData;
 }
 
