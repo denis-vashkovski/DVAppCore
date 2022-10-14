@@ -71,6 +71,7 @@
 
 #pragma mark - UIViewController(ACOrientation)
 @implementation UIViewController(orientationFix)
+
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     NSNumber *interfaceOrientationsData = [self ac_interfaceOrientationsData];
     if (interfaceOrientationsData) {
@@ -81,6 +82,13 @@
         }
         return UIInterfaceOrientationMaskPortrait;
     };
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    NSNumber *interfaceOrientationsData = [self ac_interfaceOrientationsData];
+    return [self interfaceOrientationByMask:(interfaceOrientationsData
+                                             ? interfaceOrientationsData.integerValue
+                                             : [[self ac_appDelegate] ac_interfaceOrientationsDefault])];
 }
 
 - (BOOL)shouldAutorotate {
@@ -97,14 +105,13 @@
         return nil;
     }
     NSNumber *interfaceOrientationsData = [self ac_appDelegate].ac_interfaceOrientations[NSStringFromClass([self class])];
-    
+
     if (!interfaceOrientationsData) {
         if ([self isKindOfClass:[UINavigationController class]]) {
             UIViewController *visibleVC = ((UINavigationController *)self).visibleViewController;
             interfaceOrientationsData = [self ac_appDelegate].ac_interfaceOrientations[NSStringFromClass([visibleVC class])];
         }
     }
-    
     return interfaceOrientationsData;
 }
 
