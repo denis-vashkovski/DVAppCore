@@ -73,14 +73,14 @@
 @implementation UIViewController(orientationFix)
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     NSNumber *interfaceOrientationsData = [self ac_interfaceOrientationsData];
-    return interfaceOrientationsData ? interfaceOrientationsData.integerValue : [[self ac_appDelegate] ac_interfaceOrientationsDefault];
-}
-
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
-    NSNumber *interfaceOrientationsData = [self ac_interfaceOrientationsData];
-    return [self interfaceOrientationByMask:(interfaceOrientationsData
-                                             ? interfaceOrientationsData.integerValue
-                                             : [[self ac_appDelegate] ac_interfaceOrientationsDefault])];
+    if (interfaceOrientationsData) {
+        return interfaceOrientationsData.integerValue;
+    } else {
+        if ([[self ac_appDelegate] respondsToSelector:@selector(ac_interfaceOrientationsDefault)]) {
+            return [[self ac_appDelegate] ac_interfaceOrientationsDefault];
+        }
+        return UIInterfaceOrientationMaskPortrait;
+    };
 }
 
 - (BOOL)shouldAutorotate {
@@ -93,6 +93,9 @@
 }
 
 - (NSNumber *)ac_interfaceOrientationsData {
+    if (![[self ac_appDelegate] respondsToSelector:@selector(ac_interfaceOrientations)]) {
+        return nil;
+    }
     NSNumber *interfaceOrientationsData = [self ac_appDelegate].ac_interfaceOrientations[NSStringFromClass([self class])];
     
     if (!interfaceOrientationsData) {
